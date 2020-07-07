@@ -1,0 +1,48 @@
+# Instalação do R
+
+## Instalação R
+
+## Instalação R Studio
+
+Telas (interfaces): script, console, environment, arquivos, viewer (criar dicionário)
+Como criar um projeto
+
+
+## Operações simples
+
+Explicar funcões (calculadora, atribuir <-)
+
+Funções básicas: soma, media, moda, atribuir
+
+```{r eval=FALSE}
+
+# Atribuição de valor à objetos
+objeto <- função, vetor, regressão...
+
+# Calculadora com memória
+soma <- 1 + 1
+multiplicação <- 1 * 2
+média <- mean(6, 3, 4, 10) #média dos números da lista
+mediana <- median(6) # moda dos números
+
+# ...
+
+```
+
+
+
+## Instalacao de bibliotecas
+
+Bibliotecas adicionais...
+
+
+```{r eval=FALSE}
+# instalar a tidyverse
+install.packages("tidyverse")
+
+# instalar o codebook
+install.packages("codebook")
+
+```
+
+

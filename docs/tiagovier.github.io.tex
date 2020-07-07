@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Manual WVS usando R},
+  pdftitle={Uso do R para análise da dados da World Values Survey},
   pdfauthor={Coletivo WVSR},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -111,9 +111,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Manual WVS usando R}
+\title{Uso do R para análise da dados da World Values Survey}
 \author{Coletivo WVSR}
-\date{2020-07-03}
+\date{2020-07-07}
 
 \begin{document}
 \maketitle
@@ -122,122 +122,255 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
-
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
-
-The \textbf{bookdown} package can be installed from CRAN or Github:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
-
 \hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\chapter{Introdução}\label{intro}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+Este tutorial\ldots{}
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\hypertarget{o-r-e-o-rstudio}{%
+\section{O R e o RStudio}\label{o-r-e-o-rstudio}}
+
+Software livre, para cientistas sociais. Flexivel
+
+\hypertarget{compatibilidades}{%
+\subsection{Compatibilidades}\label{compatibilidades}}
+
+MAC; IOS; Linux
+
+Excel, Stata, SPSS etc
+
+\hypertarget{o-que-uxe9-o-wvs}{%
+\section{O que é o WVS}\label{o-que-uxe9-o-wvs}}
+
+A World Values Survey (WVS) é fruto de uma iniciativa acadêmica que investiga mudanças culturais desde a segunda metade do século XX em mais de cem países. É um projeto que possibilita a comparação de características culturais de diversas sociedades desde a década de 1970 e contribui dentre outros campos, para o debate sobre a relação entre desenvolvimento econômico e mudanças culturais, para o acompanhamento longitudinal de visões sobre as mudanças em curso e ampliar o conhecimento de diferentes áreas do planeta antes de acesso limitado a pesquisadores da região.
+
+A metodologia da WVS sujeita-se à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart, que sugere que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação na atividade política em democracias do Ocidente.
+
+A tese articula duas hipóteses para explicar essa mudança: a) a hipótese da escassez: defende que as prioridades da ação humana são resultado do ambiente sócio-econômico vigente, no qual valoriza-se subjetivamente coisas e aspectos da realidade que são escassos; e b) hipótese da socialização: defende que grande parte dos valores básicos de um indivíduo derivam das condições presentes em seu período de formação, anterior à idade adulta.
+
+Assim, a WVS explora a hipótese final de que ``as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes, {[}\ldots{]} esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.'' \citep{castro_conteudo_2015}
+
+``No entanto, essa forte ligação a uma perspectiva teórica não impede que seus dados possam ser úteis para pesquisas que não usem o mesmo referencial teórico.'' \citep{castro_conteudo_2015}
+
+Os dados gerados em todos os países integrantes da WVS ficam disponíveis para livre pesquisa na internet, no site www.worldvaluessurvey.org. The survey started in 1981 and {[}\ldots{]} consists of nationally representative surveys conducted in almost 100 countries which contain almost 90\% of the world's population, using a common questionnaire and currently including interviews with almost 400,000 respondents.'' A WVS usa um questionário de 180 variáveis permitindo a comparação.
+
+\hypertarget{instalauxe7uxe3o-do-r}{%
+\chapter{Instalação do R}\label{instalauxe7uxe3o-do-r}}
+
+\hypertarget{instalauxe7uxe3o-r}{%
+\section{Instalação R}\label{instalauxe7uxe3o-r}}
+
+\hypertarget{instalauxe7uxe3o-r-studio}{%
+\section{Instalação R Studio}\label{instalauxe7uxe3o-r-studio}}
+
+Telas (interfaces): script, console, environment, arquivos, viewer (criar dicionário)
+Como criar um projeto
+
+\hypertarget{operauxe7uxf5es-simples}{%
+\section{Operações simples}\label{operauxe7uxf5es-simples}}
+
+Explicar funcões (calculadora, atribuir \textless-)
+
+Funções básicas: soma, media, moda, atribuir
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\CommentTok{# Atribuição de valor à objetos}
+\NormalTok{objeto <-}\StringTok{ }\NormalTok{função, vetor, regressão...}
+
+\CommentTok{# Calculadora com memória}
+\NormalTok{soma <-}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{multiplicação <-}\StringTok{ }\DecValTok{1} \OperatorTok{*}\StringTok{ }\DecValTok{2}
+\NormalTok{média <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{) }\CommentTok{#média dos números da lista}
+\NormalTok{mediana <-}\StringTok{ }\KeywordTok{median}\NormalTok{(}\DecValTok{6}\NormalTok{) }\CommentTok{# moda dos números}
+
+\CommentTok{# ...}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
+\hypertarget{instalacao-de-bibliotecas}{%
+\section{Instalacao de bibliotecas}\label{instalacao-de-bibliotecas}}
 
-{\centering \includegraphics[width=0.8\linewidth]{tiagovier.github.io_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+Bibliotecas adicionais\ldots{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
+\CommentTok{# instalar a tidyverse}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+
+\CommentTok{# instalar o codebook}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
+\hypertarget{carregar-bibliotecas}{%
+\chapter{Carregar Bibliotecas}\label{carregar-bibliotecas}}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+Para carregar as bibliotecas
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# carregar o tidyverse}
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 
-\hypertarget{literature}{%
-\chapter{Literature}\label{literature}}
+\CommentTok{# carregar o codebook}
+\KeywordTok{library}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Here is a review of existing methods.
+\hypertarget{gerar-dicionuxe1rio-de-variuxe1veis}{%
+\section{Gerar dicionário de variáveis}\label{gerar-dicionuxe1rio-de-variuxe1veis}}
 
-\hypertarget{methods}{%
-\chapter{Methods}\label{methods}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# gerar o dicionário de variáveis usando codebook}
+\KeywordTok{label_browser_static}\NormalTok{(df_wvs7)}
+\NormalTok{dicionario <-}\StringTok{ }\KeywordTok{codebook_table}\NormalTok{(wvs_bra)}
+\end{Highlighting}
+\end{Shaded}
 
-We describe our methods in this chapter.
+\hypertarget{importar-a-base-de-dados}{%
+\chapter{Importar a base de dados}\label{importar-a-base-de-dados}}
 
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
+Acessar o \href{http://www.worldvaluessurvey.org/WVSContents.jsp}{Site do WVS}, baixar a versão desejada\ldots{} etc.
 
-Some \emph{significant} applications are demonstrated in this chapter.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"./material/data/WVS_7.RData"}\NormalTok{)}\CommentTok{#abrir dados no formato R}
 
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
+\NormalTok{wvs_bra <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"material/data/WVS7_BRA_v2012.sav"}\NormalTok{)}\CommentTok{#importar dados formato SPSS}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
+\hypertarget{descrever-e-analisar-os-dados}{%
+\chapter{Descrever e Analisar os dados}\label{descrever-e-analisar-os-dados}}
 
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
+\hypertarget{descrever-os-dados}{%
+\section{Descrever os dados}\label{descrever-os-dados}}
 
-We have finished a nice book.
+Criar variáveis, vetores
 
-  \bibliography{book.bib,packages.bib}
+Funções:
+Filter: filtrar observações baseadas em uma condição
+Select: escolher variáveis
+Count: conta e cruza variáveis
+Mutate: criar nova coluna
+Summarise: resumir dados baseados em uma operação
+Excluir missing values
+Group: agrupar variáveis
+View: visualizar variáveis escolhidas
+
+Fazer gráficos
+Criar anotacoes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{%>%}\StringTok{ }\CommentTok{#conecta linhas do seu codigo}
+
+\KeywordTok{filter}\NormalTok{() }\CommentTok{#filtrar observacoes baseado em uma condicao Brasil: filter(S003 == 76)}
+\KeywordTok{select}\NormalTok{() }\CommentTok{#selecionar somente pais e sexo select(X001)}
+\KeywordTok{count}\NormalTok{() }\CommentTok{# conta e cruza variaveis}
+\KeywordTok{mutate}\NormalTok{() }\CommentTok{#cria uma nova coluna mutate(c = a + b)}
+\KeywordTok{summarise}\NormalTok{() }\CommentTok{#resumir os nossos dados baseados em uma operacao summarise(media = mean(IDADE))}
+\CommentTok{#na.rm mean() sd() median()}
+
+\CommentTok{# exemplos }
+\NormalTok{df_wvs7 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{media =} \KeywordTok{mean}\NormalTok{(X003, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{# exemplos}
+\NormalTok{df_wvs7 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{count}\NormalTok{(S003, X001)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{analises-bi-e-multi-variadas}{%
+\section{Analises bi e multi-variadas}\label{analises-bi-e-multi-variadas}}
+
+Cor: correlacionar
+Regressao linear multipla: lm(variaveis)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#correlacao}
+\NormalTok{df_wvs7 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(X002, X003) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{cor}\NormalTok{(}\DataTypeTok{use =} \StringTok{"complete.obs"}\NormalTok{)}
+
+\CommentTok{#regressao linear multipla}
+
+\NormalTok{resultado <-}\StringTok{ }\NormalTok{df_wvs7 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(S003) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{lm}\NormalTok{(X047 }\OperatorTok{~}\StringTok{ }\KeywordTok{scale}\NormalTok{(X025R) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale}\NormalTok{(X002), }\DataTypeTok{data =}\NormalTok{ .)}
+\NormalTok{resultado_bol <-}\StringTok{ }\NormalTok{df_wvs7 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{==}\StringTok{ }\DecValTok{68}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{lm}\NormalTok{(X047 }\OperatorTok{~}\StringTok{ }\KeywordTok{scale}\NormalTok{(X025R) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale}\NormalTok{(X002), }\DataTypeTok{data =}\NormalTok{ .)}
+
+\NormalTok{bra <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(resultado)}\OperatorTok{$}\NormalTok{coeff}
+\NormalTok{bol <-}\KeywordTok{summary}\NormalTok{(resultado_bol)}\OperatorTok{$}\NormalTok{coeff}
+
+\KeywordTok{glm}\NormalTok{(binaria }\OperatorTok{~}\StringTok{ }\NormalTok{expicacao1 }\OperatorTok{+}\StringTok{ }\NormalTok{explicacao2, }\DataTypeTok{data =}\NormalTok{ wvs7)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{visualizar-os-dados}{%
+\chapter{Visualizar os dados}\label{visualizar-os-dados}}
+
+ggplot2
+
+\hypertarget{glossuxe1rio}{%
+\chapter{Glossário}\label{glossuxe1rio}}
+
+\begin{itemize}
+\tightlist
+\item
+  Estatística:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    variáveis numéricas
+  \item
+    categóricas
+  \end{itemize}
+\item
+  Programação:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    variável
+  \item
+    objeto
+  \item
+    vetor
+  \item
+    lista
+  \item
+    dataframe
+  \item
+    script
+  \item
+    console
+  \item
+    environment
+  \item
+    arquivos
+  \item
+    Códigos-chave
+  \end{itemize}
+\item
+  Verbos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    count
+  \item
+    select
+  \item
+    filter
+  \item
+    view
+  \item
+    summarise
+  \item
+    mutate
+  \end{itemize}
+\end{itemize}
+
+  \bibliography{tutorial.bib,packages.bib}
 
 \end{document}

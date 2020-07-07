@@ -1,0 +1,17 @@
+# Importar a base de dados
+
+Acessar o [Site do WVS](http://www.worldvaluessurvey.org/WVSContents.jsp), baixar a versão desejada... etc.
+
+
+
+```{r eval=FALSE}
+
+load("./material/data/WVS_7.RData")#abrir dados no formato R
+
+wvs_bra <- read_sav("material/data/WVS7_BRA_v2012.sav")#importar dados formato SPSS
+
+```
+
+
+
+
