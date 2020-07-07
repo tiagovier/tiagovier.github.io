@@ -1,0 +1,25 @@
+# Glossário
+
+* Estatística:
+  + variáveis numéricas
+  + categóricas
+
+* Programação:
+  + variável
+  + objeto
+  + vetor
+  + lista
+  + dataframe
+  + script 
+  + console 
+  + environment
+  + arquivos
+  + Códigos-chave
+
+* Verbos: 
+  + count
+  + select
+  + filter
+  + view
+  + summarise
+  + mutate

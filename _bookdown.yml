@@ -3,4 +3,11 @@ output_dir: "docs"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Capítulo "
+  label:
+    fig: "Figura "
+    tab: "Tabela "
+    eq: "Equação "
+    def: "Definition "
+    exm: "Examplo "
+    exr: "Exercício "

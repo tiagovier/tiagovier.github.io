@@ -1,0 +1,70 @@
+# Descrever e Analisar os dados
+
+
+## Descrever os dados
+
+Criar variáveis, vetores
+
+Funções:
+Filter: filtrar observações baseadas em uma condição
+Select: escolher variáveis
+Count: conta e cruza variáveis
+Mutate: criar nova coluna
+Summarise: resumir dados baseados em uma operação
+Excluir missing values
+Group: agrupar variáveis
+View: visualizar variáveis escolhidas
+
+Fazer gráficos
+Criar anotacoes
+
+
+```{r eval=FALSE}
+
+%>% #conecta linhas do seu codigo
+
+filter() #filtrar observacoes baseado em uma condicao Brasil: filter(S003 == 76)
+select() #selecionar somente pais e sexo select(X001)
+count() # conta e cruza variaveis
+mutate() #cria uma nova coluna mutate(c = a + b)
+summarise() #resumir os nossos dados baseados em uma operacao summarise(media = mean(IDADE))
+#na.rm mean() sd() median()
+
+# exemplos 
+df_wvs7 %>% summarise(media = mean(X003, na.rm = TRUE))
+
+# exemplos
+df_wvs7 %>% count(S003, X001)
+
+```
+
+
+
+
+## Analises bi e multi-variadas
+
+Cor: correlacionar
+Regressao linear multipla: lm(variaveis)
+
+
+```{r eval=FALSE}
+
+#correlacao
+df_wvs7 %>% select(X002, X003) %>% cor(use = "complete.obs")
+
+#regressao linear multipla
+
+resultado <- df_wvs7 %>% group_by(S003) %>% lm(X047 ~ scale(X025R) + scale(X002), data = .)
+resultado_bol <- df_wvs7 %>% filter(S003 == 68) %>% lm(X047 ~ scale(X025R) + scale(X002), data = .)
+
+bra <- summary(resultado)$coeff
+bol <-summary(resultado_bol)$coeff
+
+glm(binaria ~ expicacao1 + explicacao2, data = wvs7)
+
+
+```
+
+
+
+

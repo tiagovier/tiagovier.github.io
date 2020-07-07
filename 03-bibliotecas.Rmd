@@ -1,0 +1,28 @@
+# Carregar Bibliotecas
+
+Para carregar as bibliotecas
+
+```{r eval=FALSE}
+
+# carregar o tidyverse
+library("tidyverse")
+
+# carregar o codebook
+library("codebook")
+
+```
+
+
+
+## Gerar dicionário de variáveis
+
+
+```{r eval=FALSE}
+
+# gerar o dicionário de variáveis usando codebook
+label_browser_static(df_wvs7)
+dicionario <- codebook_table(wvs_bra)
+
+```
+
+
