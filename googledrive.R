@@ -25,3 +25,7 @@ upload_rmd(file = "07-glossario", path = "r/r-tutorial")
 
 ## Uma vez feitas as alterações recuperar a versão final do google drive:
 download_rmd(file = "02-instalacao", path = "r/r-tutorial")
+
+## corrigido o Rmarkdown, podemos atualizar a versão do drive.
+rmdrive::update_rmd(file = "02-instalacao", path = "r/r-tutorial")
+
