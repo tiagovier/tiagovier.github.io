@@ -24,7 +24,7 @@
 <meta name="author" content="Coletivo WVSR" />
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -141,10 +142,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#o-que-é-o-wvs"><i class="fa fa-check"></i><b>2.2</b> O que é o WVS</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="instalação-do-r.html"><a href="instalação-do-r.html"><i class="fa fa-check"></i><b>3</b> Instalação do R</a><ul>
-<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r"><i class="fa fa-check"></i><b>3.1</b> Instalação R</a></li>
-<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r-studio"><i class="fa fa-check"></i><b>3.2</b> Instalação R Studio</a></li>
-<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#operações-simples"><i class="fa fa-check"></i><b>3.3</b> Operações simples</a></li>
-<li class="chapter" data-level="3.4" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalacao-de-bibliotecas"><i class="fa fa-check"></i><b>3.4</b> Instalacao de bibliotecas</a></li>
+<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#linux"><i class="fa fa-check"></i><b>3.1</b> LINUX</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#mac-os-x"><i class="fa fa-check"></i><b>3.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-1"><i class="fa fa-check"></i><b>3.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.2.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>3.2.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#windows"><i class="fa fa-check"></i><b>3.3</b> Windows</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-2"><i class="fa fa-check"></i><b>3.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>3.3.2</b> Instalar o RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html"><i class="fa fa-check"></i><b>4</b> Carregar Bibliotecas</a><ul>
 <li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.1</b> Gerar dicionário de variáveis</a></li>
@@ -179,38 +188,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="instalação-do-r" class="section level1">
 <h1><span class="header-section-number">Capítulo 3</span> Instalação do R</h1>
-<div id="instalação-r" class="section level2">
-<h2><span class="header-section-number">3.1</span> Instalação R</h2>
+<p>Para este tutorial, nós iremos instalar dois softwares: R e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R.</p>
+<p>Assim, siga os passos para instalação de acordo com o sistema operacional de seu computador.</p>
+<div id="linux" class="section level2">
+<h2><span class="header-section-number">3.1</span> LINUX</h2>
+<div id="instalar-o-r" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Abra o terminal. Se utilizar distribuição Fedora, pressione as teclas Super + T, e no Ubuntu Ctrl + Alt + t;<br />
+</li>
+<li>Passo 2: Com o terminal aberto digite a seguinte linha de comando:
+<ul>
+<li>Fedora: <code>r sudo dnf install R</code></li>
+<li>Ubuntu: <code>r sudo apt-get install r-base r-base-core</code><br />
+</li>
+</ul></li>
+<li>Passo 3: Pressione a tecla Enter para confirmar;<br />
+</li>
+<li>Passo 4: Colocar a senha do usuário;<br />
+</li>
+<li>Passo 5: Confirmar. O R estará instalado e pode ser acessado.</li>
+</ul>
+<p>Link para eventual consulta: <a href="http://cran-r.c3sl.ufpr.br/bin/linux/">http://cran-r.c3sl.ufpr.br/bin/linux/</a></p>
 </div>
-<div id="instalação-r-studio" class="section level2">
-<h2><span class="header-section-number">3.2</span> Instalação R Studio</h2>
-<p>Telas (interfaces): script, console, environment, arquivos, viewer (criar dicionário)
-Como criar um projeto</p>
+<div id="instalar-o-rstudio" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Ubuntu, Fedora, Debian ou OpenSUSE) e faça download.<br />
+</li>
+<li>Passo 4: Acesse o terminal na pasta onde foi feito o download e siga as instruções abaixo usando Fedora ou Ubuntu:
+<ul>
+<li>Fedora: <code>r sudo dnf install nomedo_arquivo_baixado.rpm</code>; Ex: <code>r sudo dnf install rstudio-1.3.959-x86_64.rpm</code></li>
+<li>Ubuntu: <code>r sudo dpkg -i nomedo_arquivo_baixado.deb</code><br />
+</li>
+</ul></li>
+<li>Passo 5: Após isso, o RStudio estará instalado no seu computador e pronto para uso.</li>
+</ul>
 </div>
-<div id="operações-simples" class="section level2">
-<h2><span class="header-section-number">3.3</span> Operações simples</h2>
-<p>Explicar funcões (calculadora, atribuir &lt;-)</p>
-<p>Funções básicas: soma, media, moda, atribuir</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="instalação-do-r.html#cb1-1"></a><span class="co"># Atribuição de valor à objetos</span></span>
-<span id="cb1-2"><a href="instalação-do-r.html#cb1-2"></a>objeto &lt;-<span class="st"> </span>função, vetor, regressão...</span>
-<span id="cb1-3"><a href="instalação-do-r.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="instalação-do-r.html#cb1-4"></a><span class="co"># Calculadora com memória</span></span>
-<span id="cb1-5"><a href="instalação-do-r.html#cb1-5"></a>soma &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb1-6"><a href="instalação-do-r.html#cb1-6"></a>multiplicação &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb1-7"><a href="instalação-do-r.html#cb1-7"></a>média &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span>) <span class="co">#média dos números da lista</span></span>
-<span id="cb1-8"><a href="instalação-do-r.html#cb1-8"></a>mediana &lt;-<span class="st"> </span><span class="kw">median</span>(<span class="dv">6</span>) <span class="co"># moda dos números</span></span>
-<span id="cb1-9"><a href="instalação-do-r.html#cb1-9"></a></span>
-<span id="cb1-10"><a href="instalação-do-r.html#cb1-10"></a><span class="co"># ...</span></span></code></pre></div>
 </div>
-<div id="instalacao-de-bibliotecas" class="section level2">
-<h2><span class="header-section-number">3.4</span> Instalacao de bibliotecas</h2>
-<p>Bibliotecas adicionais…</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="instalação-do-r.html#cb2-1"></a><span class="co"># instalar a tidyverse</span></span>
-<span id="cb2-2"><a href="instalação-do-r.html#cb2-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb2-3"><a href="instalação-do-r.html#cb2-3"></a></span>
-<span id="cb2-4"><a href="instalação-do-r.html#cb2-4"></a><span class="co"># instalar o codebook</span></span>
-<span id="cb2-5"><a href="instalação-do-r.html#cb2-5"></a><span class="kw">install.packages</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
+<div id="mac-os-x" class="section level2">
+<h2><span class="header-section-number">3.2</span> Mac OS X</h2>
+<div id="instalar-o-r-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Abra o site <a href="https://cran.r-project.org/">CRAN - https://cran.r-project.org/</a></li>
+<li>Passo 2: Clique em Download de R for (Mac) OS X.<br />
+</li>
+<li>Passo 3: Clique duas vezes no arquivo depois de baixado que será instalado no seu computador.</li>
+</ul>
+</div>
+<div id="instalar-o-rstudio-1" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Mac OS) e faça download.<br />
+</li>
+<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.</li>
+</ul>
+</div>
+</div>
+<div id="windows" class="section level2">
+<h2><span class="header-section-number">3.3</span> Windows</h2>
+<div id="instalar-o-r-2" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Instalar o R</h3>
+<ul>
+<li>Passo 1: Clique no seguinte link <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a><br />
+</li>
+<li>Passo 2: Clique em Download R for Windows (os números que aparecem nesse arquivo de download correspondem à versão do R disponível):</li>
+</ul>
+<p><img src="img/inst_1_rwindows.png" width="488" /></p>
+<ul>
+<li>Passo 3: Clique duas vezes no arquivo depois de baixado, clique em avançar até finalizar a instalação que será instalado no seu computador.</li>
+</ul>
+</div>
+<div id="instalar-o-rstudio-2" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Instalar o RStudio</h3>
+<ul>
+<li>Passo 1: Acesse o site <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a><br />
+</li>
+<li>Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:</li>
+</ul>
+<p><img src="img/inst_1_rstudio.png" width="488" /></p>
+<ul>
+<li>Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.</li>
+<li>Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.</li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>

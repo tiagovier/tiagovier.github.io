@@ -113,7 +113,7 @@
 
 \title{Uso do R para análise da dados da World Values Survey}
 \author{Coletivo WVSR}
-\date{2020-07-07}
+\date{2020-07-13}
 
 \begin{document}
 \maketitle
@@ -160,51 +160,150 @@ Os dados gerados em todos os países integrantes da WVS ficam disponíveis para 
 \hypertarget{instalauxe7uxe3o-do-r}{%
 \chapter{Instalação do R}\label{instalauxe7uxe3o-do-r}}
 
-\hypertarget{instalauxe7uxe3o-r}{%
-\section{Instalação R}\label{instalauxe7uxe3o-r}}
+Para este tutorial, nós iremos instalar dois softwares: R e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R.
 
-\hypertarget{instalauxe7uxe3o-r-studio}{%
-\section{Instalação R Studio}\label{instalauxe7uxe3o-r-studio}}
+Assim, siga os passos para instalação de acordo com o sistema operacional de seu computador.
 
-Telas (interfaces): script, console, environment, arquivos, viewer (criar dicionário)
-Como criar um projeto
+\hypertarget{linux}{%
+\section{LINUX}\label{linux}}
 
-\hypertarget{operauxe7uxf5es-simples}{%
-\section{Operações simples}\label{operauxe7uxf5es-simples}}
+\hypertarget{instalar-o-r}{%
+\subsection{Instalar o R}\label{instalar-o-r}}
 
-Explicar funcões (calculadora, atribuir \textless-)
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Abra o terminal. Se utilizar distribuição Fedora, pressione as teclas Super + T, e no Ubuntu Ctrl + Alt + t;\\
+\item
+  Passo 2: Com o terminal aberto digite a seguinte linha de comando:
 
-Funções básicas: soma, media, moda, atribuir
+  \begin{itemize}
+  \tightlist
+  \item
+    Fedora: \texttt{r\ sudo\ dnf\ install\ R}
+  \item
+    Ubuntu: \texttt{r\ sudo\ apt-get\ install\ r-base\ r-base-core}\\
+  \end{itemize}
+\item
+  Passo 3: Pressione a tecla Enter para confirmar;\\
+\item
+  Passo 4: Colocar a senha do usuário;\\
+\item
+  Passo 5: Confirmar. O R estará instalado e pode ser acessado.
+\end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Atribuição de valor à objetos}
-\NormalTok{objeto <-}\StringTok{ }\NormalTok{função, vetor, regressão...}
+Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 
-\CommentTok{# Calculadora com memória}
-\NormalTok{soma <-}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1}
-\NormalTok{multiplicação <-}\StringTok{ }\DecValTok{1} \OperatorTok{*}\StringTok{ }\DecValTok{2}
-\NormalTok{média <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{) }\CommentTok{#média dos números da lista}
-\NormalTok{mediana <-}\StringTok{ }\KeywordTok{median}\NormalTok{(}\DecValTok{6}\NormalTok{) }\CommentTok{# moda dos números}
+\hypertarget{instalar-o-rstudio}{%
+\subsection{Instalar o RStudio}\label{instalar-o-rstudio}}
 
-\CommentTok{# ...}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Acesse o site \url{https://rstudio.com/products/rstudio/download/}\\
+\item
+  Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:
+\end{itemize}
 
-\hypertarget{instalacao-de-bibliotecas}{%
-\section{Instalacao de bibliotecas}\label{instalacao-de-bibliotecas}}
+\includegraphics[width=13.54in]{img/inst_1_rstudio}
 
-Bibliotecas adicionais\ldots{}
+\begin{itemize}
+\tightlist
+\item
+  Passo 3: Encontre o sistema operacional do seu computador (Ubuntu, Fedora, Debian ou OpenSUSE) e faça download.\\
+\item
+  Passo 4: Acesse o terminal na pasta onde foi feito o download e siga as instruções abaixo usando Fedora ou Ubuntu:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# instalar a tidyverse}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+  \begin{itemize}
+  \tightlist
+  \item
+    Fedora: \texttt{r\ sudo\ dnf\ install\ nomedo\_arquivo\_baixado.rpm}; Ex: \texttt{r\ sudo\ dnf\ install\ rstudio-1.3.959-x86\_64.rpm}
+  \item
+    Ubuntu: \texttt{r\ sudo\ dpkg\ -i\ nomedo\_arquivo\_baixado.deb}\\
+  \end{itemize}
+\item
+  Passo 5: Após isso, o RStudio estará instalado no seu computador e pronto para uso.
+\end{itemize}
 
-\CommentTok{# instalar o codebook}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{mac-os-x}{%
+\section{Mac OS X}\label{mac-os-x}}
+
+\hypertarget{instalar-o-r-1}{%
+\subsection{Instalar o R}\label{instalar-o-r-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Abra o site \href{https://cran.r-project.org/}{CRAN - https://cran.r-project.org/}
+\item
+  Passo 2: Clique em Download de R for (Mac) OS X.\\
+\item
+  Passo 3: Clique duas vezes no arquivo depois de baixado que será instalado no seu computador.
+\end{itemize}
+
+\hypertarget{instalar-o-rstudio-1}{%
+\subsection{Instalar o RStudio}\label{instalar-o-rstudio-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Acesse o site \url{https://rstudio.com/products/rstudio/download/}\\
+\item
+  Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:
+\end{itemize}
+
+\includegraphics[width=13.54in]{img/inst_1_rstudio}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 3: Encontre o sistema operacional do seu computador (Mac OS) e faça download.\\
+\item
+  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.
+\end{itemize}
+
+\hypertarget{windows}{%
+\section{Windows}\label{windows}}
+
+\hypertarget{instalar-o-r-2}{%
+\subsection{Instalar o R}\label{instalar-o-r-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Clique no seguinte link \url{https://cran.r-project.org/bin/windows/base/}\\
+\item
+  Passo 2: Clique em Download R for Windows (os números que aparecem nesse arquivo de download correspondem à versão do R disponível):
+\end{itemize}
+
+\includegraphics[width=13.54in]{img/inst_1_rwindows}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 3: Clique duas vezes no arquivo depois de baixado, clique em avançar até finalizar a instalação que será instalado no seu computador.
+\end{itemize}
+
+\hypertarget{instalar-o-rstudio-2}{%
+\subsection{Instalar o RStudio}\label{instalar-o-rstudio-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 1: Acesse o site \url{https://rstudio.com/products/rstudio/download/}\\
+\item
+  Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:
+\end{itemize}
+
+\includegraphics[width=13.54in]{img/inst_1_rstudio}
+
+\begin{itemize}
+\tightlist
+\item
+  Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.
+\item
+  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.
+\end{itemize}
 
 \hypertarget{carregar-bibliotecas}{%
 \chapter{Carregar Bibliotecas}\label{carregar-bibliotecas}}

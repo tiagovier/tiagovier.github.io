@@ -24,7 +24,7 @@
 <meta name="author" content="Coletivo WVSR" />
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -141,10 +142,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#o-que-é-o-wvs"><i class="fa fa-check"></i><b>2.2</b> O que é o WVS</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="instalação-do-r.html"><a href="instalação-do-r.html"><i class="fa fa-check"></i><b>3</b> Instalação do R</a><ul>
-<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r"><i class="fa fa-check"></i><b>3.1</b> Instalação R</a></li>
-<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r-studio"><i class="fa fa-check"></i><b>3.2</b> Instalação R Studio</a></li>
-<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#operações-simples"><i class="fa fa-check"></i><b>3.3</b> Operações simples</a></li>
-<li class="chapter" data-level="3.4" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalacao-de-bibliotecas"><i class="fa fa-check"></i><b>3.4</b> Instalacao de bibliotecas</a></li>
+<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#linux"><i class="fa fa-check"></i><b>3.1</b> LINUX</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#mac-os-x"><i class="fa fa-check"></i><b>3.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-1"><i class="fa fa-check"></i><b>3.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.2.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>3.2.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#windows"><i class="fa fa-check"></i><b>3.3</b> Windows</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-2"><i class="fa fa-check"></i><b>3.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>3.3.2</b> Instalar o RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html"><i class="fa fa-check"></i><b>4</b> Carregar Bibliotecas</a><ul>
 <li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.1</b> Gerar dicionário de variáveis</a></li>
@@ -193,37 +202,37 @@ Group: agrupar variáveis
 View: visualizar variáveis escolhidas</p>
 <p>Fazer gráficos
 Criar anotacoes</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descrever-e-analisar-os-dados.html#cb6-1"></a><span class="op">%&gt;%</span><span class="st"> </span><span class="co">#conecta linhas do seu codigo</span></span>
-<span id="cb6-2"><a href="descrever-e-analisar-os-dados.html#cb6-2"></a></span>
-<span id="cb6-3"><a href="descrever-e-analisar-os-dados.html#cb6-3"></a><span class="kw">filter</span>() <span class="co">#filtrar observacoes baseado em uma condicao Brasil: filter(S003 == 76)</span></span>
-<span id="cb6-4"><a href="descrever-e-analisar-os-dados.html#cb6-4"></a><span class="kw">select</span>() <span class="co">#selecionar somente pais e sexo select(X001)</span></span>
-<span id="cb6-5"><a href="descrever-e-analisar-os-dados.html#cb6-5"></a><span class="kw">count</span>() <span class="co"># conta e cruza variaveis</span></span>
-<span id="cb6-6"><a href="descrever-e-analisar-os-dados.html#cb6-6"></a><span class="kw">mutate</span>() <span class="co">#cria uma nova coluna mutate(c = a + b)</span></span>
-<span id="cb6-7"><a href="descrever-e-analisar-os-dados.html#cb6-7"></a><span class="kw">summarise</span>() <span class="co">#resumir os nossos dados baseados em uma operacao summarise(media = mean(IDADE))</span></span>
-<span id="cb6-8"><a href="descrever-e-analisar-os-dados.html#cb6-8"></a><span class="co">#na.rm mean() sd() median()</span></span>
-<span id="cb6-9"><a href="descrever-e-analisar-os-dados.html#cb6-9"></a></span>
-<span id="cb6-10"><a href="descrever-e-analisar-os-dados.html#cb6-10"></a><span class="co"># exemplos </span></span>
-<span id="cb6-11"><a href="descrever-e-analisar-os-dados.html#cb6-11"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb6-12"><a href="descrever-e-analisar-os-dados.html#cb6-12"></a></span>
-<span id="cb6-13"><a href="descrever-e-analisar-os-dados.html#cb6-13"></a><span class="co"># exemplos</span></span>
-<span id="cb6-14"><a href="descrever-e-analisar-os-dados.html#cb6-14"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(S003, X001)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descrever-e-analisar-os-dados.html#cb4-1"></a><span class="op">%&gt;%</span><span class="st"> </span><span class="co">#conecta linhas do seu codigo</span></span>
+<span id="cb4-2"><a href="descrever-e-analisar-os-dados.html#cb4-2"></a></span>
+<span id="cb4-3"><a href="descrever-e-analisar-os-dados.html#cb4-3"></a><span class="kw">filter</span>() <span class="co">#filtrar observacoes baseado em uma condicao Brasil: filter(S003 == 76)</span></span>
+<span id="cb4-4"><a href="descrever-e-analisar-os-dados.html#cb4-4"></a><span class="kw">select</span>() <span class="co">#selecionar somente pais e sexo select(X001)</span></span>
+<span id="cb4-5"><a href="descrever-e-analisar-os-dados.html#cb4-5"></a><span class="kw">count</span>() <span class="co"># conta e cruza variaveis</span></span>
+<span id="cb4-6"><a href="descrever-e-analisar-os-dados.html#cb4-6"></a><span class="kw">mutate</span>() <span class="co">#cria uma nova coluna mutate(c = a + b)</span></span>
+<span id="cb4-7"><a href="descrever-e-analisar-os-dados.html#cb4-7"></a><span class="kw">summarise</span>() <span class="co">#resumir os nossos dados baseados em uma operacao summarise(media = mean(IDADE))</span></span>
+<span id="cb4-8"><a href="descrever-e-analisar-os-dados.html#cb4-8"></a><span class="co">#na.rm mean() sd() median()</span></span>
+<span id="cb4-9"><a href="descrever-e-analisar-os-dados.html#cb4-9"></a></span>
+<span id="cb4-10"><a href="descrever-e-analisar-os-dados.html#cb4-10"></a><span class="co"># exemplos </span></span>
+<span id="cb4-11"><a href="descrever-e-analisar-os-dados.html#cb4-11"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">media =</span> <span class="kw">mean</span>(X003, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb4-12"><a href="descrever-e-analisar-os-dados.html#cb4-12"></a></span>
+<span id="cb4-13"><a href="descrever-e-analisar-os-dados.html#cb4-13"></a><span class="co"># exemplos</span></span>
+<span id="cb4-14"><a href="descrever-e-analisar-os-dados.html#cb4-14"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(S003, X001)</span></code></pre></div>
 </div>
 <div id="analises-bi-e-multi-variadas" class="section level2">
 <h2><span class="header-section-number">6.2</span> Analises bi e multi-variadas</h2>
 <p>Cor: correlacionar
 Regressao linear multipla: lm(variaveis)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="descrever-e-analisar-os-dados.html#cb7-1"></a><span class="co">#correlacao</span></span>
-<span id="cb7-2"><a href="descrever-e-analisar-os-dados.html#cb7-2"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(X002, X003) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb7-3"><a href="descrever-e-analisar-os-dados.html#cb7-3"></a></span>
-<span id="cb7-4"><a href="descrever-e-analisar-os-dados.html#cb7-4"></a><span class="co">#regressao linear multipla</span></span>
-<span id="cb7-5"><a href="descrever-e-analisar-os-dados.html#cb7-5"></a></span>
-<span id="cb7-6"><a href="descrever-e-analisar-os-dados.html#cb7-6"></a>resultado &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(S003) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(X025R) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(X002), <span class="dt">data =</span> .)</span>
-<span id="cb7-7"><a href="descrever-e-analisar-os-dados.html#cb7-7"></a>resultado_bol &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(S003 <span class="op">==</span><span class="st"> </span><span class="dv">68</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(X025R) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(X002), <span class="dt">data =</span> .)</span>
-<span id="cb7-8"><a href="descrever-e-analisar-os-dados.html#cb7-8"></a></span>
-<span id="cb7-9"><a href="descrever-e-analisar-os-dados.html#cb7-9"></a>bra &lt;-<span class="st"> </span><span class="kw">summary</span>(resultado)<span class="op">$</span>coeff</span>
-<span id="cb7-10"><a href="descrever-e-analisar-os-dados.html#cb7-10"></a>bol &lt;-<span class="kw">summary</span>(resultado_bol)<span class="op">$</span>coeff</span>
-<span id="cb7-11"><a href="descrever-e-analisar-os-dados.html#cb7-11"></a></span>
-<span id="cb7-12"><a href="descrever-e-analisar-os-dados.html#cb7-12"></a><span class="kw">glm</span>(binaria <span class="op">~</span><span class="st"> </span>expicacao1 <span class="op">+</span><span class="st"> </span>explicacao2, <span class="dt">data =</span> wvs7)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="descrever-e-analisar-os-dados.html#cb5-1"></a><span class="co">#correlacao</span></span>
+<span id="cb5-2"><a href="descrever-e-analisar-os-dados.html#cb5-2"></a>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(X002, X003) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb5-3"><a href="descrever-e-analisar-os-dados.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="descrever-e-analisar-os-dados.html#cb5-4"></a><span class="co">#regressao linear multipla</span></span>
+<span id="cb5-5"><a href="descrever-e-analisar-os-dados.html#cb5-5"></a></span>
+<span id="cb5-6"><a href="descrever-e-analisar-os-dados.html#cb5-6"></a>resultado &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(S003) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(X025R) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(X002), <span class="dt">data =</span> .)</span>
+<span id="cb5-7"><a href="descrever-e-analisar-os-dados.html#cb5-7"></a>resultado_bol &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(S003 <span class="op">==</span><span class="st"> </span><span class="dv">68</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(X047 <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(X025R) <span class="op">+</span><span class="st"> </span><span class="kw">scale</span>(X002), <span class="dt">data =</span> .)</span>
+<span id="cb5-8"><a href="descrever-e-analisar-os-dados.html#cb5-8"></a></span>
+<span id="cb5-9"><a href="descrever-e-analisar-os-dados.html#cb5-9"></a>bra &lt;-<span class="st"> </span><span class="kw">summary</span>(resultado)<span class="op">$</span>coeff</span>
+<span id="cb5-10"><a href="descrever-e-analisar-os-dados.html#cb5-10"></a>bol &lt;-<span class="kw">summary</span>(resultado_bol)<span class="op">$</span>coeff</span>
+<span id="cb5-11"><a href="descrever-e-analisar-os-dados.html#cb5-11"></a></span>
+<span id="cb5-12"><a href="descrever-e-analisar-os-dados.html#cb5-12"></a><span class="kw">glm</span>(binaria <span class="op">~</span><span class="st"> </span>expicacao1 <span class="op">+</span><span class="st"> </span>explicacao2, <span class="dt">data =</span> wvs7)</span></code></pre></div>
 
 </div>
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="Coletivo WVSR" />
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -141,10 +142,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#o-que-é-o-wvs"><i class="fa fa-check"></i><b>2.2</b> O que é o WVS</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="instalação-do-r.html"><a href="instalação-do-r.html"><i class="fa fa-check"></i><b>3</b> Instalação do R</a><ul>
-<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r"><i class="fa fa-check"></i><b>3.1</b> Instalação R</a></li>
-<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalação-r-studio"><i class="fa fa-check"></i><b>3.2</b> Instalação R Studio</a></li>
-<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#operações-simples"><i class="fa fa-check"></i><b>3.3</b> Operações simples</a></li>
-<li class="chapter" data-level="3.4" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalacao-de-bibliotecas"><i class="fa fa-check"></i><b>3.4</b> Instalacao de bibliotecas</a></li>
+<li class="chapter" data-level="3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#linux"><i class="fa fa-check"></i><b>3.1</b> LINUX</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#mac-os-x"><i class="fa fa-check"></i><b>3.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-1"><i class="fa fa-check"></i><b>3.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.2.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>3.2.2</b> Instalar o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#windows"><i class="fa fa-check"></i><b>3.3</b> Windows</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-2"><i class="fa fa-check"></i><b>3.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="3.3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>3.3.2</b> Instalar o RStudio</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html"><i class="fa fa-check"></i><b>4</b> Carregar Bibliotecas</a><ul>
 <li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.1</b> Gerar dicionário de variáveis</a></li>
@@ -180,16 +189,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="carregar-bibliotecas" class="section level1">
 <h1><span class="header-section-number">Capítulo 4</span> Carregar Bibliotecas</h1>
 <p>Para carregar as bibliotecas</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="carregar-bibliotecas.html#cb3-1"></a><span class="co"># carregar o tidyverse</span></span>
-<span id="cb3-2"><a href="carregar-bibliotecas.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb3-3"><a href="carregar-bibliotecas.html#cb3-3"></a></span>
-<span id="cb3-4"><a href="carregar-bibliotecas.html#cb3-4"></a><span class="co"># carregar o codebook</span></span>
-<span id="cb3-5"><a href="carregar-bibliotecas.html#cb3-5"></a><span class="kw">library</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="carregar-bibliotecas.html#cb1-1"></a><span class="co"># carregar o tidyverse</span></span>
+<span id="cb1-2"><a href="carregar-bibliotecas.html#cb1-2"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb1-3"><a href="carregar-bibliotecas.html#cb1-3"></a></span>
+<span id="cb1-4"><a href="carregar-bibliotecas.html#cb1-4"></a><span class="co"># carregar o codebook</span></span>
+<span id="cb1-5"><a href="carregar-bibliotecas.html#cb1-5"></a><span class="kw">library</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
 <div id="gerar-dicionário-de-variáveis" class="section level2">
 <h2><span class="header-section-number">4.1</span> Gerar dicionário de variáveis</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="carregar-bibliotecas.html#cb4-1"></a><span class="co"># gerar o dicionário de variáveis usando codebook</span></span>
-<span id="cb4-2"><a href="carregar-bibliotecas.html#cb4-2"></a><span class="kw">label_browser_static</span>(df_wvs7)</span>
-<span id="cb4-3"><a href="carregar-bibliotecas.html#cb4-3"></a>dicionario &lt;-<span class="st"> </span><span class="kw">codebook_table</span>(wvs_bra)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="carregar-bibliotecas.html#cb2-1"></a><span class="co"># gerar o dicionário de variáveis usando codebook</span></span>
+<span id="cb2-2"><a href="carregar-bibliotecas.html#cb2-2"></a><span class="kw">label_browser_static</span>(df_wvs7)</span>
+<span id="cb2-3"><a href="carregar-bibliotecas.html#cb2-3"></a>dicionario &lt;-<span class="st"> </span><span class="kw">codebook_table</span>(wvs_bra)</span></code></pre></div>
 
 </div>
 </div>
