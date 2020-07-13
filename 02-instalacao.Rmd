@@ -69,7 +69,6 @@ knitr::include_graphics("img/inst_1_rwindows.png")
 
 * Passo 1: Acesse o site [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)  
 * Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:   
-
 ```{r img4, echo=FALSE}
 knitr::include_graphics("img/inst_1_rstudio.png")
 ```
