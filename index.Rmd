@@ -2,6 +2,7 @@
 title: "Uso do R para análise da dados da World Values Survey"
 author: "Coletivo WVSR"
 date: "`r Sys.Date()`"
+lang: "pt-br"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [tutorial.bib, packages.bib]

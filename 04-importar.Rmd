@@ -1,17 +1,77 @@
-# Importar a base de dados
+# Importar bases de dados
 
-Acessar o [Site do WVS](http://www.worldvaluessurvey.org/WVSContents.jsp), baixar a versão desejada... etc.
+O R importa arquivos salvos em seu próprio formato e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.
 
+Há duas formas de importação de arquivos no R: com o uso das ferramentas do Environment ou com o uso de linhas de comando escritas diretamente no console ou em um script.
 
+## Com o uso das ferramentas da aba Environment
 
-```{r eval=FALSE}
+Por esta forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
 
-load("./material/data/WVS_7.RData")#abrir dados no formato R
+### Arquivos em formato R
 
-wvs_bra <- read_sav("material/data/WVS7_BRA_v2012.sav")#importar dados formato SPSS
+Para arquivos formato R (formato `.rdata`):
+
+* Clique sobre o icone Abrir Arquivos.
+* Procure o seu arquivo nos locais do seu computador.
+* Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+### Arquivos em outros formatos
+
+Para importar os dados em outros formatos, é preciso usar biblitecas específicas para esse fim. No caso deste tutorial, a biblioteca usada é a `haven`, da gramática Tidyverse.
+
+* Clique sobre o icone Import Dataset.
+* Escolha e clique sobre o formato em que o seu arquivo foi previamente salvo.
+* Clique em Browse.
+* Procure o seu arquivo nos locais do seu computador.
+* Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+## Com o uso de linhas de comando
+
+### Arquivos em formato R
+
+Para carregar arquivos no formato nativo do R usando linhas de comando:
+
+* Abra um novo script R e digite: `load("nome_do_arquivo.rdata")`. 
+  + Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar os locais do seu computador.
+* Clique no arquivo que você quer importar
+* Digite Control + Enter, ou clique em Run (disponível na aba superior do Source Code do seu R).
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+### Arquivos em outros formatos
+
+Para carregar arquivos em outros formatos, usamos a biblioteca `haven` do tidyverse (Certifique-se que ela foi carregada usando o comando `library(haven)`).
+
+Cada tipo de arquivo tem um comando específico no haven.  será o mesmo para qualquer origem, com alteração apenas da extensão do arquivo:
+
+Arquivos SPSS: função `read_sav()`
+Arquivos Excel: função `read_csv()`
+Arquivos Stata: função `read_dta()`
+Arquivos SAS: função `read_sas()`
+
+Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base se transforme em um objeto no ambiente do R, é preciso que se atribua um nome da seguinte forma:
+
+```{r readhaven, eval = FALSE}
+# carregar a biblioteca haven
+library(haven)
+
+# abrir usando a função e criar um objeto no ambiente R
+MinhaBase_SPSS <- read_sav("diretório_do_projeto/nome_do_arquivo.sav")
 
 ```
 
+Como das outras vezes, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
 
+* Digite Control + Enter, ou 
+* Clique em Run (disponível na aba superior do Source Code do seu R).
+
+Pronto! O seu arquivo vai aparecer no Environment.
+
+Com outras extensões você usará, por exemplo, read_cvs ou read_dta. Para mais informações acesse a [ajuda da bibliteca haven](https://haven.tidyverse.org/)
 
 

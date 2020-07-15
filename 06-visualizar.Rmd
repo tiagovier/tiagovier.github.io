@@ -1,4 +1,58 @@
 # Visualizar os dados
 
-ggplot2
+Para visualizar os dados, usamos a biblioteca `ggplot2()` também da gramática Tidyverse.
+
+Após organizar e manipular os dados e fazer análises descritivas, pode ser uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a `ggplot()`. A biblioteca `ggthemes()` permite aplicar alguns temas já pré-estabelecidos.
+
+O `ggplot` é uma biblioteca que constrói os gráficos em camadas. Primeiramente se define a "folha" com uma base de dados que será usada. Em seguida a geometria que será usada e os demais parâmetros dos gráficos.
+
+O comando básico do ggplot é: `ggplot(data = dados, aes(x = Explicativa, y = Resposta)) + geoma + ...`
+
+Tipos de Geomas disponíveis: 
+
+* Histograma: `geom_hist()`
+* Barras: `geom_bar()`
+* Pontos: `geom_point()`
+* Diagrama de caixa (boxplot): `geom_boxplot()`
+* Linhas: `geom_line()`
+
+
+```{r eval = FALSE}
+
+# Exemplo 1 plotar um gráfico de densidade da variável idade: 
+ggplot(df_wvs7, aes(x = X003)) + geom_density() 
+
+```
+
+
+
+```{r eval = FALSE}
+
+# Exemplo 2 plotar um gráfico do Mapa Cultural do Inglehart: 
+df_y001 <- df_wvs7 %>%
+  select(S024, S020, S003, tradrat5, survself) %>%
+  filter(S003 %in% paises) %>%
+  group_by(S024, S020, S003) %>%
+  summarise(tradrat5 = mean(tradrat5, na.rm = T),
+            survself = mean(survself, na.rm = T))
+
+# Carregamos a biblioteca ggthemes para aplicar um tema ao gráfico
+library(ggthemes)
+
+# Reproduzir o Mapa Cultural Inglehart 
+ggplot(df_y001, aes(x = survself, 
+                    y = tradrat5, 
+                    color = as.factor(S003), 
+                    label = as.factor(S003))) +
+  geom_point() +
+  geom_text(hjust = 0, nudge_x = 0.05, check_overlap = TRUE) +
+  scale_x_continuous(limits = c(-2, 2)) +
+  scale_y_continuous(limits = c(-2, 2)) +
+  labs(x = "sobrevivencia-autoexpressão",
+       y = "tradicional-racional",
+       title = "Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)") + 
+  theme_minimal()
+
+```
+
 
