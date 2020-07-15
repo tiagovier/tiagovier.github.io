@@ -1,5 +1,3 @@
-
-
 # criar um diretório no gdrive para o projeto (ex.: r/r-tutorial)
 
 
@@ -22,4 +20,6 @@ download_rmd(file = "07-glossario", path = "r/r-tutorial")
 
 ## corrigido o Rmarkdown, podemos atualizar a versão do drive.
 rmdrive::update_rmd(file = "02-instalacao", path = "r/r-tutorial")
-
+rmdrive::update_rmd(file = "04-importar", path = "r/r-tutorial")
+rmdrive::update_rmd(file = "05-descrever", path = "r/r-tutorial")
+rmdrive::update_rmd(file = "07-glossario", path = "r/r-tutorial")
