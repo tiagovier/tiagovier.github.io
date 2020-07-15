@@ -1,5 +1,3 @@
-
-
 # criar um diretório no gdrive para o projeto (ex.: r/r-tutorial)
 
 
