@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | Uso do R para análise da dados da World Values Survey</title>
+  <title>Capítulo 5 Importar bases de dados | Uso do R para análise da dados da World Values Survey</title>
   <meta name="description" content="Este é um manual para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | Uso do R para análise da dados da World Values Survey" />
+  <meta property="og:title" content="Capítulo 5 Importar bases de dados | Uso do R para análise da dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | Uso do R para análise da dados da World Values Survey" />
+  <meta name="twitter:title" content="Capítulo 5 Importar bases de dados | Uso do R para análise da dados da World Values Survey" />
   
   <meta name="twitter:description" content="Este é um manual para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="glossário.html"/>
-
+<link rel="prev" href="carregar-bibliotecas.html"/>
+<link rel="next" href="descrever-e-analisar-os-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -204,15 +204,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
-<div id="refs" class="references">
-<div>
-<p>Agresti, Alan, Barbara Finlay, e Lori Viali. 2012. <em>Métodos Estatísticos para as Ciências Sociais</em>. Edição: 4. Porto Alegre: Penso.</p>
+<div id="importar-bases-de-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Importar bases de dados</h1>
+<p>O R importa arquivos salvos em seu próprio formato e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.</p>
+<p>Há duas formas de importação de arquivos no R: com o uso das ferramentas do Environment ou com o uso de linhas de comando escritas diretamente no console ou em um script.</p>
+<div id="com-o-uso-das-ferramentas-da-aba-environment" class="section level2">
+<h2><span class="header-section-number">5.1</span> Com o uso das ferramentas da aba Environment</h2>
+<p>Por esta forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.</p>
+<div id="arquivos-em-formato-r" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Arquivos em formato R</h3>
+<p>Para arquivos formato R (formato <code>.rdata</code>):</p>
+<ul>
+<li>Clique sobre o icone Abrir Arquivos.</li>
+<li>Procure o seu arquivo nos locais do seu computador.</li>
+<li>Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
 </div>
-<div>
-<p>Castro, Henrique C. O. de, Sonia Ranincheski, e Daniel Capistrano. 2015. “O Conteúdo Da Globalização Para Os Latino-Americanos: Uma Análise a Partir Da Pesquisa Mundial de ValoresWVS”.</p>
+<div id="arquivos-em-outros-formatos" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Arquivos em outros formatos</h3>
+<p>Para importar os dados em outros formatos, é preciso usar biblitecas específicas para esse fim. No caso deste tutorial, a biblioteca usada é a <code>haven</code>, da gramática Tidyverse.</p>
+<ul>
+<li>Clique sobre o icone Import Dataset.</li>
+<li>Escolha e clique sobre o formato em que o seu arquivo foi previamente salvo.</li>
+<li>Clique em Browse.</li>
+<li>Procure o seu arquivo nos locais do seu computador.</li>
+<li>Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+</div>
+</div>
+<div id="com-o-uso-de-linhas-de-comando" class="section level2">
+<h2><span class="header-section-number">5.2</span> Com o uso de linhas de comando</h2>
+<div id="arquivos-em-formato-r-1" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Arquivos em formato R</h3>
+<p>Para carregar arquivos no formato nativo do R usando linhas de comando:</p>
+<ul>
+<li>Abra um novo script R e digite: <code>load("nome_do_arquivo.rdata")</code>.
+<ul>
+<li>Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar os locais do seu computador.</li>
+</ul></li>
+<li>Clique no arquivo que você quer importar</li>
+<li>Digite Control + Enter, ou clique em Run (disponível na aba superior do Source Code do seu R).</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+</div>
+<div id="arquivos-em-outros-formatos-1" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Arquivos em outros formatos</h3>
+<p>Para carregar arquivos em outros formatos, usamos a biblioteca <code>haven</code> do tidyverse (Certifique-se que ela foi carregada usando o comando <code>library(haven)</code>).</p>
+<p>Cada tipo de arquivo tem um comando específico no haven. será o mesmo para qualquer origem, com alteração apenas da extensão do arquivo:</p>
+<p>Arquivos SPSS: função <code>read_sav()</code>
+Arquivos Excel: função <code>read_csv()</code>
+Arquivos Stata: função <code>read_dta()</code>
+Arquivos SAS: função <code>read_sas()</code></p>
+<p>Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base se transforme em um objeto no ambiente do R, é preciso que se atribua um nome da seguinte forma:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="importar-bases-de-dados.html#cb3-1"></a><span class="co"># carregar a biblioteca haven</span></span>
+<span id="cb3-2"><a href="importar-bases-de-dados.html#cb3-2"></a><span class="kw">library</span>(haven)</span>
+<span id="cb3-3"><a href="importar-bases-de-dados.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="importar-bases-de-dados.html#cb3-4"></a><span class="co"># abrir usando a função e criar um objeto no ambiente R</span></span>
+<span id="cb3-5"><a href="importar-bases-de-dados.html#cb3-5"></a>MinhaBase_SPSS &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;diretório_do_projeto/nome_do_arquivo.sav&quot;</span>)</span></code></pre></div>
+<p>Como das outras vezes, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.</p>
+<ul>
+<li>Digite Control + Enter, ou</li>
+<li>Clique em Run (disponível na aba superior do Source Code do seu R).</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+<p>Com outras extensões você usará, por exemplo, read_cvs ou read_dta. Para mais informações acesse a <a href="https://haven.tidyverse.org/">ajuda da bibliteca haven</a></p>
+
 </div>
 </div>
 </div>
@@ -221,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="glossário.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="carregar-bibliotecas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descrever-e-analisar-os-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
