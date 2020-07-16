@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Uso do R para análise da dados da World Values Survey</a></li>
+        <li><a href="./">Uso do R com a Pesquisa Mundial de Valores</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
     download: ["pdf", "epub"]

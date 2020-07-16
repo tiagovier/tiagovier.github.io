@@ -1,16 +1,16 @@
 # Introdução {#intro}
 
-Este tutorial...
+Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises do WVS em R. Se trata de um documento evolutivo e introdutório ao uso do R nas análises com a base estruturada da Pesquisa Mundial de Valores.
 
 ## O R e o RStudio
 
-Software livre, para cientistas sociais. Flexivel
+R é uma linguagem de programação, que é caracterizada como multiparadigma: tem como foco uma programação funcional, flexível, dinâmica e, principalmente, direcionada à manipulação, análise e visualização de dados.
 
-### Compatibilidades
+Isso a torna muito útil, por exemplo, para estudos de bases e bancos de dados e pesquisas estatísticas. Essa funcionalidade também pode ser chamada de mineração de dados: o processo de exploração de dados em grande escala com o objetivo de buscar padrões, associações, relacionamentos e sistematização de variáveis. 
 
-MAC; IOS; Linux
+Já o RStudio é um ambiente computacional de software livre, ou seja, gratuito. E tem compatibilidade com os sistemas operacionais Windows, Linux, Mac e IOS e com outros tipos de programas, como planilhas (por exemplo, Microsoft Excel) e aplicativos científicos (por exemplo, SPSS).
 
-Excel, Stata, SPSS etc
+O que justifica seu uso nas Ciências Sociais? É possível observar que os métodos quantitativos vem sendo cada vez mais utilizados em perspectivas desse campo de conhecimento. Além disso, especialmente em nível de pesquisas internacionais do tipo survey, a disponibilidade de informações em forma quantitativa vem sendo amplamente aumentada, em diferentes aspectos: realização e englobamento geográfico, novas categorias de análise, questões em diferentes temas políticos e sociais e, também, tendo ampla divulgação de forma livre e acessível virtualmente.
 
 ## O que é o WVS
 
