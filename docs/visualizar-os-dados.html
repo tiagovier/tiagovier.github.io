@@ -24,7 +24,7 @@
 <meta name="author" content="Coletivo WVSR" />
 
 
-<meta name="date" content="2020-07-15" />
+<meta name="date" content="2020-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,7 +156,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html"><i class="fa fa-check"></i><b>4</b> Carregar Bibliotecas</a><ul>
-<li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.1</b> Gerar dicionário de variáveis</a></li>
+<li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#instalação-de-bibliotecas-adicionais"><i class="fa fa-check"></i><b>4.1</b> Instalação de bibliotecas adicionais</a></li>
+<li class="chapter" data-level="4.2" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#carregar-as-bibliotecas"><i class="fa fa-check"></i><b>4.2</b> Carregar as bibliotecas</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html"><i class="fa fa-check"></i><b>5</b> Importar bases de dados</a><ul>
 <li class="chapter" data-level="5.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>5.1</b> Com o uso das ferramentas da aba Environment</a><ul>
@@ -167,6 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>5.2.1</b> Arquivos em formato R</a></li>
 <li class="chapter" data-level="5.2.2" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>5.2.2</b> Arquivos em outros formatos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>5.3</b> Gerar dicionário de variáveis</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Descrever e Analisar os dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>6.1</b> Descrevendo os dados</a><ul>
@@ -218,32 +220,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Diagrama de caixa (boxplot): <code>geom_boxplot()</code></li>
 <li>Linhas: <code>geom_line()</code></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizar-os-dados.html#cb10-1"></a><span class="co"># Exemplo 1 plotar um gráfico de densidade da variável idade: </span></span>
-<span id="cb10-2"><a href="visualizar-os-dados.html#cb10-2"></a><span class="kw">ggplot</span>(df_wvs7, <span class="kw">aes</span>(<span class="dt">x =</span> X003)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() </span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizar-os-dados.html#cb11-1"></a><span class="co"># Exemplo 2 plotar um gráfico do Mapa Cultural do Inglehart: </span></span>
-<span id="cb11-2"><a href="visualizar-os-dados.html#cb11-2"></a>df_y001 &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="visualizar-os-dados.html#cb11-3"></a><span class="st">  </span><span class="kw">select</span>(S024, S020, S003, tradrat5, survself) <span class="op">%&gt;%</span></span>
-<span id="cb11-4"><a href="visualizar-os-dados.html#cb11-4"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">%in%</span><span class="st"> </span>paises) <span class="op">%&gt;%</span></span>
-<span id="cb11-5"><a href="visualizar-os-dados.html#cb11-5"></a><span class="st">  </span><span class="kw">group_by</span>(S024, S020, S003) <span class="op">%&gt;%</span></span>
-<span id="cb11-6"><a href="visualizar-os-dados.html#cb11-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tradrat5 =</span> <span class="kw">mean</span>(tradrat5, <span class="dt">na.rm =</span> T),</span>
-<span id="cb11-7"><a href="visualizar-os-dados.html#cb11-7"></a>            <span class="dt">survself =</span> <span class="kw">mean</span>(survself, <span class="dt">na.rm =</span> T))</span>
-<span id="cb11-8"><a href="visualizar-os-dados.html#cb11-8"></a></span>
-<span id="cb11-9"><a href="visualizar-os-dados.html#cb11-9"></a><span class="co"># Carregamos a biblioteca ggthemes para aplicar um tema ao gráfico</span></span>
-<span id="cb11-10"><a href="visualizar-os-dados.html#cb11-10"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb11-11"><a href="visualizar-os-dados.html#cb11-11"></a></span>
-<span id="cb11-12"><a href="visualizar-os-dados.html#cb11-12"></a><span class="co"># Reproduzir o Mapa Cultural Inglehart </span></span>
-<span id="cb11-13"><a href="visualizar-os-dados.html#cb11-13"></a><span class="kw">ggplot</span>(df_y001, <span class="kw">aes</span>(<span class="dt">x =</span> survself, </span>
-<span id="cb11-14"><a href="visualizar-os-dados.html#cb11-14"></a>                    <span class="dt">y =</span> tradrat5, </span>
-<span id="cb11-15"><a href="visualizar-os-dados.html#cb11-15"></a>                    <span class="dt">color =</span> <span class="kw">as.factor</span>(S003), </span>
-<span id="cb11-16"><a href="visualizar-os-dados.html#cb11-16"></a>                    <span class="dt">label =</span> <span class="kw">as.factor</span>(S003))) <span class="op">+</span></span>
-<span id="cb11-17"><a href="visualizar-os-dados.html#cb11-17"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb11-18"><a href="visualizar-os-dados.html#cb11-18"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">nudge_x =</span> <span class="fl">0.05</span>, <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb11-19"><a href="visualizar-os-dados.html#cb11-19"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
-<span id="cb11-20"><a href="visualizar-os-dados.html#cb11-20"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
-<span id="cb11-21"><a href="visualizar-os-dados.html#cb11-21"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;sobrevivencia-autoexpressão&quot;</span>,</span>
-<span id="cb11-22"><a href="visualizar-os-dados.html#cb11-22"></a>       <span class="dt">y =</span> <span class="st">&quot;tradicional-racional&quot;</span>,</span>
-<span id="cb11-23"><a href="visualizar-os-dados.html#cb11-23"></a>       <span class="dt">title =</span> <span class="st">&quot;Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb11-24"><a href="visualizar-os-dados.html#cb11-24"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p>O guia do ggplot2 pode ser encontrado <a href="https://ggplot2.tidyverse.org/index.html">aqui</a>. Nesta <a href="https://www.r-graph-gallery.com/">galeria</a> podem ser encontrados diversos exemplos de gráficos para se inspirar.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizar-os-dados.html#cb11-1"></a><span class="co"># Exemplo 1 plotar um gráfico de densidade da variável idade: </span></span>
+<span id="cb11-2"><a href="visualizar-os-dados.html#cb11-2"></a><span class="kw">ggplot</span>(df_wvs7, <span class="kw">aes</span>(<span class="dt">x =</span> X003)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() </span></code></pre></div>
+<p><img src="tiagovier.github.io_files/figure-html/densidade-1.png" width="672" /></p>
+<p>No exemplo abaixo, reproduzimos o mapa cultural do Inglehart <span class="citation">(<span class="citeproc-not-found" data-reference-id="inglehart_modernization_2005"><strong>???</strong></span>)</span> para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="visualizar-os-dados.html#cb12-1"></a><span class="co"># Criar uma lista com os países que se quer analisar</span></span>
+<span id="cb12-2"><a href="visualizar-os-dados.html#cb12-2"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">76</span>, <span class="dv">32</span>, <span class="dv">152</span>, <span class="dv">170</span>) <span class="co"># 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia </span></span>
+<span id="cb12-3"><a href="visualizar-os-dados.html#cb12-3"></a></span>
+<span id="cb12-4"><a href="visualizar-os-dados.html#cb12-4"></a><span class="co"># Extrair e retrabalhar as variáveis que precisamos</span></span>
+<span id="cb12-5"><a href="visualizar-os-dados.html#cb12-5"></a>df_y001 &lt;-<span class="st"> </span>df_wvs7 <span class="op">%&gt;%</span></span>
+<span id="cb12-6"><a href="visualizar-os-dados.html#cb12-6"></a><span class="st">  </span><span class="kw">select</span>(S024, S020, S003, tradrat5, survself) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># selecionar as variáveis de interesse</span></span>
+<span id="cb12-7"><a href="visualizar-os-dados.html#cb12-7"></a><span class="st">  </span><span class="kw">filter</span>(S003 <span class="op">%in%</span><span class="st"> </span>paises) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filtrar os países</span></span>
+<span id="cb12-8"><a href="visualizar-os-dados.html#cb12-8"></a><span class="st">  </span><span class="kw">group_by</span>(S024, S020, S003) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># agrupar por onda-país, onda e país</span></span>
+<span id="cb12-9"><a href="visualizar-os-dados.html#cb12-9"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tradrat5 =</span> <span class="kw">mean</span>(tradrat5, <span class="dt">na.rm =</span> T),</span>
+<span id="cb12-10"><a href="visualizar-os-dados.html#cb12-10"></a>            <span class="dt">survself =</span> <span class="kw">mean</span>(survself, <span class="dt">na.rm =</span> T)) <span class="co"># agregar os dados pela média</span></span></code></pre></div>
+<p>Feito isso podemos criar a figura:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizar-os-dados.html#cb13-1"></a><span class="co"># lembre se de carregar a variável ggplot se ela não tiver sido carregada </span></span>
+<span id="cb13-2"><a href="visualizar-os-dados.html#cb13-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb13-3"><a href="visualizar-os-dados.html#cb13-3"></a></span>
+<span id="cb13-4"><a href="visualizar-os-dados.html#cb13-4"></a><span class="co"># Reproduzir o Mapa Cultural Inglehart </span></span>
+<span id="cb13-5"><a href="visualizar-os-dados.html#cb13-5"></a><span class="kw">ggplot</span>(df_y001, <span class="kw">aes</span>(<span class="dt">x =</span> survself, </span>
+<span id="cb13-6"><a href="visualizar-os-dados.html#cb13-6"></a>                    <span class="dt">y =</span> tradrat5, </span>
+<span id="cb13-7"><a href="visualizar-os-dados.html#cb13-7"></a>                    <span class="dt">color =</span> <span class="kw">as.factor</span>(S003), </span>
+<span id="cb13-8"><a href="visualizar-os-dados.html#cb13-8"></a>                    <span class="dt">label =</span> <span class="kw">as.factor</span>(S003))) <span class="op">+</span><span class="st"> </span><span class="co"># definir os dados e as dimensões</span></span>
+<span id="cb13-9"><a href="visualizar-os-dados.html#cb13-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># definir a geometria principal (pontos)</span></span>
+<span id="cb13-10"><a href="visualizar-os-dados.html#cb13-10"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">nudge_x =</span> <span class="fl">0.05</span>, <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="co"># adicionar os rótulos com a geometria de texto</span></span>
+<span id="cb13-11"><a href="visualizar-os-dados.html#cb13-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># restringir o eixo x e y entre -2 e 2</span></span>
+<span id="cb13-12"><a href="visualizar-os-dados.html#cb13-12"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb13-13"><a href="visualizar-os-dados.html#cb13-13"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;sobrevivencia-autoexpressão&quot;</span>,</span>
+<span id="cb13-14"><a href="visualizar-os-dados.html#cb13-14"></a>       <span class="dt">y =</span> <span class="st">&quot;tradicional-racional&quot;</span>,</span>
+<span id="cb13-15"><a href="visualizar-os-dados.html#cb13-15"></a>       <span class="dt">title =</span> <span class="st">&quot;Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)&quot;</span>) <span class="co"># adicionar os rótulos x, y e título</span></span></code></pre></div>
+<p><img src="tiagovier.github.io_files/figure-html/mapacultural-1.png" width="672" /></p>
 
 </div>
             </section>

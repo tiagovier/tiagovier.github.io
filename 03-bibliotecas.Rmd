@@ -1,28 +1,56 @@
 # Carregar Bibliotecas
 
-Para carregar as bibliotecas
+Quando instalamos o R já dispomos de uma grande quantidades de comandos e funções. A lista de funções do R-base pode ser lida [aqui](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
 
-```{r eval=FALSE}
+Para além destes, o ambiente R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições [CRAN](https://cran.r-project.org/web/packages/) lista 16045 bibliotecas disponíveis. As diferentes contribuições são minimamente agrupadas por [tópico](https://cran.r-project.org/web/views/). Por exemplo, é possível conhecer os pacotes disponíveis para as [ciências sociais](https://cran.r-project.org/web/views/SocialSciences.html).
+
+Neste tutorial vamos usar as funções do R-base e algumas bibliotecas adicionais que facilitam algumas operações e já dão conta da maior parte das necessidades de um pesquisador interessado em usar o WVS.
+
+As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática [tidyverse](https://www.tidyverse.org/), entre elas os pacotes `dplyr`, `haven` e `ggplot2`. Mais detalhes podem ser obtidos no livro dos autores disponível [neste link](https://r4ds.had.co.nz/). Além do `tidyverse`, usamos a biblioteca `codebook` para visualizar os dados.^[Para além destas bilbiotecas usamos para compilar este tutorial as bibliotecas `bookdown`, `knitr` e `tinytex`.]
+
+## Instalação de bibliotecas adicionais
+
+Como mencionamos acima, quando instalamos o R-base já instalamos uma série de funções e comandos. Dentre eles, existe um comando específico para instalar novas bibliotecas do repositório CRAN.
+
+Para instalar as bibliotecas usa-se o comando `install.library("nome_da_bibliteca")`. Outra maneira de instalar novas bibliotecas é usar a aba "Packages". Esta aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão "Install". 
+
+Entrentanto, recomendamos que as bibliotecas que serão usadas nas análises sejam indicadas no inicio do código R onde são feitas as análises. Assim, o pesquisador que recebê-lo sabe quais os requisitos necessários para reproduzir as análises.
+
+Para instalar bibliotecas adicionais, seguimos o exemplo abaixo:
+
+
+```{r instalar, eval = FALSE}
+
+# para instalar as bibliotecas da gramática tidyverse
+install.library("tidyverse")
+
+# para instalar a biblioteca codebook para visualizar os dados (ver no capítulo seguinte)
+install.library("codebook")
+
+```
+
+Quando rodamos o comando, usando `Crtl + Enter` no script ou `Enter` diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. **Assim, é importante que se faça a instalação de todas as dependências indicadas pelo R.** Verifique no console, e se o R perguntar se quer fazer a instalação das dependências, diga "Yes".
+
+## Carregar as bibliotecas
+
+Uma vez instaladas as bibliotecas, é preciso carregar as bibliotecas para que possam ser usadas.
+
+O comando para carregar as bibliotecas é `library("nome_da_biblioteca")`.
+
+
+```{r carregar, eval=FALSE}
 
 # carregar o tidyverse
 library("tidyverse")
+
+## carregar a biblioteca haven, que é usada no capítulo seguinte para 
+library("codebook")
 
 # carregar o codebook
 library("codebook")
 
 ```
 
+Sempre que abrir e fechar o R-Studio é preciso carregar as bibliotecas novamente, pois o R reinicia a sessão somente com os comandos do R-base.
 
-
-## Gerar dicionário de variáveis
-
-
-```{r eval=FALSE}
-
-# gerar o dicionário de variáveis usando codebook
-label_browser_static(df_wvs7)
-dicionario <- codebook_table(wvs_bra)
-
-```
-
-
+Carregadas as bibliotecas podemos importar os dados que vamos usar.

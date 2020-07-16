@@ -16,8 +16,18 @@ Tipos de Geomas disponíveis:
 * Diagrama de caixa (boxplot): `geom_boxplot()`
 * Linhas: `geom_line()`
 
+O guia do ggplot2 pode ser encontrado [aqui](https://ggplot2.tidyverse.org/index.html). Nesta [galeria](https://www.r-graph-gallery.com/) podem ser encontrados diversos exemplos de gráficos para se inspirar.
 
-```{r eval = FALSE}
+
+```{r dados, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+load("~/Dropbox/04_Data/R/tiagovier.github.io/data/WVS_7.RData")
+library(tidyverse)
+library(ggplot2)
+
+```
+
+
+```{r densidade, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
 
 # Exemplo 1 plotar um gráfico de densidade da variável idade: 
 ggplot(df_wvs7, aes(x = X003)) + geom_density() 
@@ -25,33 +35,42 @@ ggplot(df_wvs7, aes(x = X003)) + geom_density()
 ```
 
 
+No exemplo abaixo, reproduzimos o mapa cultural do Inglehart [@inglehart_modernization_2005] para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.
 
-```{r eval = FALSE}
+```{r dadosmapacultural, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
+# Criar uma lista com os países que se quer analisar
+paises <- c(76, 32, 152, 170) # 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia 
 
-# Exemplo 2 plotar um gráfico do Mapa Cultural do Inglehart: 
+# Extrair e retrabalhar as variáveis que precisamos
 df_y001 <- df_wvs7 %>%
-  select(S024, S020, S003, tradrat5, survself) %>%
-  filter(S003 %in% paises) %>%
-  group_by(S024, S020, S003) %>%
+  select(S024, S020, S003, tradrat5, survself) %>% # selecionar as variáveis de interesse
+  filter(S003 %in% paises) %>% # filtrar os países
+  group_by(S024, S020, S003) %>% # agrupar por onda-país, onda e país
   summarise(tradrat5 = mean(tradrat5, na.rm = T),
-            survself = mean(survself, na.rm = T))
+            survself = mean(survself, na.rm = T)) # agregar os dados pela média
 
-# Carregamos a biblioteca ggthemes para aplicar um tema ao gráfico
-library(ggthemes)
+```
+
+Feito isso podemos criar a figura:
+
+
+```{r mapacultural, echo = TRUE,error=FALSE, warning=FALSE, message=FALSE}
+
+# lembre se de carregar a variável ggplot se ela não tiver sido carregada 
+library(ggplot2)
 
 # Reproduzir o Mapa Cultural Inglehart 
 ggplot(df_y001, aes(x = survself, 
                     y = tradrat5, 
                     color = as.factor(S003), 
-                    label = as.factor(S003))) +
-  geom_point() +
-  geom_text(hjust = 0, nudge_x = 0.05, check_overlap = TRUE) +
-  scale_x_continuous(limits = c(-2, 2)) +
+                    label = as.factor(S003))) + # definir os dados e as dimensões
+  geom_point() + # definir a geometria principal (pontos)
+  geom_text(hjust = 0, nudge_x = 0.05, check_overlap = TRUE) + # adicionar os rótulos com a geometria de texto
+  scale_x_continuous(limits = c(-2, 2)) + # restringir o eixo x e y entre -2 e 2
   scale_y_continuous(limits = c(-2, 2)) +
   labs(x = "sobrevivencia-autoexpressão",
        y = "tradicional-racional",
-       title = "Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)") + 
-  theme_minimal()
+       title = "Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)") # adicionar os rótulos x, y e título
 
 ```
 

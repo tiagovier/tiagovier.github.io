@@ -75,3 +75,27 @@ Pronto! O seu arquivo vai aparecer no Environment.
 Com outras extensões você usará, por exemplo, read_cvs ou read_dta. Para mais informações acesse a [ajuda da bibliteca haven](https://haven.tidyverse.org/)
 
 
+## Gerar dicionário de variáveis
+
+Para navegar na base de dados recém importada, reconhecer as variáveis importadas e suas características, existem diveras ferramentas disponíveis. 
+
+Uma delas é o pacote codebook, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba "Preview" e também na forma de um vetor que pode ser visualizado como uma tabela. 
+ 
+```{r codebook, eval=FALSE}
+# carregar a biblioteca codebook
+library(codebook)
+
+# gerar um dicionário de variáveis estático navegável na aba "Preview"
+label_browser_static(base_de_dados)
+
+# gerar uma tabela com todas as variávis
+dicionario <- codebook_table(base_de_dados)
+
+# visualizar na forma de tabela junto aos scripts R
+view(dicionario)
+
+```
+
+Feita a importação da base e com o dicionário nas mãos podemos passar a descrição, análise e visualização dos dados.
+
+

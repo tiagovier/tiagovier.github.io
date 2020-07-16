@@ -1,6 +1,6 @@
 # Descrever e Analisar os dados
 
-Após instalar o software, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados. 
+Após instalar o **software**, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados. 
 
 O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas. 
 
@@ -34,12 +34,12 @@ Idade <- 2020 - Ano_Nasc
 
 ### Funções básicas
 
-Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, os comandos são os seguintes:
+Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, os comandos são os seguintes para a variável "Idade":
 
-* Valor máximo: max(Idade)
-* Valor mínimo: min(Idade)
-* Média: mean(Idade)
-* Soma: sum(Idade)
+* Valor máximo: `max(Idade)`
+* Valor mínimo: `min(Idade)`
+* Média: `mean(Idade)`
+* Soma: `sum(Idade)`
 
 ## Estatística descritiva:
 

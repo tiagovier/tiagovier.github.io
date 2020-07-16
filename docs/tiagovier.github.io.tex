@@ -122,7 +122,7 @@
 
 \title{Uso do R para análise da dados da World Values Survey}
 \author{Coletivo WVSR}
-\date{2020-07-15}
+\date{2020-07-16}
 
 \begin{document}
 \maketitle
@@ -317,28 +317,60 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 \hypertarget{carregar-bibliotecas}{%
 \chapter{Carregar Bibliotecas}\label{carregar-bibliotecas}}
 
-Para carregar as bibliotecas
+Quando instalamos o R já dispomos de uma grande quantidades de comandos e funções. A lista de funções do R-base pode ser lida \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{aqui}.
+
+Para além destes, o ambiente R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições \href{https://cran.r-project.org/web/packages/}{CRAN} lista 16045 bibliotecas disponíveis. As diferentes contribuições são minimamente agrupadas por \href{https://cran.r-project.org/web/views/}{tópico}. Por exemplo, é possível conhecer os pacotes disponíveis para as \href{https://cran.r-project.org/web/views/SocialSciences.html}{ciências sociais}.
+
+Neste tutorial vamos usar as funções do R-base e algumas bibliotecas adicionais que facilitam algumas operações e já dão conta da maior parte das necessidades de um pesquisador interessado em usar o WVS.
+
+As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática \href{https://www.tidyverse.org/}{tidyverse}, entre elas os pacotes \texttt{dplyr}, \texttt{haven} e \texttt{ggplot2}. Mais detalhes podem ser obtidos no livro dos autores disponível \href{https://r4ds.had.co.nz/}{neste link}. Além do \texttt{tidyverse}, usamos a biblioteca \texttt{codebook} para visualizar os dados.\footnote{Para além destas bilbiotecas usamos para compilar este tutorial as bibliotecas \texttt{bookdown}, \texttt{knitr} e \texttt{tinytex}.}
+
+\hypertarget{instalauxe7uxe3o-de-bibliotecas-adicionais}{%
+\section{Instalação de bibliotecas adicionais}\label{instalauxe7uxe3o-de-bibliotecas-adicionais}}
+
+Como mencionamos acima, quando instalamos o R-base já instalamos uma série de funções e comandos. Dentre eles, existe um comando específico para instalar novas bibliotecas do repositório CRAN.
+
+Para instalar as bibliotecas usa-se o comando \texttt{install.library("nome\_da\_bibliteca")}. Outra maneira de instalar novas bibliotecas é usar a aba ``Packages''. Esta aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão ``Install''.
+
+Entrentanto, recomendamos que as bibliotecas que serão usadas nas análises sejam indicadas no inicio do código R onde são feitas as análises. Assim, o pesquisador que recebê-lo sabe quais os requisitos necessários para reproduzir as análises.
+
+Para instalar bibliotecas adicionais, seguimos o exemplo abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# para instalar as bibliotecas da gramática tidyverse}
+\KeywordTok{install.library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+
+\CommentTok{# para instalar a biblioteca codebook para visualizar os dados (ver no capítulo seguinte)}
+\KeywordTok{install.library}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Quando rodamos o comando, usando \texttt{Crtl\ +\ Enter} no script ou \texttt{Enter} diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. \textbf{Assim, é importante que se faça a instalação de todas as dependências indicadas pelo R.} Verifique no console, e se o R perguntar se quer fazer a instalação das dependências, diga ``Yes''.
+
+\hypertarget{carregar-as-bibliotecas}{%
+\section{Carregar as bibliotecas}\label{carregar-as-bibliotecas}}
+
+Uma vez instaladas as bibliotecas, é preciso carregar as bibliotecas para que possam ser usadas.
+
+O comando para carregar as bibliotecas é \texttt{library("nome\_da\_biblioteca")}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# carregar o tidyverse}
 \KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 
+\CommentTok{## carregar a biblioteca haven, que é usada no capítulo seguinte para }
+\KeywordTok{library}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
+
 \CommentTok{# carregar o codebook}
 \KeywordTok{library}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{gerar-dicionuxe1rio-de-variuxe1veis}{%
-\section{Gerar dicionário de variáveis}\label{gerar-dicionuxe1rio-de-variuxe1veis}}
+Sempre que abrir e fechar o R-Studio é preciso carregar as bibliotecas novamente, pois o R reinicia a sessão somente com os comandos do R-base.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# gerar o dicionário de variáveis usando codebook}
-\KeywordTok{label_browser_static}\NormalTok{(df_wvs7)}
-\NormalTok{dicionario <-}\StringTok{ }\KeywordTok{codebook_table}\NormalTok{(wvs_bra)}
-\end{Highlighting}
-\end{Shaded}
+Carregadas as bibliotecas podemos importar os dados que vamos usar.
 
 \hypertarget{importar-bases-de-dados}{%
 \chapter{Importar bases de dados}\label{importar-bases-de-dados}}
@@ -454,10 +486,35 @@ Pronto! O seu arquivo vai aparecer no Environment.
 
 Com outras extensões você usará, por exemplo, read\_cvs ou read\_dta. Para mais informações acesse a \href{https://haven.tidyverse.org/}{ajuda da bibliteca haven}
 
+\hypertarget{gerar-dicionuxe1rio-de-variuxe1veis}{%
+\section{Gerar dicionário de variáveis}\label{gerar-dicionuxe1rio-de-variuxe1veis}}
+
+Para navegar na base de dados recém importada, reconhecer as variáveis importadas e suas características, existem diveras ferramentas disponíveis.
+
+Uma delas é o pacote codebook, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba ``Preview'' e também na forma de um vetor que pode ser visualizado como uma tabela.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# carregar a biblioteca codebook}
+\KeywordTok{library}\NormalTok{(codebook)}
+
+\CommentTok{# gerar um dicionário de variáveis estático navegável na aba "Preview"}
+\KeywordTok{label_browser_static}\NormalTok{(base_de_dados)}
+
+\CommentTok{# gerar uma tabela com todas as variávis}
+\NormalTok{dicionario <-}\StringTok{ }\KeywordTok{codebook_table}\NormalTok{(base_de_dados)}
+
+\CommentTok{# visualizar na forma de tabela junto aos scripts R}
+\KeywordTok{view}\NormalTok{(dicionario)}
+\end{Highlighting}
+\end{Shaded}
+
+Feita a importação da base e com o dicionário nas mãos podemos passar a descrição, análise e visualização dos dados.
+
 \hypertarget{descrever-e-analisar-os-dados}{%
 \chapter{Descrever e Analisar os dados}\label{descrever-e-analisar-os-dados}}
 
-Após instalar o software, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados.
+Após instalar o \textbf{software}, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados.
 
 O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas.
 
@@ -494,18 +551,18 @@ Para criar uma variável basta escolher um nome para ela e atribuir através do 
 \hypertarget{funuxe7uxf5es-buxe1sicas}{%
 \subsection{Funções básicas}\label{funuxe7uxf5es-buxe1sicas}}
 
-Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, os comandos são os seguintes:
+Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, os comandos são os seguintes para a variável ``Idade'':
 
 \begin{itemize}
 \tightlist
 \item
-  Valor máximo: max(Idade)
+  Valor máximo: \texttt{max(Idade)}
 \item
-  Valor mínimo: min(Idade)
+  Valor mínimo: \texttt{min(Idade)}
 \item
-  Média: mean(Idade)
+  Média: \texttt{mean(Idade)}
 \item
-  Soma: sum(Idade)
+  Soma: \texttt{sum(Idade)}
 \end{itemize}
 
 \hypertarget{estatuxedstica-descritiva}{%
@@ -655,6 +712,8 @@ Tipos de Geomas disponíveis:
   Linhas: \texttt{geom\_line()}
 \end{itemize}
 
+O guia do ggplot2 pode ser encontrado \href{https://ggplot2.tidyverse.org/index.html}{aqui}. Nesta \href{https://www.r-graph-gallery.com/}{galeria} podem ser encontrados diversos exemplos de gráficos para se inspirar.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Exemplo 1 plotar um gráfico de densidade da variável idade: }
@@ -662,34 +721,48 @@ Tipos de Geomas disponíveis:
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{tiagovier.github.io_files/figure-latex/densidade-1.pdf}
+
+No exemplo abaixo, reproduzimos o mapa cultural do Inglehart \citep{inglehart_modernization_2005} para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Exemplo 2 plotar um gráfico do Mapa Cultural do Inglehart: }
-\NormalTok{df_y001 <-}\StringTok{ }\NormalTok{df_wvs7 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(S024, S020, S003, tradrat5, survself) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{%in%}\StringTok{ }\NormalTok{paises) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(S024, S020, S003) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{tradrat5 =} \KeywordTok{mean}\NormalTok{(tradrat5, }\DataTypeTok{na.rm =}\NormalTok{ T),}
-            \DataTypeTok{survself =} \KeywordTok{mean}\NormalTok{(survself, }\DataTypeTok{na.rm =}\NormalTok{ T))}
+\CommentTok{# Criar uma lista com os países que se quer analisar}
+\NormalTok{paises <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{76}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{152}\NormalTok{, }\DecValTok{170}\NormalTok{) }\CommentTok{# 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia }
 
-\CommentTok{# Carregamos a biblioteca ggthemes para aplicar um tema ao gráfico}
-\KeywordTok{library}\NormalTok{(ggthemes)}
+\CommentTok{# Extrair e retrabalhar as variáveis que precisamos}
+\NormalTok{df_y001 <-}\StringTok{ }\NormalTok{df_wvs7 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(S024, S020, S003, tradrat5, survself) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# selecionar as variáveis de interesse}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{%in%}\StringTok{ }\NormalTok{paises) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# filtrar os países}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(S024, S020, S003) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# agrupar por onda-país, onda e país}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{tradrat5 =} \KeywordTok{mean}\NormalTok{(tradrat5, }\DataTypeTok{na.rm =}\NormalTok{ T),}
+            \DataTypeTok{survself =} \KeywordTok{mean}\NormalTok{(survself, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\CommentTok{# agregar os dados pela média}
+\end{Highlighting}
+\end{Shaded}
+
+Feito isso podemos criar a figura:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# lembre se de carregar a variável ggplot se ela não tiver sido carregada }
+\KeywordTok{library}\NormalTok{(ggplot2)}
 
 \CommentTok{# Reproduzir o Mapa Cultural Inglehart }
 \KeywordTok{ggplot}\NormalTok{(df_y001, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ survself, }
                     \DataTypeTok{y =}\NormalTok{ tradrat5, }
                     \DataTypeTok{color =} \KeywordTok{as.factor}\NormalTok{(S003), }
-                    \DataTypeTok{label =} \KeywordTok{as.factor}\NormalTok{(S003))) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{hjust =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nudge_x =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{check_overlap =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+                    \DataTypeTok{label =} \KeywordTok{as.factor}\NormalTok{(S003))) }\OperatorTok{+}\StringTok{ }\CommentTok{# definir os dados e as dimensões}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# definir a geometria principal (pontos)}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{hjust =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nudge_x =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{check_overlap =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# adicionar os rótulos com a geometria de texto}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# restringir o eixo x e y entre -2 e 2}
 \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"sobrevivencia-autoexpressão"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"tradicional-racional"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+       \DataTypeTok{title =} \StringTok{"Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)"}\NormalTok{) }\CommentTok{# adicionar os rótulos x, y e título}
 \end{Highlighting}
 \end{Shaded}
+
+\includegraphics{tiagovier.github.io_files/figure-latex/mapacultural-1.pdf}
 
 \hypertarget{glossuxe1rio}{%
 \chapter{Glossário}\label{glossuxe1rio}}

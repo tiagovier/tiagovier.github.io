@@ -24,7 +24,7 @@
 <meta name="author" content="Coletivo WVSR" />
 
 
-<meta name="date" content="2020-07-15" />
+<meta name="date" content="2020-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,7 +156,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html"><i class="fa fa-check"></i><b>4</b> Carregar Bibliotecas</a><ul>
-<li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.1</b> Gerar dicionário de variáveis</a></li>
+<li class="chapter" data-level="4.1" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#instalação-de-bibliotecas-adicionais"><i class="fa fa-check"></i><b>4.1</b> Instalação de bibliotecas adicionais</a></li>
+<li class="chapter" data-level="4.2" data-path="carregar-bibliotecas.html"><a href="carregar-bibliotecas.html#carregar-as-bibliotecas"><i class="fa fa-check"></i><b>4.2</b> Carregar as bibliotecas</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html"><i class="fa fa-check"></i><b>5</b> Importar bases de dados</a><ul>
 <li class="chapter" data-level="5.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>5.1</b> Com o uso das ferramentas da aba Environment</a><ul>
@@ -167,6 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>5.2.1</b> Arquivos em formato R</a></li>
 <li class="chapter" data-level="5.2.2" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>5.2.2</b> Arquivos em outros formatos</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>5.3</b> Gerar dicionário de variáveis</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Descrever e Analisar os dados</a><ul>
 <li class="chapter" data-level="6.1" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>6.1</b> Descrevendo os dados</a><ul>
@@ -206,19 +208,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="carregar-bibliotecas" class="section level1">
 <h1><span class="header-section-number">Capítulo 4</span> Carregar Bibliotecas</h1>
-<p>Para carregar as bibliotecas</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="carregar-bibliotecas.html#cb1-1"></a><span class="co"># carregar o tidyverse</span></span>
-<span id="cb1-2"><a href="carregar-bibliotecas.html#cb1-2"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<p>Quando instalamos o R já dispomos de uma grande quantidades de comandos e funções. A lista de funções do R-base pode ser lida <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">aqui</a>.</p>
+<p>Para além destes, o ambiente R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições <a href="https://cran.r-project.org/web/packages/">CRAN</a> lista 16045 bibliotecas disponíveis. As diferentes contribuições são minimamente agrupadas por <a href="https://cran.r-project.org/web/views/">tópico</a>. Por exemplo, é possível conhecer os pacotes disponíveis para as <a href="https://cran.r-project.org/web/views/SocialSciences.html">ciências sociais</a>.</p>
+<p>Neste tutorial vamos usar as funções do R-base e algumas bibliotecas adicionais que facilitam algumas operações e já dão conta da maior parte das necessidades de um pesquisador interessado em usar o WVS.</p>
+<p>As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática <a href="https://www.tidyverse.org/">tidyverse</a>, entre elas os pacotes <code>dplyr</code>, <code>haven</code> e <code>ggplot2</code>. Mais detalhes podem ser obtidos no livro dos autores disponível <a href="https://r4ds.had.co.nz/">neste link</a>. Além do <code>tidyverse</code>, usamos a biblioteca <code>codebook</code> para visualizar os dados.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="instalação-de-bibliotecas-adicionais" class="section level2">
+<h2><span class="header-section-number">4.1</span> Instalação de bibliotecas adicionais</h2>
+<p>Como mencionamos acima, quando instalamos o R-base já instalamos uma série de funções e comandos. Dentre eles, existe um comando específico para instalar novas bibliotecas do repositório CRAN.</p>
+<p>Para instalar as bibliotecas usa-se o comando <code>install.library("nome_da_bibliteca")</code>. Outra maneira de instalar novas bibliotecas é usar a aba “Packages”. Esta aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão “Install”.</p>
+<p>Entrentanto, recomendamos que as bibliotecas que serão usadas nas análises sejam indicadas no inicio do código R onde são feitas as análises. Assim, o pesquisador que recebê-lo sabe quais os requisitos necessários para reproduzir as análises.</p>
+<p>Para instalar bibliotecas adicionais, seguimos o exemplo abaixo:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="carregar-bibliotecas.html#cb1-1"></a><span class="co"># para instalar as bibliotecas da gramática tidyverse</span></span>
+<span id="cb1-2"><a href="carregar-bibliotecas.html#cb1-2"></a><span class="kw">install.library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
 <span id="cb1-3"><a href="carregar-bibliotecas.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="carregar-bibliotecas.html#cb1-4"></a><span class="co"># carregar o codebook</span></span>
-<span id="cb1-5"><a href="carregar-bibliotecas.html#cb1-5"></a><span class="kw">library</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
-<div id="gerar-dicionário-de-variáveis" class="section level2">
-<h2><span class="header-section-number">4.1</span> Gerar dicionário de variáveis</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="carregar-bibliotecas.html#cb2-1"></a><span class="co"># gerar o dicionário de variáveis usando codebook</span></span>
-<span id="cb2-2"><a href="carregar-bibliotecas.html#cb2-2"></a><span class="kw">label_browser_static</span>(df_wvs7)</span>
-<span id="cb2-3"><a href="carregar-bibliotecas.html#cb2-3"></a>dicionario &lt;-<span class="st"> </span><span class="kw">codebook_table</span>(wvs_bra)</span></code></pre></div>
+<span id="cb1-4"><a href="carregar-bibliotecas.html#cb1-4"></a><span class="co"># para instalar a biblioteca codebook para visualizar os dados (ver no capítulo seguinte)</span></span>
+<span id="cb1-5"><a href="carregar-bibliotecas.html#cb1-5"></a><span class="kw">install.library</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
+<p>Quando rodamos o comando, usando <code>Crtl + Enter</code> no script ou <code>Enter</code> diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. <strong>Assim, é importante que se faça a instalação de todas as dependências indicadas pelo R.</strong> Verifique no console, e se o R perguntar se quer fazer a instalação das dependências, diga “Yes”.</p>
+</div>
+<div id="carregar-as-bibliotecas" class="section level2">
+<h2><span class="header-section-number">4.2</span> Carregar as bibliotecas</h2>
+<p>Uma vez instaladas as bibliotecas, é preciso carregar as bibliotecas para que possam ser usadas.</p>
+<p>O comando para carregar as bibliotecas é <code>library("nome_da_biblioteca")</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="carregar-bibliotecas.html#cb2-1"></a><span class="co"># carregar o tidyverse</span></span>
+<span id="cb2-2"><a href="carregar-bibliotecas.html#cb2-2"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb2-3"><a href="carregar-bibliotecas.html#cb2-3"></a></span>
+<span id="cb2-4"><a href="carregar-bibliotecas.html#cb2-4"></a><span class="co">## carregar a biblioteca haven, que é usada no capítulo seguinte para </span></span>
+<span id="cb2-5"><a href="carregar-bibliotecas.html#cb2-5"></a><span class="kw">library</span>(<span class="st">&quot;codebook&quot;</span>)</span>
+<span id="cb2-6"><a href="carregar-bibliotecas.html#cb2-6"></a></span>
+<span id="cb2-7"><a href="carregar-bibliotecas.html#cb2-7"></a><span class="co"># carregar o codebook</span></span>
+<span id="cb2-8"><a href="carregar-bibliotecas.html#cb2-8"></a><span class="kw">library</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
+<p>Sempre que abrir e fechar o R-Studio é preciso carregar as bibliotecas novamente, pois o R reinicia a sessão somente com os comandos do R-base.</p>
+<p>Carregadas as bibliotecas podemos importar os dados que vamos usar.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Para além destas bilbiotecas usamos para compilar este tutorial as bibliotecas <code>bookdown</code>, <code>knitr</code> e <code>tinytex</code>.<a href="carregar-bibliotecas.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
