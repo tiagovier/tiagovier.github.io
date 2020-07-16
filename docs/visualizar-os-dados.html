@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizar-os-dados.html#cb11-1"></a><span class="co"># Exemplo 1 plotar um gráfico de densidade da variável idade: </span></span>
 <span id="cb11-2"><a href="visualizar-os-dados.html#cb11-2"></a><span class="kw">ggplot</span>(df_wvs7, <span class="kw">aes</span>(<span class="dt">x =</span> X003)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>() </span></code></pre></div>
 <p><img src="tiagovier.github.io_files/figure-html/densidade-1.png" width="672" /></p>
-<p>No exemplo abaixo, reproduzimos o mapa cultural do Inglehart <span class="citation">(<span class="citeproc-not-found" data-reference-id="inglehart_modernization_2005"><strong>???</strong></span>)</span> para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.</p>
+<p>No exemplo abaixo, reproduzimos o mapa cultural do Inglehart <span class="citation">(Inglehart e Welzel <a href="#ref-inglehart_modernization_2005" role="doc-biblioref">2005</a>)</span> para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="visualizar-os-dados.html#cb12-1"></a><span class="co"># Criar uma lista com os países que se quer analisar</span></span>
 <span id="cb12-2"><a href="visualizar-os-dados.html#cb12-2"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">76</span>, <span class="dv">32</span>, <span class="dv">152</span>, <span class="dv">170</span>) <span class="co"># 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia </span></span>
 <span id="cb12-3"><a href="visualizar-os-dados.html#cb12-3"></a></span>
@@ -251,6 +251,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-15"><a href="visualizar-os-dados.html#cb13-15"></a>       <span class="dt">title =</span> <span class="st">&quot;Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)&quot;</span>) <span class="co"># adicionar os rótulos x, y e título</span></span></code></pre></div>
 <p><img src="tiagovier.github.io_files/figure-html/mapacultural-1.png" width="672" /></p>
 
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references">
+<div id="ref-inglehart_modernization_2005">
+<p>Inglehart, Ronald, e Christian Welzel. 2005. <em>Modernization, Cultural Change, and Democracy: The Human Development Sequence</em>. Cambridge, UK ; New York: Cambridge University Press.</p>
+</div>
 </div>
             </section>
 
