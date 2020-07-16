@@ -10,8 +10,8 @@ Assim, siga os passos para instalação de acordo com o sistema operacional de s
 
 * Passo 1: Abra o terminal. Se utilizar distribuição Fedora, pressione as teclas Super + T, e no Ubuntu Ctrl + Alt + t;  
 * Passo 2: Com o terminal aberto digite a seguinte linha de comando:
-  + Fedora: `r knitr::inline_expr("sudo dnf install R") `
-  + Ubuntu: `r knitr::inline_expr("sudo apt-get install r-base r-base-core") `  
+  + Fedora: `sudo dnf install R`
+  + Ubuntu: `sudo apt-get install r-base r-base-core`  
 * Passo 3: Pressione a tecla Enter para confirmar;     
 * Passo 4: Colocar a senha do usuário;   
 * Passo 5: Confirmar. O R estará instalado e pode ser acessado.
@@ -29,8 +29,8 @@ knitr::include_graphics("img/inst_1_rstudio.png")
 
 * Passo 3: Encontre o sistema operacional do seu computador (Ubuntu, Fedora, Debian ou OpenSUSE) e faça download.  
 * Passo 4: Acesse o terminal na pasta onde foi feito o download e siga as instruções abaixo usando Fedora ou Ubuntu:  
-  + Fedora: `r knitr::inline_expr("sudo dnf install nomedo_arquivo_baixado.rpm") `; Ex: `r knitr::inline_expr("sudo dnf install rstudio-1.3.959-x86_64.rpm")` 
-  + Ubuntu: `r knitr::inline_expr("sudo dpkg -i nomedo_arquivo_baixado.deb") `  
+  + Fedora: `sudo dnf install nomedo_arquivo_baixado.rpm`; Ex: `sudo dnf install rstudio-1.3.959-x86_64.rpm` 
+  + Ubuntu: `sudo dpkg -i nomedo_arquivo_baixado.deb`  
 * Passo 5: Após isso, o RStudio estará instalado no seu computador e pronto para uso.  
 
 ## Mac OS X
@@ -68,10 +68,22 @@ knitr::include_graphics("img/inst_1_rwindows.png")
 ### Instalar o RStudio
 
 * Passo 1: Acesse o site [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/)  
-* Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:   
+* Passo 2: Encontre na página o local de download gratuito conforme figura abaixo:
+
 ```{r img4, echo=FALSE}
 knitr::include_graphics("img/inst_1_rstudio.png")
 ```
 
 * Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.
 * Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.
+
+## Criando um projeto no RStudio
+
+Feitas as instalações, podemos começar a trabalhar com o R e RStudio. Uma forma prática de iniciar o trabalho com o RStudio é usando projetos.
+
+Para iniciar um novo projeto, acesse o menu "File > New Project", ou então o ícone na parte superior direita do RStudio. O RStudio vai perguntar se você quer criar um novo diretório para o projeto, usar um diretório existente, ou ainda clonar um repositório distante (GitHub por exemplo). 
+
+Para criar o novo diretório, basta informar o diretório onde será criado o diretório do projeto e o nome do novo diretório onde todos os documentos do projeto serão armazenados.
+
+Ao fechar o RStudio, todos os documentos e objetos no ambiente serão salvos no projeto e você pode retomar o trabalho de onde parou (salvo as bibliotecas, que tem que ser recarregadas a cada nova seção do R!).
+

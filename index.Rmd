@@ -8,10 +8,17 @@ documentclass: book
 bibliography: [tutorial.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Este é um manual para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook."
+description: "Este é um tutorial para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook."
 ---
 
-# Prefácio
+# Bem Vindo ! {-}
+
+Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises do WVS em R. Se trata de um documento evolutivo e introdutório ao uso do R nas análises com a base estruturada da Pesquisa Mundial de Valores.
+
+Este tutorial foi preparado em [Rmarkdown](https://rmarkdown.rstudio.com/) com a biblioteca [bookdown](https://bookdown.org/).
+
+Um agradecimento aos colaboradores: ...
+
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

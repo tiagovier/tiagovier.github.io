@@ -61,7 +61,7 @@ Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base 
 library(haven)
 
 # abrir usando a função e criar um objeto no ambiente R
-MinhaBase_SPSS <- read_sav("diretório_do_projeto/nome_do_arquivo.sav")
+base_do_wvs <- read_sav("diretório_do_projeto/nome_do_arquivo.sav")
 
 ```
 

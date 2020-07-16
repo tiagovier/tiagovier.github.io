@@ -1,6 +1,6 @@
 # Descrever e Analisar os dados
 
-Após instalar o **software**, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados. 
+Após instalar o *software*, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados. 
 
 O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas. 
 
@@ -26,20 +26,38 @@ Brasil * 3
 
 # Cálculo da idade com base no ano de nascimento
 Ano_Nasc <- c(1990, 1984, 1961)
+
+# Calcular as idades
 2020 - Ano_Nasc
+
+# Armazenar como um vetor no ambiente
 Idade <- 2020 - Ano_Nasc
 
 ```
 
 
-### Funções básicas
+### Funções básicas e comandos úteis
 
-Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, os comandos são os seguintes para a variável "Idade":
+Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do r-base são os seguintes para a variável "Idade", por exemplo:
 
 * Valor máximo: `max(Idade)`
 * Valor mínimo: `min(Idade)`
 * Média: `mean(Idade)`
 * Soma: `sum(Idade)`
+
+Na filosofia do tidyverse, para executar mais de um comando é necessário inserir entre eles o conector `%>%`. Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código, para tanto basta inserir no início da frase o caractere jogo da velha `#`. 
+
+```{r eval = FALSE}
+
+# Criar anotações: #
+# Conectar as linhas do código: %>% 
+# Exemplos (os códigos das variáveis são usados na base longitudinal do WVS: X003 = Idade; SOO3 = País; X001 = Sexo)
+
+base_do_wvs %>% 
+  summarise(media = mean(X003, na.rm = TRUE)) %>%
+  count(S003, X001)
+
+```
 
 ## Estatística descritiva:
 
@@ -60,16 +78,20 @@ Para exibir os dados em uma tabela, utiliza-se o comando `table()`. A seguir um 
 ```{r eval=FALSE}
 
 # filter(), exemplo filtrar observações baseado em uma condicao Brasil: 
-filter(S003 == 76)
+base_do_wvs %>% 
+  filter(S003 == 76)
 
 # select(), exemplo selecionar somente país e sexo: 
-select(S003, X001)
+base_do_wvs %>% 
+  select(S003, X001)
 
 #count(), exemplo contar e cruzar as variáveis país e apoio à democracia: 
-count (S003, E235) 
+base_do_wvs %>% 
+  count (S003, E235) 
 
 # mutate(), criar uma variável faixas etárias: 
-mutate(faixa_et = if_else(X003<30, "Jovem", "Não Jovem"))
+base_do_wvs %>% 
+  mutate(faixa_et = if_else(X003<30, "Jovem", "Não Jovem"))
 
 ```
 
@@ -79,38 +101,25 @@ A função ‘if_else’ divide os valores em dois grupos: os que se encaixam na
 
 ```{r eval = FALSE}
 # summarise(), exemplo resumir os dados pela média e mediana de idade 
-summarise(media = mean(X003), mediana = median(X003))
+base_do_wvs %>% 
+  summarise(media = mean(X003), mediana = median(X003))
 
 # para excluir missing values: na.rm = TRUE
-media = mean(X003, na.rm = TRUE)
+base_do_wvs %>% 
+  summarise(media = mean(X003, na.rm = TRUE), 
+            mediana = median(X003))
 
 # arrange(), exemplo ordenar a variável idade: 
-arrange(X003)
+base_do_wvs %>% 
+  arrange(X003)
 
 # view(), exemplo visualizar a variável países: 
-view(S003)
+base_do_wvs %>% 
+  view(S003)
 
-# table(), exemplo visualizar em uma tabela a variável faixa_et: 
-table(faixa)
-
-```
-
-
-
-
-### Comandos úteis
-
-Para executar mais de um comando é necessário inserir entre eles o conector `%>%`. Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código, para tanto basta inserir no início da frase o caractere jogo da velha `#`. 
-
-```{r eval = FALSE}
-
-# Criar anotações: #
-# Conectar as linhas do código: %>% 
-# Exemplos: 
-
-df_wvs7 %>% 
-  summarise(media = mean(X003, na.rm = TRUE)) %>%
-  count(S003, X001)
+# table(), exemplo visualizar em uma tabela a variável: 
+base_do_wvs %>% 
+  table(variavel)
 
 ```
 
@@ -126,7 +135,7 @@ Para fazer o teste de correlação basta selecionar o par de variáveis em quest
 ```{r eval = FALSE}
 
 # Selecionar duas variáveis e extrair a correlação
-df_wvs7 %>%
+base_do_wvs %>%
   select(X002, X003) %>% 
   cor(use = "complete.obs")
 
@@ -146,15 +155,15 @@ Exemplo:
 
 ```{r eval = FALSE}
 # Exemplos de regressão linear
-# Exemplo 1: 
-resultado <- df_wvs7 %>% 
+# Exemplo 1 (usando como variável resposta a renda (X047), idade (X002) e educação (X025R) como variáveis explicativas: 
+resultado <- base_do_wvs %>% 
   group_by(S003) %>% 
   lm(X047 ~ X025R + X002, data = .) 
 
 # Neste exemplo o "." indica que a base de dados é enviada na função lm() depois do "e então" %>% 
 
 # Exemplo 2: 
-resultado_bol <- df_wvs7 %>% 
+resultado_bol <- base_do_wvs %>% 
   filter(S003 == 68) %>% 
   lm(X047 ~ scale(X025R) + scale(X002), data = .)
 

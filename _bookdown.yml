@@ -1,4 +1,4 @@
-book_filename: "tiagovier.github.io"
+book_filename: "tutorial_wvsR"
 output_dir: "docs"
 delete_merged_file: true
 #rmd_files: ["index.Rmd", "02-literature.Rmd", "01-intro.Rmd"]
