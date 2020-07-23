@@ -1,20 +1,37 @@
-# Descrever e Analisar os dados
+# Descrevendo e analisando os dados
 
-Após instalar o *software*, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados. 
+Após instalar R e RStudio, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos de dados, começa a verdadeira diversão: finalmente, você vai trabalhar com os dados!
 
 O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas. 
 
-Um excelente começo nesta empreitada é a descrição dos dados que não só garante o divertimento do pesquisador, como também permite que se façam excelentes análises e conclusões. A partir da estatística descritiva, obtém-se um conjunto de ferramentas que permitem: a) organizar os dados - agrupando, selecionando, filtrando, ordenando, criando variáveis; b) descrever e analisar os dados - resumindo-os com base em sua média, moda, mediana, cruzando e contando as variáveis, criando gráficos e tabelas. A principal função da estatística descritiva é resumir os dados e facilitar a assimilação da informação [@agresti_metodos_2012].
+Um excelente começo dessa empreitada é a descrição dos dados que não só garante o divertimento do pesquisador, como também permite que se façam excelentes análises e conclusões.
 
-Além da descrição dos dados, o R também oferece suporte para que sejam feitos testes estatísticos mais avançados bi e multi-variados, dentre eles correlação e regressão linear multivariada. A correlação tem por função avaliar o comportamento de duas variáveis em função uma da outra, mensurando a interdependência das mesmas e o seu grau de associação. Logo a correlação é apropriada se o seu propósito é analisar se há relação entre a variação de duas dimensões e qual a força desta relação, como por exemplo nas clássicas premissas: nível educacional e renda variam de maneira diretamente proporcional ou apoio à democracia varia de maneira inversamente proporcional a valores autoritários. A regressão linear multivariada permite estabelecer valores estimativos de uma variável dependente em relação a um conjunto de outras variáveis independentes, isto é resulta no nível de previsibilidade de uma variável em função de outras variáveis explicativas. Deste modo, este tipo de teste se aplica aos casos em que se almeja avaliar e estabelecer potencial previsibilidade de uma variável em função de outras, e não apenas comparar seus comportamentos; por exemplo prevendo a taxa de desconfiança em relação aos partidos com base na quantidade de pessoas que estão satisfeitas com a democracia. 
+A partir da estatística descritiva, obtém-se um conjunto de ferramentas que permitem: 
 
-Nesta seção iremos aprender, então, os comandos do R que permitem criar anotações, criar variáveis e vetores, conectar sentenças do código de programação, visualizar os valores máximo e mínimo de uma variável, obter a média, somar os valores de uma variável, filtrar, selecionar, ordenar, contar, cruzar, criar nova coluna, resumir os dados a partir de alguma operação, excluir valores da análise, visualizar variáveis, fazer gráficos, fazer teste de correlação e análise de regressão multivariada. Ou seja, tudo o que se precisa para, em ordem de importância: ter adoráveis momentos com o seu banco de dados e construir conhecimento a partir de análises robustas.  
+a) organizar os dados - agrupando, selecionando, filtrando, ordenando, criando variáveis; 
+a) descrever e analisar os dados - resumindo-os com base em sua média, moda, mediana, cruzando e contando as variáveis, criando gráficos e tabelas. 
+
+A principal função da estatística descritiva é resumir os dados e facilitar a assimilação da informação [@agresti_metodos_2012].
+
+Além da descrição dos dados, o R também oferece suporte para que sejam feitos testes estatísticos mais avançados bi e multivariados, entre eles, correlação e regressão linear multivariada.
+
+A correlação tem por função avaliar o comportamento de duas variáveis em função uma da outra, mensurando a interdependência das mesmas e o seu grau de associação. Logo, a correlação é apropriada se o seu propósito é analisar se há relação entre a variação de duas dimensões e qual a força dessa relação, como, por exemplo, nas clássicas premissas: nível educacional e renda variam de maneira diretamente proporcional ou apoio à democracia varia de maneira inversamente proporcional a valores autoritários?  
+
+A regressão linear multivariada permite estabelecer valores estimativos de uma variável dependente em relação a um conjunto de outras variáveis independentes. Resulta no nível de previsibilidade de uma variável em função de outras variáveis explicativas. Esse tipo de teste se aplica aos casos em que se almeja avaliar e estabelecer potencial previsibilidade de uma variável em função de outras, e não apenas comparar seus comportamentos, por exemplo, prevendo a taxa de desconfiança em relação aos partidos com base na quantidade de pessoas que estão satisfeitas com a democracia. 
+
+Nesta seção, você pode aprender os comandos do R que permitem criar anotações, criar variáveis e vetores, conectar sentenças do código de programação, visualizar os valores máximo e mínimo de uma variável, obter a média, somar os valores de uma variável, filtrar, selecionar, ordenar, contar, cruzar, criar nova coluna, resumir os dados a partir de alguma operação, excluir valores da análise, visualizar variáveis, fazer gráficos, fazer testes de correlação e análises de regressão multivariada. 
+
+Isso é tudo o que se precisa para, em ordem de importância: ter adoráveis momentos com o seu banco de dados e construir conhecimento a partir de análises robustas. 
 
 ## Descrevendo os dados
 
 ### Criar variáveis e vetores
 
-Para criar uma variável basta escolher um nome para ela e atribuir através do sinal ‘<-’ um valor para a mesma, lembrando sempre de que o R não aceita caractere do tipo espaço, então se o nome de sua variável tiver mais de um termo é necessário usar o conector underline ‘_’ entre as palavras. Para criar vetores, segue-se a mesma lógica, mas os valores devem ser inseridos entre os parênteses do código: ‘c()’, para indicar que há um conjunto de valores; estes valores devem ser separados por vírgulas. Os valores atribuídos podem ser números simples, podem ser operações como soma, subtração, multiplicação. As variáveis e vetores, após criados podem também ter seus valores submetidos a algum tipo de operação. Exemplos:
+Para criar uma variável, escolha um nome para ela e atribua através do sinal `<-` um valor para a mesma, lembrando sempre de que o R não aceita caracteres do tipo espaço, então se o nome de sua variável tiver mais de um termo é necessário usar o conector underline (_) entre as palavras. Lembre-se também que o R faz a diferença entre letras maiúsculas e minúsculas.
+
+Para criar vetores, segue-se a mesma lógica, mas os valores devem ser inseridos entre os parênteses do código: `c()`, o qual indica que há um conjunto de valores (esses valores devem ser separados por vírgulas e entre aspas no caso de o valor ser uma cadeia de caracteres, ou *string*). Os valores atribuídos podem ser números simples, podem ser operações como soma, subtração, multiplicação. 
+
+Após criados, variáveis e vetores, podem também ter seus valores submetidos a algum tipo de operação. Veja estes exemplos:
 
 ```{r eval = FALSE}
 # Criar um vetor com base em um resultado de cálculo
@@ -23,6 +40,9 @@ Meu_resultado <- 1 + 5
 # Criar um vetor e multiplicar por um valor
 Brasil <- c(1, 3, 10, 12, 19, 21, 28, 30, 37)
 Brasil * 3
+
+# Criar um vetor com strings/textos
+Paises <- c("Argentina", "Brasil") 
 
 # Cálculo da idade com base no ano de nascimento
 Ano_Nasc <- c(1990, 1984, 1961)
@@ -38,21 +58,28 @@ Idade <- 2020 - Ano_Nasc
 
 ### Funções básicas e comandos úteis
 
-Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do r-base são os seguintes para a variável "Idade", por exemplo:
+Após carregar seu banco de dados ou criar suas próprias variáveis, é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do R-base para a variável "Idade", por exemplo, são os seguintes:
 
 * Valor máximo: `max(Idade)`
 * Valor mínimo: `min(Idade)`
 * Média: `mean(Idade)`
 * Soma: `sum(Idade)`
 
-Na filosofia do tidyverse, para executar mais de um comando é necessário inserir entre eles o conector `%>%`. Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código, para tanto basta inserir no início da frase o caractere jogo da velha `#`. 
+Na gramática do tidyverse, para executar mais de um comando é necessário inserir entre eles o conector `%>%` (que pode ser lido como "e então", em uma sequência de operações)
+
+Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código. Para tanto basta inserir no início da frase o caractere cerquilha, ou jogo da velha (`#`). 
+
+Veja o exemplo:
 
 ```{r eval = FALSE}
 
 # Criar anotações: #
 # Conectar as linhas do código: %>% 
-# Exemplos (os códigos das variáveis são usados na base longitudinal do WVS: X003 = Idade; SOO3 = País; X001 = Sexo)
 
+# Exemplos:
+# Abrir a base de dados do WVS, e então sumarisar pela média, 
+# e então efetuar a contagem das variáveis S003 e X001  
+# Variáveis do WVS usadas: X003 = Idade; SOO3 = País; X001 = Sexo
 base_do_wvs %>% 
   summarise(media = mean(X003, na.rm = TRUE)) %>%
   count(S003, X001)
@@ -61,23 +88,25 @@ base_do_wvs %>%
 
 ## Estatística descritiva:
 
-Partindo para funções mais sofisticadas, é possível organizar o banco de dados de maneira sistemática e fazer análises resumidas das variáveis. O comando `filter()` filtra as observações (linhas) baseadas em uma condição determinada pelo pesquisador, como por exemplo selecionar apenas determinados países, gênero feminino ou masculino, faixas de renda, idade e escolaridade. 
+Partindo para funções mais sofisticadas, é possível organizar o banco de dados de maneira sistemática e fazer análises resumidas das variáveis. O comando `filter()` filtra as observações (linhas) baseadas em uma condição determinada pelo pesquisador, como, por exemplo, selecionar determinados países, gênero feminino ou masculino, faixas de renda, idade ou escolaridade. 
 
-Com o comando `select()` é possível escolher as variáveis específicas (colunas) com que se deseja trabalhar. O comando mutate cria uma nova variável (coluna) ou modifica uma já existente a partir de manipulações dos dados.
+Com o comando `select()` é possível escolher as variáveis específicas (colunas) com que se deseja trabalhar. O comando `mutate()` cria uma nova variável (coluna) ou modifica uma já existente a partir de manipulações dos dados.
 
-A função `count()` é muito interessante porque permite que se faça análises dos dados ao apresentar sua contagem (frequência) e cruzar variáveis. 
+A função `count()` permite que se faça análises dos dados ao apresentar sua contagem (frequência) e cruzar variáveis.
 
-Para agrupar conjuntos específicos de variáveis, utiliza-se o `group()`. 
+Para agrupar conjuntos específicos de variáveis, utiliza-se `group()`.
 
 Outra forma de manipular e avaliar os dados é utilizando o comando `summarise()` para resumir os dados em função de alguma operação (média/mean e mediana/median). 
 
-O comando `arrange()` ordena os resultados. Outros dois comandos importantes neste contexto é o `na.rm = TRUE` para excluir missing values e o `view()` para fazer uma visualização simples de variáveis específicas. 
+O comando `arrange()` ordena os resultados. Outro comando interessante é o `view()` para fazer uma visualização simples de variáveis específicas na forma de tabela.
+
+Usando o critério `na.rm = TRUE`, em alguns comandos, as não respostas (*missing values*) são excluídas.
 
 Para exibir os dados em uma tabela, utiliza-se o comando `table()`. A seguir um resumo com o código que deve ser utilizado para executar cada uma destas funções e exemplos a partir das variáveis da base de dados do WVS:
 
 ```{r eval=FALSE}
 
-# filter(), exemplo filtrar observações baseado em uma condicao Brasil: 
+# filter(), exemplo filtrar observações baseadas em uma condição: Brasil (código 76): 
 base_do_wvs %>% 
   filter(S003 == 76)
 
@@ -89,18 +118,21 @@ base_do_wvs %>%
 base_do_wvs %>% 
   count (S003, E235) 
 
-# mutate(), criar uma variável faixas etárias: 
+# mutate(), criar uma variável faixas etárias. 
+# O ifelse() precisa de três instruções: 
+# ifelse("condição", "valor se sim", "valor se não")
 base_do_wvs %>% 
   mutate(faixa_et = if_else(X003<30, "Jovem", "Não Jovem"))
 
 ```
 
 
-A função ‘if_else’ divide os valores em dois grupos: os que se encaixam na condição e os que não se encaixam, no caso do exemplo os que possuem idade inferior a 30 (X003<30) é classificado como Jovem, os que não possuem são classificados como Não Jovem.
+A função ‘if_else()’ divide os valores em dois grupos: os que se encaixam na condição e os que não se encaixam, no caso do exemplo acima, os que têm idade inferior a 30 (X003<30) são classificado como Jovem, os que não possuem são classificados como Não Jovem.
 
 
 ```{r eval = FALSE}
-# summarise(), exemplo resumir os dados pela média e mediana de idade 
+
+# summarise(), exemplo resumir os dados pela média e mediana de idade
 base_do_wvs %>% 
   summarise(media = mean(X003), mediana = median(X003))
 
@@ -126,7 +158,9 @@ base_do_wvs %>%
 
 ## Análises bi e multivariadas:
 
-As análises descritivas oferecem diversas possibilidades para conhecer o comportamentos, distribuição e padrões das diferentes variáveis, contudo quando o objetivo é estabelecer relação entre as mesmas é necessário adotar testes mais avançados bi e multivariados. Para avaliar a taxa de associação entre duas variáveis e a capacidade explicativa de um conjunto de variáveis sobre uma variável dependente específica, devemos utilizar respectivamente correlação e regressão linear multivariada.
+As análises descritivas oferecem diversas possibilidades para conhecer comportamentos, distribuição e padrões das diferentes variáveis. Contudo, quando o objetivo é estabelecer relação entre as mesmas é necessário adotar testes mais avançados bi e multivariados. 
+
+Para avaliar a taxa de associação entre duas variáveis e a capacidade explicativa de um conjunto de variáveis sobre uma variável dependente específica, devemos utilizar respectivamente correlação e regressão linear multivariada.
 
 ### Correlação
 
@@ -142,32 +176,36 @@ base_do_wvs %>%
 ```
 
 
-## Regressao linear multipla
+## Regressão linear múltipla
 
 Para efetuar o teste de regressão linear múltipla basta atribuir a uma variável resultado `<-` a função `lm()`.
 
-Exemplo:
+Veja o exemplo:
 
 `lm(variável dependente ~ scale (variável independente 1) + scale (variável independente 2) + scale (variável independente n), data =.)`
 
-É necessário sinalizar antes para o programa qual é o banco pelo nome do objeto e o recorte através das funções `group_by()` ou `filter()`. Nos exemplos a seguir é possível visualizar melhor a estrutura do comando:
+É necessário sinalizar qual é o banco de dados utilizado antes para o programa pelo nome do objeto e o recorte através das funções `group_by()` ou `filter()`. Nos exemplos a seguir é possível visualizar melhor a estrutura do comando:
 
+Veja estes exemplos de regressão linear:
 
 ```{r eval = FALSE}
 # Exemplos de regressão linear
-# Exemplo 1 (usando como variável resposta a renda (X047), idade (X002) e educação (X025R) como variáveis explicativas: 
+# Exemplo 1 (usando como variável resposta a renda (X047), 
+# idade (X002) e educação (X025R) como variáveis explicativas: 
 resultado <- base_do_wvs %>% 
   group_by(S003) %>% 
   lm(X047 ~ X025R + X002, data = .) 
 
-# Neste exemplo o "." indica que a base de dados é enviada na função lm() depois do "e então" %>% 
+# Neste exemplo o "." indica que a base de dados 
+# é enviada na função lm() depois do "e então" %>% 
 
 # Exemplo 2: 
 resultado_bol <- base_do_wvs %>% 
   filter(S003 == 68) %>% 
   lm(X047 ~ scale(X025R) + scale(X002), data = .)
 
-# Neste exemplo as variáveis são normalizadas com a função scale() e foi filtrado apenas o país código 68. 
+# Neste exemplo as variáveis são normalizadas com a função scale(). 
+# Foi filtrado apenas o país código 68. 
 
 ```
 

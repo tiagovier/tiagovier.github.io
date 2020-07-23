@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | Uso de R para análise dos dados da World Values Survey</title>
+  <title>Capítulo 3 Bibliotecas | Uso de R para análise dos dados da World Values Survey</title>
   <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:title" content="Capítulo 3 Bibliotecas | Uso de R para análise dos dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/capa.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | Uso de R para análise dos dados da World Values Survey" />
+  <meta name="twitter:title" content="Capítulo 3 Bibliotecas | Uso de R para análise dos dados da World Values Survey" />
   
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="glossário.html"/>
-
+<link rel="prev" href="instalando-o-r-e-o-rstudio.html"/>
+<link rel="next" href="importando-bases-de-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -204,35 +204,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
-<div id="refs" class="references">
-<div>
-<p>AGRESTI, Alan; FINLAY, Barbara; VIALI, Lori. <strong>Métodos Estatísticos para as Ciências Sociais</strong>. Tradução. Edição: 4 ed. Porto Alegre: Penso, 2012. </p>
+<div id="biblio" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> Bibliotecas</h1>
+<p>Quando instalamos o R, instalamos junto uma grande quantidade de comandos e funções. A lista de funções do R-base pode ser vista <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">aqui</a>.</p>
+<p>Para além desses recursos, a linguagem R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições <a href="https://cran.r-project.org/web/packages/">CRAN</a> lista 16,045 bibliotecas disponíveis. As diferentes contribuições são agrupadas por tópicos. É possível, por exemplo, conhecer os pacotes disponíveis para as <a href="https://cran.r-project.org/web/views/SocialSciences.html">Ciências Sociais</a>.</p>
+<p>Neste tutorial, utilizamos as funções do R-base e sugerimos bibliotecas adicionais que facilitam algumas operações e são suficientes para a maior parte das necessidades de um pesquisador interessado em usar o WVS.</p>
+<p>As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática <a href="https://www.tidyverse.org/">tidyverse</a>, Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível <a href="https://r4ds.had.co.nz/">neste link</a>. Além do <code>tidyverse</code>, usamos a biblioteca <code>codebook</code> para visualizar os dados.</p>
+<div id="instalando-bibliotecas-adicionais" class="section level2">
+<h2><span class="header-section-number">3.1</span> Instalando bibliotecas adicionais</h2>
+<p>Como mencionamos anteriormente, quando instalamos o R-base já instalamos uma série de funções e comandos.</p>
+<p>Entretanto, você pode usar um comando específico para instalar novas bibliotecas do repositório CRAN.</p>
+<p>Para instalar bibliotecas, use o comando: <code>install.packages("nome_da_bibliteca")</code>.</p>
+<p>Outra maneira de instalar novas bibliotecas é usar a aba “Packages”.</p>
+<p>Essa aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão “Install”.</p>
+<p>Para instalar a biblioteca da gramática tidyverse digite:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="biblio.html#cb1-1"></a><span class="co"># para instalar as bibliotecas da gramática tidyverse</span></span>
+<span id="cb1-2"><a href="biblio.html#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>Para instalar a biblioteca codebook de visualização de dados (ver no capítulo seguinte) digite:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="biblio.html#cb2-1"></a><span class="co"># para instalar a biblioteca codebook para visualizar os dados </span></span>
+<span id="cb2-2"><a href="biblio.html#cb2-2"></a><span class="co"># (ver no capítulo seguinte)</span></span>
+<span id="cb2-3"><a href="biblio.html#cb2-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;codebook&quot;</span>)</span></code></pre></div>
+<p>Quando rodamos o comando, usando <code>Crtl + Enter</code> ou <code>Run</code> no script, ou <code>Enter</code> se você está digitando diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento.</p>
+<p><strong>É importante que se instale todas as dependências indicadas pelo R.</strong> Verifique no Console e, se o R perguntar se você quer fazer a instalação das dependências, clique “Yes”.</p>
 </div>
-<div>
-<p>CASTRO, Henrique C. de O. de; RANINCHESKI, Sonia; CAPISTRANO, Daniel. O Conteúdo Da Globalização Para Os Latino-Americanos: Uma Análise a Partir Da Pesquisa Mundial de ValoresWVS. <em>[S. l.]</em>, 2015. </p>
+<div id="carregando-bibliotecas" class="section level2">
+<h2><span class="header-section-number">3.2</span> Carregando bibliotecas</h2>
+<p>É preciso carregar as bibliotecas sempre que se inicia uma sessão.</p>
+<p>O comando para carregar as bibliotecas é <code>library("nome_da_biblioteca")</code>.</p>
+<p>Para carregar as bibliotecas que vamos usar, use os comandos abaixo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="biblio.html#cb3-1"></a><span class="co"># carregar o tidyverse</span></span>
+<span id="cb3-2"><a href="biblio.html#cb3-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="biblio.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="biblio.html#cb3-4"></a><span class="co"># carregar a biblioteca haven, </span></span>
+<span id="cb3-5"><a href="biblio.html#cb3-5"></a><span class="co"># usada para importar arquivo SPSS </span></span>
+<span id="cb3-6"><a href="biblio.html#cb3-6"></a><span class="kw">library</span>(codebook)</span>
+<span id="cb3-7"><a href="biblio.html#cb3-7"></a></span>
+<span id="cb3-8"><a href="biblio.html#cb3-8"></a><span class="co"># carregar o codebook</span></span>
+<span id="cb3-9"><a href="biblio.html#cb3-9"></a><span class="kw">library</span>(codebook)</span></code></pre></div>
+<p>Sempre que abrir o RStudio, é preciso recarregar as bibliotecas, pois o RStudio reinicia a sessão somente com os comandos do R-base.</p>
+<p>É recomendado que as bibliotecas que serão usadas nas análises sejam indicadas no início do código R onde são feitas as análises. Dessa forma, qualquer pesquisador poderá identificar os requisitos necessários para reproduzir as suas análises.</p>
+<p>Carregadas as bibliotecas podemos importar os dados que vamos usar.</p>
+
 </div>
-<div>
-<p>INGLEHART, Ronald; WELZEL, Christian. <strong>Modernization, Cultural Change, and Democracy: The Human Development Sequence</strong>. Tradução. Cambridge, UK ; New York: Cambridge University Press, 2005. </p>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="glossário.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="instalando-o-r-e-o-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importando-bases-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
