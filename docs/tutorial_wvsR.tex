@@ -3,8 +3,10 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
+  10pt,
   brazil,
-]{book}
+  a4paper,
+  twoside, notitlepage, openright]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -37,12 +39,13 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Uso do R para análise da dados da World Values Survey},
-  pdfauthor={Coletivo WVSR},
+  pdftitle={Uso de R para análise dos dados da World Values Survey},
+  pdfauthor={Autor 1; Autor 2},
   pdflang={pt-br},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage[left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -110,6 +113,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage[brazil]{babel}
 \ifxetex
   % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
   \usepackage{polyglossia}
@@ -118,11 +122,11 @@
   \usepackage[shorthands=off,main=brazil]{babel}
 \fi
 \usepackage[]{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 
-\title{Uso do R para análise da dados da World Values Survey}
-\author{Coletivo WVSR}
-\date{2020-07-16}
+\title{Uso de R para análise dos dados da World Values Survey}
+\author{Autor 1\footnote{Coletivo WVSR, \href{mailto:mail@example.org}{\nolinkurl{mail@example.org}}} \and Autor 2\footnote{Coletivo WVSR, \href{mailto:mail@example.org}{\nolinkurl{mail@example.org}}}}
+\date{23 de juillet de 2020}
 
 \begin{document}
 \maketitle
@@ -131,51 +135,61 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{bem-vindo}{%
-\chapter*{Bem Vindo !}\label{bem-vindo}}
-\addcontentsline{toc}{chapter}{Bem Vindo !}
+\hypertarget{bem-vindoa}{%
+\chapter*{Bem-Vindo(a)!}\label{bem-vindoa}}
+\addcontentsline{toc}{chapter}{Bem-Vindo(a)!}
 
-Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises do WVS em R. Se trata de um documento evolutivo e introdutório ao uso do R nas análises com a base estruturada da Pesquisa Mundial de Valores.
+Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises da World Values Survey (WVS), ou Pesquisa Mundial de Valores, em Português, sobre o uso da linguagem R e ambiente de programação RStudio.
+
+Trata-se de um documento evolutivo e introdutório ao uso dos softwares livres R e RStudio nas análises dos dados da base estruturada da WVS.
 
 Este tutorial foi preparado em \href{https://rmarkdown.rstudio.com/}{Rmarkdown} com a biblioteca \href{https://bookdown.org/}{bookdown}.
 
-Um agradecimento aos colaboradores: \ldots{}
+Um agradecimento aos colaboradores do grupo do WVS Brasil.
 
 \hypertarget{intro}{%
 \chapter{Introdução}\label{intro}}
 
-\hypertarget{o-r-e-o-rstudio}{%
-\section{O R e o RStudio}\label{o-r-e-o-rstudio}}
+\hypertarget{r-e-rstudio}{%
+\section{R e RStudio}\label{r-e-rstudio}}
 
-R é uma linguagem de programação, que é caracterizada como multiparadigma: tem como foco uma programação funcional, flexível, dinâmica e, principalmente, direcionada à manipulação, análise e visualização de dados.
+R é uma linguagem de programação caracterizada como multiparadigma: tem como foco uma programação funcional, flexível, dinâmica e, principalmente, direcionada à manipulação, análise e visualização de dados.
 
-Isso a torna muito útil, por exemplo, para estudos de bases e bancos de dados e pesquisas estatísticas. Essa funcionalidade também pode ser chamada de mineração de dados: o processo de exploração de dados em grande escala com o objetivo de buscar padrões, associações, relacionamentos e sistematização de variáveis.
+É muito útil, por exemplo, para estudos de bases e bancos de dados e pesquisas estatísticas. Essa funcionalidade também pode ser chamada de mineração de dados: o processo de exploração de dados em grande escala com o objetivo de buscar padrões, associações, relacionamentos e sistematização de variáveis.
 
-Já o RStudio é um ambiente computacional de software livre, ou seja, gratuito. E tem compatibilidade com os sistemas operacionais Windows, Linux, Mac e com outros tipos de programas, como planilhas (por exemplo, Microsoft Excel) e aplicativos científicos (por exemplo, SPSS).
+O RStudio é um ambiente computacional de software livre, ou seja, gratuito. Ele tem compatibilidade com os sistemas operacionais Windows, Linux, Mac e com outros tipos de programas, como planilhas (por exemplo, Microsoft Excel) e aplicativos científicos (por exemplo, SPSS).
 
-O que justifica seu uso nas Ciências Sociais? É possível observar que os métodos quantitativos vem sendo cada vez mais utilizados em perspectivas desse campo de conhecimento. Além disso, especialmente em nível de pesquisas internacionais do tipo survey, a disponibilidade de informações em forma quantitativa vem sendo amplamente aumentada, em diferentes aspectos: realização e englobamento geográfico, novas categorias de análise, questões em diferentes temas políticos e sociais e, também, tendo ampla divulgação de forma livre e acessível virtualmente.
+O que justifica seu uso nas Ciências Sociais? Os métodos quantitativos vem sendo cada vez mais utilizados em estudos desse campo de conhecimento. Além disso, especialmente em nível de pesquisas internacionais do tipo survey, a disponibilidade de informações em forma quantitativa só cresce: em diferentes aspectos, como realização e englobamento geográfico, novas categorias de análise e mais questões em diferentes temas políticos e sociais, e também em divulgação, livre e acessível virtualmente.
 
-\hypertarget{o-que-uxe9-o-wvs}{%
-\section{O que é o WVS}\label{o-que-uxe9-o-wvs}}
+\hypertarget{world-values-survey-wvs}{%
+\section{World Values Survey (WVS)}\label{world-values-survey-wvs}}
 
-A World Values Survey (WVS) é fruto de uma iniciativa acadêmica que investiga mudanças culturais desde a segunda metade do século XX em mais de cem países. É um projeto que possibilita a comparação de características culturais de diversas sociedades desde a década de 1970 e contribui dentre outros campos, para o debate sobre a relação entre desenvolvimento econômico e mudanças culturais, para o acompanhamento longitudinal de visões sobre as mudanças em curso e ampliar o conhecimento de diferentes áreas do planeta antes de acesso limitado a pesquisadores da região.
+A World Values Survey (WVS) investiga mudanças culturais em diversas sociedades e possibilita a comparação das características dessas mudanças, contribuindo, entre outros campos, para o debate sobre a relação entre desenvolvimento econômico e mudanças culturais, para o acompanhamento longitudinal das mudanças em curso e para a ampliação do conhecimento de diferentes áreas do planeta -- muitas delas eram antes de acesso limitado aos pesquisadores daquelas regiões.
 
 A metodologia da WVS sujeita-se à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart, que sugere que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação na atividade política em democracias do Ocidente.
 
+A pesquisa teve início em 1981 e consiste em inquéritos representativos em nível nacional realizados em quase cem países, abrangendo quase 90\% da população mundial. Utiliza um questionário comum de 180 variáveis e inclui atualmente entrevistas com quase 400 mil indivíduos.
+
+A metodologia da WVS sujeita-se à teoria da modernização e do pós-materialismo elaborada por Ronald Inglehart. Inglehart propõe que fenômenos como o crescimento do setor de serviços, a melhoria na qualidade de vida e o aumento das oportunidades educacionais nas sociedades industriais avançadas ou pós-industriais têm levado a uma gradual transformação na atividade política em democracias do Ocidente.
+
 A tese articula duas hipóteses para explicar essa mudança: a) a hipótese da escassez: defende que as prioridades da ação humana são resultado do ambiente sócio-econômico vigente, no qual valoriza-se subjetivamente coisas e aspectos da realidade que são escassos; e b) hipótese da socialização: defende que grande parte dos valores básicos de um indivíduo derivam das condições presentes em seu período de formação, anterior à idade adulta.
 
-Assim, a WVS explora a hipótese final de que ``as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes, {[}\ldots{]} esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário.'' \citep{castro_conteudo_2015}
+Assim, a WVS explora a hipótese final de que ``as mudanças nos sistemas de crenças de massas têm consequências sociais, políticas e econômicas importantes. {[}\ldots{]} esta pesquisa proporciona outras análises a partir de seus resultados, haja vista a qualidade e a diversidade das dimensões e perguntas presentes no questionário. {[}\ldots{]} No entanto, essa forte ligação a uma perspectiva teórica não impede que seus dados possam ser úteis para pesquisas que não usem o mesmo referencial teórico.'' \citep{castro_conteudo_2015}
 
-``No entanto, essa forte ligação a uma perspectiva teórica não impede que seus dados possam ser úteis para pesquisas que não usem o mesmo referencial teórico.'' \citep{castro_conteudo_2015}
+O Brasil participou de cinco das sete ondas da WVS realizadas até agora (1990-1994; 1995-1999; 2005-2009; 2010-2014; e 2017-2020). O professor Henrique Castro coordena a pesquisa no país desde a quinta onda: a partir da Universidade de Brasília, entre 2005 e 2014, e a partir da Universidade Federal do Rio Grande do Sul (UFRGS), desde 2017, com financiamento da Capes/MEC.
 
-Os dados gerados em todos os países integrantes da WVS ficam disponíveis para livre pesquisa na internet, no site www.worldvaluessurvey.org. The survey started in 1981 and {[}\ldots{]} consists of nationally representative surveys conducted in almost 100 countries which contain almost 90\% of the world's population, using a common questionnaire and currently including interviews with almost 400,000 respondents.'' A WVS usa um questionário de 180 variáveis permitindo a comparação.
+A pesquisa no Brasil utiliza uma amostra probabilística completa em três etapas: a) seleção aleatória e estabelecimento de 150 clusters (baseada nos setores censitários do país, incluindo zonas urbanas e rurais); b) seleção aleatória de habitações em cada setor censitário; e c) escolha do entrevistado na habitação, considerando que seja alfabetizado, tenha 16 anos ou mais de idade e data de aniversário mais próxima do dia da primeira visita bem-sucedida. O erro máximo de amostra é estimado em 2,6\%, com proporção 0,5.
 
-\hypertarget{instalauxe7uxe3o-do-r}{%
-\chapter{Instalação do R}\label{instalauxe7uxe3o-do-r}}
+Atualmente, o grupo de pesquisa WVS Brasil é integrado por discentes e docentes do Programa de Pós-Graduação em Ciência Política e discentes do Departamento de Economia e Relações Internacionais, ambos da UFRGS, e por pesquisadores de diversas universidades do Brasil, como Universidade de Brasília, Unisinos e Universidade de Caxias do Sul, e do Exterior, como a University College Dublin, em um total de cerca de 60 pessoas.
 
-Para este tutorial, nós iremos instalar dois softwares: R e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R.
+Os dados gerados em todos os países integrantes da WVS ficam disponíveis para livre pesquisa na internet, na página \url{www.worldvaluessurvey.org}. A WVS usa um questionário de 180 variáveis permitindo a comparação.
 
-Assim, siga os passos para instalação de acordo com o sistema operacional de seu computador.
+\hypertarget{instalando-o-r-e-o-rstudio}{%
+\chapter{Instalando o R e o RStudio}\label{instalando-o-r-e-o-rstudio}}
+
+Para trabalhar com R, é necessário instalar dois softwares: R-base e RStudio. Para utilizar o RStudio, é necessário primeiro instalar o R-base.
+
+Siga os passos para instalação de acordo com o sistema operacional do seu computador.
 
 \hypertarget{linux}{%
 \section{LINUX}\label{linux}}
@@ -200,9 +214,9 @@ Assim, siga os passos para instalação de acordo com o sistema operacional de s
 \item
   Passo 3: Pressione a tecla Enter para confirmar;\\
 \item
-  Passo 4: Colocar a senha do usuário;\\
+  Passo 4: Digite a senha do usuário;\\
 \item
-  Passo 5: Confirmar. O R estará instalado e pode ser acessado.
+  Passo 5: Clique em Confirmar. Pronto! O R estará instalado e pode ser acessado.
 \end{itemize}
 
 Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
@@ -235,7 +249,7 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
     Ubuntu: \texttt{sudo\ dpkg\ -i\ nomedo\_arquivo\_baixado.deb}\\
   \end{itemize}
 \item
-  Passo 5: Após isso, o RStudio estará instalado no seu computador e pronto para uso.
+  Passo 5: O RStudio está instalado e pronto para uso!
 \end{itemize}
 
 \hypertarget{mac-os-x}{%
@@ -249,9 +263,9 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 \item
   Passo 1: Abra o site \href{https://cran.r-project.org/}{CRAN - https://cran.r-project.org/}
 \item
-  Passo 2: Clique em Download de R for (Mac) OS X.\\
+  Passo 2: Clique em ``Download de R for (Mac) OS X''.\\
 \item
-  Passo 3: Clique duas vezes no arquivo depois de baixado que será instalado no seu computador.
+  Passo 3: Clique duas vezes no arquivo depois de baixado. Pronto! O R está instalado.
 \end{itemize}
 
 \hypertarget{instalar-o-rstudio-1}{%
@@ -272,7 +286,7 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 \item
   Passo 3: Encontre o sistema operacional do seu computador (Mac OS) e faça download.\\
 \item
-  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.
+  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!
 \end{itemize}
 
 \hypertarget{windows}{%
@@ -294,7 +308,7 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 \begin{itemize}
 \tightlist
 \item
-  Passo 3: Clique duas vezes no arquivo depois de baixado, clique em avançar até finalizar a instalação que será instalado no seu computador.
+  Passo 3: Clique duas vezes no arquivo depois de baixado. Clique em Avançar até finalizar a instalação. Pronto! O R está instalado.
 \end{itemize}
 
 \hypertarget{instalar-o-rstudio-2}{%
@@ -315,67 +329,124 @@ Link para eventual consulta: \url{http://cran-r.c3sl.ufpr.br/bin/linux/}
 \item
   Passo 3: Encontre o sistema operacional do seu computador (Windows) e faça download.
 \item
-  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. Após, estará pronto para uso.
+  Passo 4: Depois de baixado, clique duas vezes no arquivo para instalá-lo. O RStudio está instalado e pronto para uso!
 \end{itemize}
+
+\hypertarget{identificando-o-rstudio}{%
+\section{Identificando o RStudio}\label{identificando-o-rstudio}}
+
+O RStudio tem quatro interfaces, espaços distribuídos na sua tela, fáceis de identificar e de trabalhar.
+
+São elas:
+
+\begin{itemize}
+\tightlist
+\item
+  Source: local onde são inseridos os códigos-fonte. Fica no canto superior esquerdo.
+\item
+  Console: também chamado de terminal, onde são mostrados os resultados dos comandos executados pelos códigos na Source. Fica no canto inferior esquerdo.
+\item
+  Environment: também chamado de ambiente, onde são mostrados os elementos (por exemplo, vetores, bases de dados etc) que foram criados. Fica no canto superior direito.
+\item
+  Viewer: também chamado files, onde são mostrados os arquivos, pacotes, pastas, entre outros. Fica no canto inferior direito.
+\end{itemize}
+
+\includegraphics[width=13.54in]{img/cozinha}
 
 \hypertarget{criando-um-projeto-no-rstudio}{%
 \section{Criando um projeto no RStudio}\label{criando-um-projeto-no-rstudio}}
 
-Feitas as instalações, podemos começar a trabalhar com o R e RStudio. Uma forma prática de iniciar o trabalho com o RStudio é usando projetos.
+Uma forma prática de iniciar o trabalho com o RStudio é criando projetos.
 
-Para iniciar um novo projeto, acesse o menu ``File \textgreater{} New Project'', ou então o ícone na parte superior direita do RStudio. O RStudio vai perguntar se você quer criar um novo diretório para o projeto, usar um diretório existente, ou ainda clonar um repositório distante (GitHub por exemplo).
+Para iniciar um novo projeto:
 
-Para criar o novo diretório, basta informar o diretório onde será criado o diretório do projeto e o nome do novo diretório onde todos os documentos do projeto serão armazenados.
+\begin{itemize}
+\tightlist
+\item
+  Acesse o menu ``File \textgreater{} New Project'', ou
+\item
+  então o ícone \includegraphics{img/proj_ico.png} na parte superior direita do RStudio.
+\end{itemize}
 
-Ao fechar o RStudio, todos os documentos e objetos no ambiente serão salvos no projeto e você pode retomar o trabalho de onde parou (salvo as bibliotecas, que tem que ser recarregadas a cada nova seção do R!).
+O RStudio vai perguntar se você quer criar um novo diretório para o projeto, usar um diretório existente, ou ainda clonar um repositório distante (GitHub, por exemplo).
 
-\hypertarget{bibliotecas}{%
-\chapter{Bibliotecas}\label{bibliotecas}}
+Para criar um novo diretório:
 
-Quando instalamos o R já dispomos de uma grande quantidades de comandos e funções. A lista de funções do R-base pode ser lida \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{aqui}.
+\begin{itemize}
+\tightlist
+\item
+  Clique em ``New Directory'', escolha entre as opções de tipos de projeto oferecidas e dê um nome ao seu novo diretório.
+\end{itemize}
 
-Para além destes, o ambiente R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições \href{https://cran.r-project.org/web/packages/}{CRAN} lista 16045 bibliotecas disponíveis. As diferentes contribuições são minimamente agrupadas por \href{https://cran.r-project.org/web/views/}{tópico}. Por exemplo, é possível conhecer os pacotes disponíveis para as \href{https://cran.r-project.org/web/views/SocialSciences.html}{ciências sociais}.
+Ali, você poderá salvar todos os documentos do projeto.
 
-Neste tutorial vamos usar as funções do R-base e algumas bibliotecas adicionais que facilitam algumas operações e já dão conta da maior parte das necessidades de um pesquisador interessado em usar o WVS.
+Ao fechar o RStudio, todos os documentos e os objetos do ambiente serão salvos no projeto, e você pode retomar o trabalho de onde parou quando quiser.
 
-As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática \href{https://www.tidyverse.org/}{tidyverse}, entre elas os pacotes \texttt{dplyr}, \texttt{haven} e \texttt{ggplot2}. Mais detalhes podem ser obtidos no livro dos autores disponível \href{https://r4ds.had.co.nz/}{neste link}. Além do \texttt{tidyverse}, usamos a biblioteca \texttt{codebook} para visualizar os dados.
+Lembre-se: as bibliotecas devem ser recarregadas cada vez que você iniciar uma seção do R.
 
-\hypertarget{instalauxe7uxe3o-de-bibliotecas-adicionais}{%
-\section{Instalação de bibliotecas adicionais}\label{instalauxe7uxe3o-de-bibliotecas-adicionais}}
+\hypertarget{biblio}{%
+\chapter{Bibliotecas}\label{biblio}}
 
-Como mencionamos acima, quando instalamos o R-base já instalamos uma série de funções e comandos. Dentre eles, existe um comando específico para instalar novas bibliotecas do repositório CRAN.
+Quando instalamos o R, instalamos junto uma grande quantidade de comandos e funções. A lista de funções do R-base pode ser vista \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{aqui}.
 
-Para instalar as bibliotecas usa-se o comando \texttt{install.packages("nome\_da\_bibliteca")}. Outra maneira de instalar novas bibliotecas é usar a aba ``Packages''. Esta aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão ``Install''.
+Para além desses recursos, a linguagem R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições \href{https://cran.r-project.org/web/packages/}{CRAN} lista 16,045 bibliotecas disponíveis. As diferentes contribuições são agrupadas por tópicos. É possível, por exemplo, conhecer os pacotes disponíveis para as \href{https://cran.r-project.org/web/views/SocialSciences.html}{Ciências Sociais}.
 
-Entrentanto, recomendamos que as bibliotecas que serão usadas nas análises sejam indicadas no inicio do código R onde são feitas as análises. Assim, o pesquisador que recebê-lo sabe quais os requisitos necessários para reproduzir as análises.
+Neste tutorial, utilizamos as funções do R-base e sugerimos bibliotecas adicionais que facilitam algumas operações e são suficientes para a maior parte das necessidades de um pesquisador interessado em usar o WVS.
 
-Para instalar bibliotecas adicionais, seguimos o exemplo abaixo:
+As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática \href{https://www.tidyverse.org/}{tidyverse}, Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível \href{https://r4ds.had.co.nz/}{neste link}. Além do \texttt{tidyverse}, usamos a biblioteca \texttt{codebook} para visualizar os dados.
+
+\hypertarget{instalando-bibliotecas-adicionais}{%
+\section{Instalando bibliotecas adicionais}\label{instalando-bibliotecas-adicionais}}
+
+Como mencionamos anteriormente, quando instalamos o R-base já instalamos uma série de funções e comandos.
+
+Entretanto, você pode usar um comando específico para instalar novas bibliotecas do repositório CRAN.
+
+Para instalar bibliotecas, use o comando: \texttt{install.packages("nome\_da\_bibliteca")}.
+
+Outra maneira de instalar novas bibliotecas é usar a aba ``Packages''.
+
+Essa aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão ``Install''.
+
+Para instalar a biblioteca da gramática tidyverse digite:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# para instalar as bibliotecas da gramática tidyverse}
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{# para instalar a biblioteca codebook para visualizar os dados (ver no capítulo seguinte)}
+Para instalar a biblioteca codebook de visualização de dados (ver no capítulo seguinte) digite:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# para instalar a biblioteca codebook para visualizar os dados }
+\CommentTok{# (ver no capítulo seguinte)}
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"codebook"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Quando rodamos o comando, usando \texttt{Crtl\ +\ Enter} no script ou \texttt{Enter} diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. \textbf{Assim, é importante que se faça a instalação de todas as dependências indicadas pelo R.} Verifique no console, e se o R perguntar se quer fazer a instalação das dependências, diga ``Yes''.
+Quando rodamos o comando, usando \texttt{Crtl\ +\ Enter} ou \texttt{Run} no script, ou \texttt{Enter} se você está digitando diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento.
 
-\hypertarget{carregar-as-bibliotecas}{%
-\section{Carregar as bibliotecas}\label{carregar-as-bibliotecas}}
+\textbf{É importante que se instale todas as dependências indicadas pelo R.} Verifique no Console e, se o R perguntar se você quer fazer a instalação das dependências, clique ``Yes''.
 
-Uma vez instaladas as bibliotecas, é preciso carregar as bibliotecas para que possam ser usadas.
+\hypertarget{carregando-bibliotecas}{%
+\section{Carregando bibliotecas}\label{carregando-bibliotecas}}
+
+É preciso carregar as bibliotecas sempre que se inicia uma sessão.
 
 O comando para carregar as bibliotecas é \texttt{library("nome\_da\_biblioteca")}.
+
+Para carregar as bibliotecas que vamos usar, use os comandos abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# carregar o tidyverse}
 \KeywordTok{library}\NormalTok{(tidyverse)}
 
-\CommentTok{## carregar a biblioteca haven, que é usada no capítulo seguinte para }
+\CommentTok{# carregar a biblioteca haven, }
+\CommentTok{# usada para importar arquivo SPSS }
 \KeywordTok{library}\NormalTok{(codebook)}
 
 \CommentTok{# carregar o codebook}
@@ -383,21 +454,31 @@ O comando para carregar as bibliotecas é \texttt{library("nome\_da\_biblioteca"
 \end{Highlighting}
 \end{Shaded}
 
-Sempre que abrir e fechar o R-Studio é preciso carregar as bibliotecas novamente, pois o R reinicia a sessão somente com os comandos do R-base.
+Sempre que abrir o RStudio, é preciso recarregar as bibliotecas, pois o RStudio reinicia a sessão somente com os comandos do R-base.
+
+É recomendado que as bibliotecas que serão usadas nas análises sejam indicadas no início do código R onde são feitas as análises. Dessa forma, qualquer pesquisador poderá identificar os requisitos necessários para reproduzir as suas análises.
 
 Carregadas as bibliotecas podemos importar os dados que vamos usar.
 
-\hypertarget{importar-bases-de-dados}{%
-\chapter{Importar bases de dados}\label{importar-bases-de-dados}}
+\hypertarget{importando-bases-de-dados}{%
+\chapter{Importando bases de dados}\label{importando-bases-de-dados}}
 
-O R importa arquivos salvos em seu próprio formato e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.
+Utilizando o RStudio, pode-se importar arquivos salvos no próprio formato R e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.
 
-Há duas formas de importação de arquivos no R: com o uso das ferramentas do Environment ou com o uso de linhas de comando escritas diretamente no console ou em um script.
+Há duas formas de importação de arquivos no RStudio:
+
+\begin{itemize}
+\tightlist
+\item
+  Com o uso das ferramentas do Environment, ou
+\item
+  Com o uso de linhas de comando escritas diretamente no Console ou em um script
+\end{itemize}
 
 \hypertarget{com-o-uso-das-ferramentas-da-aba-environment}{%
 \section{Com o uso das ferramentas da aba Environment}\label{com-o-uso-das-ferramentas-da-aba-environment}}
 
-Por esta forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
+Por essa forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
 
 \hypertarget{arquivos-em-formato-r}{%
 \subsection{Arquivos em formato R}\label{arquivos-em-formato-r}}
@@ -407,7 +488,7 @@ Para arquivos formato R (formato \texttt{.rdata}):
 \begin{itemize}
 \tightlist
 \item
-  Clique sobre o icone Abrir Arquivos.
+  Na aba ``Environment'', Clique sobre o icone ``Abrir Arquivos''.
 \item
   Procure o seu arquivo nos locais do seu computador.
 \item
@@ -419,7 +500,7 @@ Pronto! O seu arquivo vai aparecer no Environment.
 \hypertarget{arquivos-em-outros-formatos}{%
 \subsection{Arquivos em outros formatos}\label{arquivos-em-outros-formatos}}
 
-Para importar os dados em outros formatos, é preciso usar biblitecas específicas para esse fim. No caso deste tutorial, a biblioteca usada é a \texttt{haven}, da gramática Tidyverse.
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca haven, da gramática Tidyverse (veja em \protect\hyperlink{biblio}{bibliotecas}).
 
 \begin{itemize}
 \tightlist
@@ -453,7 +534,7 @@ Para carregar arquivos no formato nativo do R usando linhas de comando:
   \begin{itemize}
   \tightlist
   \item
-    Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar os locais do seu computador.
+    Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar esses locais.
   \end{itemize}
 \item
   Clique no arquivo que você quer importar
@@ -466,16 +547,16 @@ Pronto! O seu arquivo vai aparecer no Environment.
 \hypertarget{arquivos-em-outros-formatos-1}{%
 \subsection{Arquivos em outros formatos}\label{arquivos-em-outros-formatos-1}}
 
-Para carregar arquivos em outros formatos, usamos a biblioteca \texttt{haven} do tidyverse (Certifique-se que ela foi carregada usando o comando \texttt{library(haven)}).
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca \texttt{haven} da gramática Tidyverse (veja em \protect\hyperlink{biblio}{bibliotecas}).
 
-Cada tipo de arquivo tem um comando específico no haven. será o mesmo para qualquer origem, com alteração apenas da extensão do arquivo:
+Cada tipo de arquivo tem um comando específico na biblioteca \texttt{haven}:
 
 Arquivos SPSS: função \texttt{read\_sav()}
 Arquivos Excel: função \texttt{read\_csv()}
 Arquivos Stata: função \texttt{read\_dta()}
 Arquivos SAS: função \texttt{read\_sas()}
 
-Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base se transforme em um objeto no ambiente do R, é preciso que se atribua um nome da seguinte forma:
+Para que a base se transforme em um objeto no Environment do R, é preciso que se atribua um nome a ele. Veja este exemplo com a extensão do SPSS (arquivos em formato .sav):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -487,7 +568,7 @@ Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base 
 \end{Highlighting}
 \end{Shaded}
 
-Como das outras vezes, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
+Como dito na dica anteriormente, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
 
 \begin{itemize}
 \tightlist
@@ -499,14 +580,16 @@ Como das outras vezes, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mo
 
 Pronto! O seu arquivo vai aparecer no Environment.
 
-Com outras extensões você usará, por exemplo, read\_cvs ou read\_dta. Para mais informações acesse a \href{https://haven.tidyverse.org/}{ajuda da bibliteca haven}
+Com outras extensões você usará, por exemplo, \texttt{read\_cvs()} ou \texttt{read\_dta()}. Para mais informações acesse a \href{https://haven.tidyverse.org/}{ajuda da bibliteca haven}
 
-\hypertarget{gerar-dicionuxe1rio-de-variuxe1veis}{%
-\section{Gerar dicionário de variáveis}\label{gerar-dicionuxe1rio-de-variuxe1veis}}
+\hypertarget{gerando-um-dicionuxe1rio-de-variuxe1veis}{%
+\section{Gerando um dicionário de variáveis}\label{gerando-um-dicionuxe1rio-de-variuxe1veis}}
 
-Para navegar na base de dados recém importada, reconhecer as variáveis importadas e suas características, existem diveras ferramentas disponíveis.
+Para navegar na base de dados recém importada e reconhecer as variáveis importadas e suas características, existem diversas ferramentas disponíveis.
 
-Uma delas é o pacote codebook, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba ``Preview'' e também na forma de um vetor que pode ser visualizado como uma tabela.
+Uma delas é o pacote \texttt{codebook}, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba ``Preview'' e também na forma de um vetor que pode ser visualizado como uma tabela.
+
+Para carregar a biblioteca codebook e gerar um dicionário de variáveis estático navegável na aba ``Preview'', gerar uma tabela e visualisá-la use os comandos abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -524,20 +607,39 @@ Uma delas é o pacote codebook, que gera um dicionário de variáveis. Nos exemp
 \end{Highlighting}
 \end{Shaded}
 
-Feita a importação da base e com o dicionário nas mãos podemos passar a descrição, análise e visualização dos dados.
+Feita a importação da base de dados e com o dicionário em mãos, podemos passar a descrição, análise e visualização dos dados.
 
-\hypertarget{descrever-e-analisar-os-dados}{%
-\chapter{Descrever e Analisar os dados}\label{descrever-e-analisar-os-dados}}
+\hypertarget{descrevendo-e-analisando-os-dados}{%
+\chapter{Descrevendo e analisando os dados}\label{descrevendo-e-analisando-os-dados}}
 
-Após instalar o \emph{software}, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos, começa a verdadeira diversão: finalmente trabalhar com os dados.
+Após instalar R e RStudio, reconhecer seu ambiente de trabalho, instalar e carregar as bibliotecas e importar os bancos de dados, começa a verdadeira diversão: finalmente, você vai trabalhar com os dados!
 
 O R permite que se faça desde as operações mais simples, como uma calculadora, passando pela organização e limpeza dos dados, até análises estatísticas mais avançadas.
 
-Um excelente começo nesta empreitada é a descrição dos dados que não só garante o divertimento do pesquisador, como também permite que se façam excelentes análises e conclusões. A partir da estatística descritiva, obtém-se um conjunto de ferramentas que permitem: a) organizar os dados - agrupando, selecionando, filtrando, ordenando, criando variáveis; b) descrever e analisar os dados - resumindo-os com base em sua média, moda, mediana, cruzando e contando as variáveis, criando gráficos e tabelas. A principal função da estatística descritiva é resumir os dados e facilitar a assimilação da informação \citep{agresti_metodos_2012}.
+Um excelente começo dessa empreitada é a descrição dos dados que não só garante o divertimento do pesquisador, como também permite que se façam excelentes análises e conclusões.
 
-Além da descrição dos dados, o R também oferece suporte para que sejam feitos testes estatísticos mais avançados bi e multi-variados, dentre eles correlação e regressão linear multivariada. A correlação tem por função avaliar o comportamento de duas variáveis em função uma da outra, mensurando a interdependência das mesmas e o seu grau de associação. Logo a correlação é apropriada se o seu propósito é analisar se há relação entre a variação de duas dimensões e qual a força desta relação, como por exemplo nas clássicas premissas: nível educacional e renda variam de maneira diretamente proporcional ou apoio à democracia varia de maneira inversamente proporcional a valores autoritários. A regressão linear multivariada permite estabelecer valores estimativos de uma variável dependente em relação a um conjunto de outras variáveis independentes, isto é resulta no nível de previsibilidade de uma variável em função de outras variáveis explicativas. Deste modo, este tipo de teste se aplica aos casos em que se almeja avaliar e estabelecer potencial previsibilidade de uma variável em função de outras, e não apenas comparar seus comportamentos; por exemplo prevendo a taxa de desconfiança em relação aos partidos com base na quantidade de pessoas que estão satisfeitas com a democracia.
+A partir da estatística descritiva, obtém-se um conjunto de ferramentas que permitem:
 
-Nesta seção iremos aprender, então, os comandos do R que permitem criar anotações, criar variáveis e vetores, conectar sentenças do código de programação, visualizar os valores máximo e mínimo de uma variável, obter a média, somar os valores de uma variável, filtrar, selecionar, ordenar, contar, cruzar, criar nova coluna, resumir os dados a partir de alguma operação, excluir valores da análise, visualizar variáveis, fazer gráficos, fazer teste de correlação e análise de regressão multivariada. Ou seja, tudo o que se precisa para, em ordem de importância: ter adoráveis momentos com o seu banco de dados e construir conhecimento a partir de análises robustas.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  organizar os dados - agrupando, selecionando, filtrando, ordenando, criando variáveis;
+\item
+  descrever e analisar os dados - resumindo-os com base em sua média, moda, mediana, cruzando e contando as variáveis, criando gráficos e tabelas.
+\end{enumerate}
+
+A principal função da estatística descritiva é resumir os dados e facilitar a assimilação da informação \citep{agresti_metodos_2012}.
+
+Além da descrição dos dados, o R também oferece suporte para que sejam feitos testes estatísticos mais avançados bi e multivariados, entre eles, correlação e regressão linear multivariada.
+
+A correlação tem por função avaliar o comportamento de duas variáveis em função uma da outra, mensurando a interdependência das mesmas e o seu grau de associação. Logo, a correlação é apropriada se o seu propósito é analisar se há relação entre a variação de duas dimensões e qual a força dessa relação, como, por exemplo, nas clássicas premissas: nível educacional e renda variam de maneira diretamente proporcional ou apoio à democracia varia de maneira inversamente proporcional a valores autoritários?
+
+A regressão linear multivariada permite estabelecer valores estimativos de uma variável dependente em relação a um conjunto de outras variáveis independentes. Resulta no nível de previsibilidade de uma variável em função de outras variáveis explicativas. Esse tipo de teste se aplica aos casos em que se almeja avaliar e estabelecer potencial previsibilidade de uma variável em função de outras, e não apenas comparar seus comportamentos, por exemplo, prevendo a taxa de desconfiança em relação aos partidos com base na quantidade de pessoas que estão satisfeitas com a democracia.
+
+Nesta seção, você pode aprender os comandos do R que permitem criar anotações, criar variáveis e vetores, conectar sentenças do código de programação, visualizar os valores máximo e mínimo de uma variável, obter a média, somar os valores de uma variável, filtrar, selecionar, ordenar, contar, cruzar, criar nova coluna, resumir os dados a partir de alguma operação, excluir valores da análise, visualizar variáveis, fazer gráficos, fazer testes de correlação e análises de regressão multivariada.
+
+Isso é tudo o que se precisa para, em ordem de importância: ter adoráveis momentos com o seu banco de dados e construir conhecimento a partir de análises robustas.
 
 \hypertarget{descrevendo-os-dados}{%
 \section{Descrevendo os dados}\label{descrevendo-os-dados}}
@@ -545,7 +647,11 @@ Nesta seção iremos aprender, então, os comandos do R que permitem criar anota
 \hypertarget{criar-variuxe1veis-e-vetores}{%
 \subsection{Criar variáveis e vetores}\label{criar-variuxe1veis-e-vetores}}
 
-Para criar uma variável basta escolher um nome para ela e atribuir através do sinal `\textless-' um valor para a mesma, lembrando sempre de que o R não aceita caractere do tipo espaço, então se o nome de sua variável tiver mais de um termo é necessário usar o conector underline `\_' entre as palavras. Para criar vetores, segue-se a mesma lógica, mas os valores devem ser inseridos entre os parênteses do código: `c()', para indicar que há um conjunto de valores; estes valores devem ser separados por vírgulas. Os valores atribuídos podem ser números simples, podem ser operações como soma, subtração, multiplicação. As variáveis e vetores, após criados podem também ter seus valores submetidos a algum tipo de operação. Exemplos:
+Para criar uma variável, escolha um nome para ela e atribua através do sinal \texttt{\textless{}-} um valor para a mesma, lembrando sempre de que o R não aceita caracteres do tipo espaço, então se o nome de sua variável tiver mais de um termo é necessário usar o conector underline (\_) entre as palavras. Lembre-se também que o R faz a diferença entre letras maiúsculas e minúsculas.
+
+Para criar vetores, segue-se a mesma lógica, mas os valores devem ser inseridos entre os parênteses do código: \texttt{c()}, o qual indica que há um conjunto de valores (esses valores devem ser separados por vírgulas e entre aspas no caso de o valor ser uma cadeia de caracteres, ou \emph{string}). Os valores atribuídos podem ser números simples, podem ser operações como soma, subtração, multiplicação.
+
+Após criados, variáveis e vetores, podem também ter seus valores submetidos a algum tipo de operação. Veja estes exemplos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -555,6 +661,9 @@ Para criar uma variável basta escolher um nome para ela e atribuir através do 
 \CommentTok{# Criar um vetor e multiplicar por um valor}
 \NormalTok{Brasil <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{37}\NormalTok{)}
 \NormalTok{Brasil }\OperatorTok{*}\StringTok{ }\DecValTok{3}
+
+\CommentTok{# Criar um vetor com strings/textos}
+\NormalTok{Paises <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Argentina"}\NormalTok{, }\StringTok{"Brasil"}\NormalTok{) }
 
 \CommentTok{# Cálculo da idade com base no ano de nascimento}
 \NormalTok{Ano_Nasc <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{, }\DecValTok{1984}\NormalTok{, }\DecValTok{1961}\NormalTok{)}
@@ -570,7 +679,7 @@ Para criar uma variável basta escolher um nome para ela e atribuir através do 
 \hypertarget{funuxe7uxf5es-buxe1sicas-e-comandos-uxfateis}{%
 \subsection{Funções básicas e comandos úteis}\label{funuxe7uxf5es-buxe1sicas-e-comandos-uxfateis}}
 
-Após carregar seu banco de dados ou criar suas próprias variáveis é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do r-base são os seguintes para a variável ``Idade'', por exemplo:
+Após carregar seu banco de dados ou criar suas próprias variáveis, é possível começar a conhecer e operar os dados observando seus valores máximos, mínimos, média e efetuando operações a partir dos valores dentro da variável. Para executar tais funções, alguns comandos do R-base para a variável ``Idade'', por exemplo, são os seguintes:
 
 \begin{itemize}
 \tightlist
@@ -584,14 +693,21 @@ Após carregar seu banco de dados ou criar suas próprias variáveis é possíve
   Soma: \texttt{sum(Idade)}
 \end{itemize}
 
-Na filosofia do tidyverse, para executar mais de um comando é necessário inserir entre eles o conector \texttt{\%\textgreater{}\%}. Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código, para tanto basta inserir no início da frase o caractere jogo da velha \texttt{\#}.
+Na gramática do tidyverse, para executar mais de um comando é necessário inserir entre eles o conector \texttt{\%\textgreater{}\%} (que pode ser lido como ``e então'', em uma sequência de operações)
+
+Além disso, pode ser útil acrescentar anotações que não sejam reconhecidas pelo programa como uma linha de código. Para tanto basta inserir no início da frase o caractere cerquilha, ou jogo da velha (\texttt{\#}).
+
+Veja o exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Criar anotações: #}
 \CommentTok{# Conectar as linhas do código: %>% }
-\CommentTok{# Exemplos (os códigos das variáveis são usados na base longitudinal do WVS: X003 = Idade; SOO3 = País; X001 = Sexo)}
 
+\CommentTok{# Exemplos:}
+\CommentTok{# Abrir a base de dados do WVS, e então sumarisar pela média, }
+\CommentTok{# e então efetuar a contagem das variáveis S003 e X001  }
+\CommentTok{# Variáveis do WVS usadas: X003 = Idade; SOO3 = País; X001 = Sexo}
 \NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{media =} \KeywordTok{mean}\NormalTok{(X003, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{count}\NormalTok{(S003, X001)}
@@ -601,23 +717,25 @@ Na filosofia do tidyverse, para executar mais de um comando é necessário inser
 \hypertarget{estatuxedstica-descritiva}{%
 \section{Estatística descritiva:}\label{estatuxedstica-descritiva}}
 
-Partindo para funções mais sofisticadas, é possível organizar o banco de dados de maneira sistemática e fazer análises resumidas das variáveis. O comando \texttt{filter()} filtra as observações (linhas) baseadas em uma condição determinada pelo pesquisador, como por exemplo selecionar apenas determinados países, gênero feminino ou masculino, faixas de renda, idade e escolaridade.
+Partindo para funções mais sofisticadas, é possível organizar o banco de dados de maneira sistemática e fazer análises resumidas das variáveis. O comando \texttt{filter()} filtra as observações (linhas) baseadas em uma condição determinada pelo pesquisador, como, por exemplo, selecionar determinados países, gênero feminino ou masculino, faixas de renda, idade ou escolaridade.
 
-Com o comando \texttt{select()} é possível escolher as variáveis específicas (colunas) com que se deseja trabalhar. O comando mutate cria uma nova variável (coluna) ou modifica uma já existente a partir de manipulações dos dados.
+Com o comando \texttt{select()} é possível escolher as variáveis específicas (colunas) com que se deseja trabalhar. O comando \texttt{mutate()} cria uma nova variável (coluna) ou modifica uma já existente a partir de manipulações dos dados.
 
-A função \texttt{count()} é muito interessante porque permite que se faça análises dos dados ao apresentar sua contagem (frequência) e cruzar variáveis.
+A função \texttt{count()} permite que se faça análises dos dados ao apresentar sua contagem (frequência) e cruzar variáveis.
 
-Para agrupar conjuntos específicos de variáveis, utiliza-se o \texttt{group()}.
+Para agrupar conjuntos específicos de variáveis, utiliza-se \texttt{group()}.
 
 Outra forma de manipular e avaliar os dados é utilizando o comando \texttt{summarise()} para resumir os dados em função de alguma operação (média/mean e mediana/median).
 
-O comando \texttt{arrange()} ordena os resultados. Outros dois comandos importantes neste contexto é o \texttt{na.rm\ =\ TRUE} para excluir missing values e o \texttt{view()} para fazer uma visualização simples de variáveis específicas.
+O comando \texttt{arrange()} ordena os resultados. Outro comando interessante é o \texttt{view()} para fazer uma visualização simples de variáveis específicas na forma de tabela.
+
+Usando o critério \texttt{na.rm\ =\ TRUE}, em alguns comandos, as não respostas (\emph{missing values}) são excluídas.
 
 Para exibir os dados em uma tabela, utiliza-se o comando \texttt{table()}. A seguir um resumo com o código que deve ser utilizado para executar cada uma destas funções e exemplos a partir das variáveis da base de dados do WVS:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# filter(), exemplo filtrar observações baseado em uma condicao Brasil: }
+\CommentTok{# filter(), exemplo filtrar observações baseadas em uma condição: Brasil (código 76): }
 \NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{==}\StringTok{ }\DecValTok{76}\NormalTok{)}
 
@@ -629,17 +747,19 @@ Para exibir os dados em uma tabela, utiliza-se o comando \texttt{table()}. A seg
 \NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{count}\NormalTok{ (S003, E235) }
 
-\CommentTok{# mutate(), criar uma variável faixas etárias: }
+\CommentTok{# mutate(), criar uma variável faixas etárias. }
+\CommentTok{# O ifelse() precisa de três instruções: }
+\CommentTok{# ifelse("condição", "valor se sim", "valor se não")}
 \NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{faixa_et =} \KeywordTok{if_else}\NormalTok{(X003}\OperatorTok{<}\DecValTok{30}\NormalTok{, }\StringTok{"Jovem"}\NormalTok{, }\StringTok{"Não Jovem"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-A função `if\_else' divide os valores em dois grupos: os que se encaixam na condição e os que não se encaixam, no caso do exemplo os que possuem idade inferior a 30 (X003\textless30) é classificado como Jovem, os que não possuem são classificados como Não Jovem.
+A função `if\_else()' divide os valores em dois grupos: os que se encaixam na condição e os que não se encaixam, no caso do exemplo acima, os que têm idade inferior a 30 (X003\textless30) são classificado como Jovem, os que não possuem são classificados como Não Jovem.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# summarise(), exemplo resumir os dados pela média e mediana de idade }
+\CommentTok{# summarise(), exemplo resumir os dados pela média e mediana de idade}
 \NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{media =} \KeywordTok{mean}\NormalTok{(X003), }\DataTypeTok{mediana =} \KeywordTok{median}\NormalTok{(X003))}
 
@@ -665,7 +785,9 @@ A função `if\_else' divide os valores em dois grupos: os que se encaixam na co
 \hypertarget{anuxe1lises-bi-e-multivariadas}{%
 \section{Análises bi e multivariadas:}\label{anuxe1lises-bi-e-multivariadas}}
 
-As análises descritivas oferecem diversas possibilidades para conhecer o comportamentos, distribuição e padrões das diferentes variáveis, contudo quando o objetivo é estabelecer relação entre as mesmas é necessário adotar testes mais avançados bi e multivariados. Para avaliar a taxa de associação entre duas variáveis e a capacidade explicativa de um conjunto de variáveis sobre uma variável dependente específica, devemos utilizar respectivamente correlação e regressão linear multivariada.
+As análises descritivas oferecem diversas possibilidades para conhecer comportamentos, distribuição e padrões das diferentes variáveis. Contudo, quando o objetivo é estabelecer relação entre as mesmas é necessário adotar testes mais avançados bi e multivariados.
+
+Para avaliar a taxa de associação entre duas variáveis e a capacidade explicativa de um conjunto de variáveis sobre uma variável dependente específica, devemos utilizar respectivamente correlação e regressão linear multivariada.
 
 \hypertarget{correlauxe7uxe3o}{%
 \subsection{Correlação}\label{correlauxe7uxe3o}}
@@ -681,33 +803,38 @@ Para fazer o teste de correlação basta selecionar o par de variáveis em quest
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{regressao-linear-multipla}{%
-\section{Regressao linear multipla}\label{regressao-linear-multipla}}
+\hypertarget{regressuxe3o-linear-muxfaltipla}{%
+\section{Regressão linear múltipla}\label{regressuxe3o-linear-muxfaltipla}}
 
 Para efetuar o teste de regressão linear múltipla basta atribuir a uma variável resultado \texttt{\textless{}-} a função \texttt{lm()}.
 
-Exemplo:
+Veja o exemplo:
 
 \texttt{lm(variável\ dependente\ \textasciitilde{}\ scale\ (variável\ independente\ 1)\ +\ scale\ (variável\ independente\ 2)\ +\ scale\ (variável\ independente\ n),\ data\ =.)}
 
-É necessário sinalizar antes para o programa qual é o banco pelo nome do objeto e o recorte através das funções \texttt{group\_by()} ou \texttt{filter()}. Nos exemplos a seguir é possível visualizar melhor a estrutura do comando:
+É necessário sinalizar qual é o banco de dados utilizado antes para o programa pelo nome do objeto e o recorte através das funções \texttt{group\_by()} ou \texttt{filter()}. Nos exemplos a seguir é possível visualizar melhor a estrutura do comando:
+
+Veja estes exemplos de regressão linear:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Exemplos de regressão linear}
-\CommentTok{# Exemplo 1 (usando como variável resposta a renda (X047), idade (X002) e educação (X025R) como variáveis explicativas: }
+\CommentTok{# Exemplo 1 (usando como variável resposta a renda (X047), }
+\CommentTok{# idade (X002) e educação (X025R) como variáveis explicativas: }
 \NormalTok{resultado <-}\StringTok{ }\NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(S003) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{lm}\NormalTok{(X047 }\OperatorTok{~}\StringTok{ }\NormalTok{X025R }\OperatorTok{+}\StringTok{ }\NormalTok{X002, }\DataTypeTok{data =}\NormalTok{ .) }
 
-\CommentTok{# Neste exemplo o "." indica que a base de dados é enviada na função lm() depois do "e então" %>% }
+\CommentTok{# Neste exemplo o "." indica que a base de dados }
+\CommentTok{# é enviada na função lm() depois do "e então" %>% }
 
 \CommentTok{# Exemplo 2: }
 \NormalTok{resultado_bol <-}\StringTok{ }\NormalTok{base_do_wvs }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{==}\StringTok{ }\DecValTok{68}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{lm}\NormalTok{(X047 }\OperatorTok{~}\StringTok{ }\KeywordTok{scale}\NormalTok{(X025R) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale}\NormalTok{(X002), }\DataTypeTok{data =}\NormalTok{ .)}
 
-\CommentTok{# Neste exemplo as variáveis são normalizadas com a função scale() e foi filtrado apenas o país código 68. }
+\CommentTok{# Neste exemplo as variáveis são normalizadas com a função scale(). }
+\CommentTok{# Foi filtrado apenas o país código 68. }
 \end{Highlighting}
 \end{Shaded}
 
@@ -716,13 +843,13 @@ Exemplo:
 
 Para visualizar os dados, usamos a biblioteca \texttt{ggplot2()} também da gramática Tidyverse.
 
-Após organizar e manipular os dados e fazer análises descritivas, pode ser uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a \texttt{ggplot()}. A biblioteca \texttt{ggthemes()} permite aplicar alguns temas já pré-estabelecidos.
+Após organizar e manipular os dados e fazer análises descritivas, é uma boa estratégia apresentar as informações em gráficos para evidenciar padrões, tendências e comparações. Conforme visto anteriormente, a biblioteca para plotar gráficos é a \texttt{ggplot()}. A biblioteca \texttt{ggthemes()} permite aplicar alguns temas já pré-estabelecidos.
 
-O \texttt{ggplot} é uma biblioteca que constrói os gráficos em camadas. Primeiramente se define a ``folha'' com uma base de dados que será usada. Em seguida a geometria que será usada e os demais parâmetros dos gráficos.
+O \texttt{ggplot()} é uma biblioteca que constrói os gráficos em camadas. Primeiramente, define-se a ``folha'' com uma base de dados que será usada; em seguida, a geometria e os demais parâmetros dos gráficos.
 
-O comando básico do ggplot é: \texttt{ggplot(data\ =\ dados,\ aes(x\ =\ Explicativa,\ y\ =\ Resposta))\ +\ geoma\ +\ ...}
+O comando básico do ggplot() é: \texttt{ggplot(data\ =\ dados,\ aes(x\ =\ Explicativa,\ y\ =\ Resposta))\ +\ geoma\ +\ ...}
 
-Tipos de Geomas disponíveis:
+Tipos de geometrias disponíveis:
 
 \begin{itemize}
 \tightlist
@@ -738,53 +865,66 @@ Tipos de Geomas disponíveis:
   Linhas: \texttt{geom\_line()}
 \end{itemize}
 
-O guia do ggplot2 pode ser encontrado \href{https://ggplot2.tidyverse.org/index.html}{aqui}. Nesta \href{https://www.r-graph-gallery.com/}{galeria} podem ser encontrados diversos exemplos de gráficos para se inspirar.
+O guia do \texttt{ggplot()} pode ser encontrado \href{https://ggplot2.tidyverse.org/index.html}{aqui}. Nesta \href{https://www.r-graph-gallery.com/}{galeria}, podem ser encontrados diversos exemplos de gráficos para se inspirar.
+
+Veja uns exemplos abaixo:
+
+Exemplo 1: plotar um gráfico de densidade da variável idade:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Exemplo 1 plotar um gráfico de densidade da variável idade: }
+\CommentTok{# plotar um gráfico de densidade da variável idade}
 \KeywordTok{ggplot}\NormalTok{(df_wvs7, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ X003)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_density}\NormalTok{() }
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{tutorial_wvsR_files/figure-latex/densidade-1.pdf}
 
-No exemplo abaixo, reproduzimos o mapa cultural do Inglehart \citep{inglehart_modernization_2005} para alguns paíse. Mas antes é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.
+Exemplo 2: aqui, reproduzimos o mapa cultural de Inglehart e Welzel \citeyearpar{inglehart_modernization_2005} para alguns países. Antes, é preciso fazer algumas manipulações com os dados com o que aprendemos nos capítulos anteriores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Criar uma lista com os países que se quer analisar}
-\NormalTok{paises <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{76}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{152}\NormalTok{, }\DecValTok{170}\NormalTok{) }\CommentTok{# 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia }
+\CommentTok{# 76=Brasil, 32=Chile, 152=Argentina, 170=Colombia}
+\NormalTok{paises <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{76}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{152}\NormalTok{, }\DecValTok{170}\NormalTok{)  }
 
 \CommentTok{# Extrair e retrabalhar as variáveis que precisamos}
+\CommentTok{# select() para selecionar as variáveis de interesse}
+\CommentTok{# filter() para filtrar usando o vetor 'países' criado acima}
+\CommentTok{# group_by() para agrupar por onda-país, onda e país}
+\CommentTok{# summarise() para agregar os dados pela média}
 \NormalTok{df_y001 <-}\StringTok{ }\NormalTok{df_wvs7 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(S024, S020, S003, tradrat5, survself) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# selecionar as variáveis de interesse}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{%in%}\StringTok{ }\NormalTok{paises) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# filtrar os países}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(S024, S020, S003) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# agrupar por onda-país, onda e país}
+\StringTok{  }\KeywordTok{select}\NormalTok{(S024, S020, S003, tradrat5, survself) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(S003 }\OperatorTok{%in%}\StringTok{ }\NormalTok{paises) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(S024, S020, S003) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{tradrat5 =} \KeywordTok{mean}\NormalTok{(tradrat5, }\DataTypeTok{na.rm =}\NormalTok{ T),}
-            \DataTypeTok{survself =} \KeywordTok{mean}\NormalTok{(survself, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\CommentTok{# agregar os dados pela média}
+            \DataTypeTok{survself =} \KeywordTok{mean}\NormalTok{(survself, }\DataTypeTok{na.rm =}\NormalTok{ T)) }
 \end{Highlighting}
 \end{Shaded}
 
 Feito isso podemos criar a figura:
+
+Lembre-se que o \texttt{ggplot} usa o símbolo \texttt{+} para adicionar cada um dos elementos da figura.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# lembre se de carregar a variável ggplot se ela não tiver sido carregada }
 \KeywordTok{library}\NormalTok{(ggplot2)}
 
-\CommentTok{# Reproduzir o Mapa Cultural Inglehart }
+\CommentTok{# Reproduzir o Mapa Cultural Inglehart}
+
 \KeywordTok{ggplot}\NormalTok{(df_y001, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ survself, }
                     \DataTypeTok{y =}\NormalTok{ tradrat5, }
                     \DataTypeTok{color =} \KeywordTok{as.factor}\NormalTok{(S003), }
-                    \DataTypeTok{label =} \KeywordTok{as.factor}\NormalTok{(S003))) }\OperatorTok{+}\StringTok{ }\CommentTok{# definir os dados e as dimensões}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# definir a geometria principal (pontos)}
-\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{hjust =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nudge_x =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{check_overlap =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# adicionar os rótulos com a geometria de texto}
-\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# restringir o eixo x e y entre -2 e 2}
+                    \DataTypeTok{label =} \KeywordTok{as.factor}\NormalTok{(S003))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\CommentTok{# definir os dados e as dimensões}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# geometria pontos}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{hjust =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nudge_x =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{check_overlap =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# rótulos dos pontos}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# restringe eixo x e y entre -2 e 2}
 \StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"sobrevivencia-autoexpressão"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"tradicional-racional"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)"}\NormalTok{) }\CommentTok{# adicionar os rótulos x, y e título}
+       \DataTypeTok{title =} \StringTok{"Mapa Cultural do Inglehart (Brasil, Chile, Argentina, Colombia)"}\NormalTok{) }\CommentTok{# rótulos do gráfico x, y e título}
 \end{Highlighting}
 \end{Shaded}
 
@@ -794,37 +934,24 @@ Feito isso podemos criar a figura:
 \chapter{Glossário}\label{glossuxe1rio}}
 
 \begin{itemize}
-\tightlist
 \item
   Programação: alguns conceitos relevantes para aprender uma linguagem de programação.
 
   \begin{itemize}
   \tightlist
   \item
-    Variável: representa um local de armazenamento na memória, com um nome e um valor, mas que não é o valor em si, porque este pode ser constantemente alterado. Cada variável possui diferentes propriedades, por exemplo, pode ser numeric (números) ou string (letras). Inserindo uma metáfora: cada variável seria uma ``caixinha'' que pode guardar alguma coisa, e tem diferentes características (grande, pequena, quadrada, redonda). \texttt{x\ \textless{}-\ 2\ \#cria\ variável\ "x"\ e\ atribuir\ valor\ 2}
+    Variável: representa um local de armazenamento na memória, com um nome e um valor, mas que não é o valor em si, porque esse pode ser constantemente alterado. Cada variável possui diferentes propriedades, por exemplo, pode ser numérica (\emph{integral} or \emph{double}) ou uma cadeia de caracteres (\emph{string}). Inserindo uma metáfora: cada variável é uma caixinha que pode ter diferentes características (grande, pequena, quadrada, redonda) e que guarda alguma coisa. \texttt{x\ \textless{}-\ 2\ \#cria\ variável\ "x"\ e\ atribuir\ valor\ 2}
   \item
-    Objeto: cada objeto é único, específico, e pode ser sempre referenciado. Seu conteúdo pode ser um atribuído diretamente, ou ser o resultado de uma operação. Cada objeto pode ser armazenado em uma variável. Na metáfora, um objeto pode ser uma carta, uma moeda, um lápis-de-cor. \texttt{y\ \textless{}-\ 5\ \#criar\ objeto\ com\ nome\ y\ e\ atribuir\ valor\ 5}
+    Objeto: cada objeto é único, específico, e pode ser referenciado. Seu conteúdo pode ser atribuído diretamente ou ser o resultado de uma operação. Cada objeto pode ser armazenado em uma variável. Na metáfora, um objeto pode ser uma carta, uma moeda, um lápis-de-cor. \texttt{y\ \textless{}-\ 5\ \#criar\ objeto\ com\ nome\ y\ e\ atribuir\ valor\ 5}
   \item
-    Vetor: uma sequência ordenada de elementos. Importante notar que um vetor armazena apenas um ``tipo'' de informação, por exemplo, só números, o que se chama de unidimensional. Como se fosse uma caixinha com várias cartas (uma de fulano, outra de beltrano, etc), ou uma caixinha com várias moedas (1 euro, 50 centavos de dólar, 25 centavos de real, etc), ou uma caixinha com diferentes lápis-de-cor (rosa, azul, verde). \texttt{z\ \textless{}-\ c(1,\ 2,\ 3)\ \#criar\ vetor\ z\ e\ atribuir\ os\ valores\ 1,\ 2\ e\ 3}
+    Vetor: uma sequência ordenada de elementos. Importante notar que um vetor armazena apenas um tipo de informação, por exemplo, só números, o que se chama de unidimensional. Como se fosse uma caixinha com várias cartas (uma de fulano, outra de beltrano etc) ou uma caixinha com várias moedas (1 euro, 50 centavos de dólar, 25 centavos de real etc.), uma caixinha com diferentes lápis-de-cor (rosa, azul, verde), ou ainda uma caixinha com moedas e lápis-de-cor. \texttt{z\ \textless{}-\ c(1,\ 2,\ 3)\ \#criar\ vetor\ z\ e\ atribuir\ os\ valores\ 1,\ 2\ e\ 3}
   \item
-    Lista: é como um vetor ``avançado'', pois também é uma sequência de elementos mas pode guardar diferentes tipos de dados (números, letras, etc), ou seja, é multidimensional. Assim, pode ser uma mesma caixinha que guarda, tudo junto, cartas, moedas e lápis-de-cor. \texttt{lista\ \textless{}-\ list(idade\ =\ 20,\ “oi”,\ 35,\ “tchau”)\ \#criar\ "lista"\ e\ atribuir\ diferentes\ conteúdos}
+    Lista: é como um vetor avançado, pois também é uma sequência de elementos, mas pode guardar diferentes tipos de dados (números, letras etc), ou seja, é multidimensional. Assim, pode ser uma caixinha que guarda tudo junto: cartas, moedas e lápis-de-cor. \texttt{lista\ \textless{}-\ list(idade\ =\ 20,\ “oi”,\ 35,\ “tchau”)\ \#criar\ "lista"\ e\ atribuir\ diferentes\ conteúdos}
   \end{itemize}
 \item
-  Interfaces: o RStudio possui quatro interfaces, que são as ``pequenas telas'' ou ``janelinhas'' que aparecem ao iniciar o programa. Pensando em uma cozinha, o source seria a receita, o passo-a-passo; o console seria o fogão, onde tudo está acontecendo, onde forma o resultado; e o environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos são o armário com os utensílios de cozinha e ingredientes disponíveis.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Source: local onde são inseridos os códigos-fonte, no canto superior esquerdo.
-  \item
-    Console: também chamado de terminal, onde são mostrados os resultados dos comandos executados pelos códigos, no canto inferior esquerdo.
-  \item
-    Environment: também chamado de ambiente, onde são mostrados os elementos (por exemplo, vetores, bases de dados, etc) que foram criados, no canto superior direito.
-  \item
-    Viewer: também chamado files, onde são mostrados os arquivos, pacotes, pastas, entre outros, no canto inferior direito.
-  \end{itemize}
+  Interfaces: o RStudio possui quatro interfaces, que são as ``pequenas telas'' ou ``janelinhas'' que aparecem ao iniciar o programa. Pensando em uma cozinha, o Source seria a receita, o passo-a-passo; o Console seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o Environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário, o Viewer, com os utensílios de cozinha e ingredientes disponíveis.
 \item
-  Funções: diferentes ``verbos'', tanto do r-base quanto na gramática Tidyverse, realizam diferentes tipos de funções.
+  Funções: diferentes ``verbos'', tanto do R-base quanto na gramática tidyverse. Realizam diferentes tipos de funções.
 
   \begin{itemize}
   \tightlist
@@ -837,11 +964,11 @@ Feito isso podemos criar a figura:
   \item
     Group\_by: agrupar variáveis, por exemplo, em uma base de dados grande, ``juntar'' a partir de um determinado quesito. \texttt{group\_by(país)\ \#juntar\ os\ dados\ com\ base\ nos\ diferentes\ valores\ da\ variável\ país}
   \item
-    View: visualizar a operação realizada, normalmente, o R cria uma tabela com o(s) conteúdo(s), ficando mais ``simples'' de enxergar os dados. \texttt{view(objeto)}
+    View: visualiza a operação realizada, normalmente, o R cria uma tabela com o(s) conteúdo(s), ficando mais ``simples'' de enxergar os dados. \texttt{view(objeto)}
   \item
-    Summarise: resumir, sintetizar, os dados baseados em uma operação, ou seja, criando uma espécie de ``atalho''. \texttt{summarize(media\ =\ mean(idade))\ \#tem\ a\ média\ das\ idades\ das\ pessoas\ como\ critério\ para\ resumir\ ou\ sintetizar\ os\ dados}
+    Summarise: resumir, sintetizar, os dados baseados em uma operação, ou seja, criando uma espécie de atalho. \texttt{summarize(media\ =\ mean(idade))\ \#tem\ a\ média\ das\ idades\ das\ pessoas\ como\ critério\ para\ resumir\ ou\ sintetizar\ os\ dados}
   \item
-    Mutate: criar nova informação com base em outras, visualmente, é como se criasse uma nova ``coluna''. \texttt{view(a\ =\ b\ +\ c)\ \#a\ ‘coluna’\ a\ vai\ ter\ o\ valor\ da\ soma\ de\ b\ e\ c}
+    Mutate: criar nova informação com base em outras. Visualmente, é como se criasse uma nova ``coluna''. \texttt{view(a\ =\ b\ +\ c)\ \#a\ ‘coluna’\ a\ vai\ ter\ o\ valor\ da\ soma\ de\ b\ e\ c}
   \end{itemize}
 \item
   Códigos-chave:
@@ -851,7 +978,7 @@ Feito isso podemos criar a figura:
   \item
     \texttt{\#} para fazer comentários, ou seja, escrever anotações sem que elas sejam executadas como códigos.
   \item
-    \texttt{\%\textgreater{}\%} para criar um comando no sentido de ``e então'', ou seja, especificar que seja realizado o próximo passo do código em seguida, dica: clicar \texttt{Ctrl\ +\ Shift\ +\ M}.
+    \texttt{\%\textgreater{}\%} para criar um comando no sentido de ``e então'', ou seja, especificar que seja realizado o próximo passo do código em seguida. Dica: clicar \texttt{Ctrl\ +\ Shift\ +\ M}.
   \item
     \texttt{Ctrl\ +\ enter}, ou clicar no botão \texttt{Run}, para ``rodar'', ou seja, executar o código programado/escrito.
   \end{itemize}
@@ -863,10 +990,10 @@ Feito isso podemos criar a figura:
   \item
     Variáveis numéricas: quantitativas, podem ser discretas (contagem, ex.: número de filhos) ou contínuas (mensuração, ex.: peso, altura)
   \item
-    Variáveis categóricas: qualitativas, podem ser ordinais (quando há ordem, ex.: grau de instrução) ou nominais (classificação, ex.: sexo, raça)
+    Variáveis categóricas: qualitativas, podem ser ordinais (quando há ordem, por exemplo, grau de instrução) ou nominais (classificação, por exemplo, sexo, raça)
   \end{itemize}
 \end{itemize}
 
-  \bibliography{tutorial.bib,packages.bib}
+  \bibliography{tutorial.bib}
 
 \end{document}

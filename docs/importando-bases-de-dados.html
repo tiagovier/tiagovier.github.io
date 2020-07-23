@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Glossário | Uso de R para análise dos dados da World Values Survey</title>
+  <title>Capítulo 4 Importando bases de dados | Uso de R para análise dos dados da World Values Survey</title>
   <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Glossário | Uso de R para análise dos dados da World Values Survey" />
+  <meta property="og:title" content="Capítulo 4 Importando bases de dados | Uso de R para análise dos dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="img/capa.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Glossário | Uso de R para análise dos dados da World Values Survey" />
+  <meta name="twitter:title" content="Capítulo 4 Importando bases de dados | Uso de R para análise dos dados da World Values Survey" />
   
   <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="twitter:image" content="img/capa.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="visualizar-os-dados.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="prev" href="biblio.html"/>
+<link rel="next" href="descrevendo-e-analisando-os-dados.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -204,48 +204,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="glossário" class="section level1">
-<h1><span class="header-section-number">Capítulo 7</span> Glossário</h1>
+<div id="importando-bases-de-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Importando bases de dados</h1>
+<p>Utilizando o RStudio, pode-se importar arquivos salvos no próprio formato R e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.</p>
+<p>Há duas formas de importação de arquivos no RStudio:</p>
 <ul>
-<li><p>Programação: alguns conceitos relevantes para aprender uma linguagem de programação.</p>
-<ul>
-<li>Variável: representa um local de armazenamento na memória, com um nome e um valor, mas que não é o valor em si, porque esse pode ser constantemente alterado. Cada variável possui diferentes propriedades, por exemplo, pode ser numérica (<em>integral</em> or <em>double</em>) ou uma cadeia de caracteres (<em>string</em>). Inserindo uma metáfora: cada variável é uma caixinha que pode ter diferentes características (grande, pequena, quadrada, redonda) e que guarda alguma coisa. <code>x &lt;- 2 #cria variável "x" e atribuir valor 2</code></li>
-<li>Objeto: cada objeto é único, específico, e pode ser referenciado. Seu conteúdo pode ser atribuído diretamente ou ser o resultado de uma operação. Cada objeto pode ser armazenado em uma variável. Na metáfora, um objeto pode ser uma carta, uma moeda, um lápis-de-cor. <code>y &lt;- 5 #criar objeto com nome y e atribuir valor 5</code></li>
-<li>Vetor: uma sequência ordenada de elementos. Importante notar que um vetor armazena apenas um tipo de informação, por exemplo, só números, o que se chama de unidimensional. Como se fosse uma caixinha com várias cartas (uma de fulano, outra de beltrano etc) ou uma caixinha com várias moedas (1 euro, 50 centavos de dólar, 25 centavos de real etc.), uma caixinha com diferentes lápis-de-cor (rosa, azul, verde), ou ainda uma caixinha com moedas e lápis-de-cor. <code>z &lt;- c(1, 2, 3) #criar vetor z e atribuir os valores 1, 2 e 3</code></li>
-<li>Lista: é como um vetor avançado, pois também é uma sequência de elementos, mas pode guardar diferentes tipos de dados (números, letras etc), ou seja, é multidimensional. Assim, pode ser uma caixinha que guarda tudo junto: cartas, moedas e lápis-de-cor. <code>lista &lt;- list(idade = 20, “oi”, 35, “tchau”) #criar "lista" e atribuir diferentes conteúdos</code></li>
-</ul></li>
-<li><p>Interfaces: o RStudio possui quatro interfaces, que são as “pequenas telas” ou “janelinhas” que aparecem ao iniciar o programa. Pensando em uma cozinha, o Source seria a receita, o passo-a-passo; o Console seria o fogão, onde tudo está acontecendo, onde se forma o resultado; e o Environment seria uma mesa, onde estão os ingredientes disponíveis. Os pacotes e arquivos ficam no armário, o Viewer, com os utensílios de cozinha e ingredientes disponíveis.</p></li>
-<li><p>Funções: diferentes “verbos”, tanto do R-base quanto na gramática tidyverse. Realizam diferentes tipos de funções.</p>
-<ul>
-<li>Count: conta quantas vezes aparece aquela variável, por exemplo, numa base de dados, e mostra seu valor. <code>count(x) #contar a quantidade da variável x</code></li>
-<li>Filter: filtrar observações (“cadastros”) baseadas em uma condição. <code>filter(x == 1) #filtra todos os valores de x e deixar apenas os cadastros em que x tem o valor 1</code></li>
-<li>Select: selecionar variáveis - no plural -, ou seja, escolher mais de uma variável. <code>select(x, y, z) #selecionar as variáveis x, y e z</code></li>
-<li>Group_by: agrupar variáveis, por exemplo, em uma base de dados grande, “juntar” a partir de um determinado quesito. <code>group_by(país) #juntar os dados com base nos diferentes valores da variável país</code></li>
-<li>View: visualiza a operação realizada, normalmente, o R cria uma tabela com o(s) conteúdo(s), ficando mais “simples” de enxergar os dados. <code>view(objeto)</code></li>
-<li>Summarise: resumir, sintetizar, os dados baseados em uma operação, ou seja, criando uma espécie de atalho. <code>summarize(media = mean(idade)) #tem a média das idades das pessoas como critério para resumir ou sintetizar os dados</code></li>
-<li>Mutate: criar nova informação com base em outras. Visualmente, é como se criasse uma nova “coluna”. <code>view(a = b + c) #a ‘coluna’ a vai ter o valor da soma de b e c</code></li>
-</ul></li>
-<li><p>Códigos-chave:</p>
-<ul>
-<li><code>#</code> para fazer comentários, ou seja, escrever anotações sem que elas sejam executadas como códigos.</li>
-<li><code>%&gt;%</code> para criar um comando no sentido de “e então”, ou seja, especificar que seja realizado o próximo passo do código em seguida. Dica: clicar <code>Ctrl + Shift + M</code>.</li>
-<li><code>Ctrl + enter</code>, ou clicar no botão <code>Run</code>, para “rodar”, ou seja, executar o código programado/escrito.</li>
-</ul></li>
-<li><p>Estatística:</p>
-<ul>
-<li>Variáveis numéricas: quantitativas, podem ser discretas (contagem, ex.: número de filhos) ou contínuas (mensuração, ex.: peso, altura)</li>
-<li>Variáveis categóricas: qualitativas, podem ser ordinais (quando há ordem, por exemplo, grau de instrução) ou nominais (classificação, por exemplo, sexo, raça)</li>
-</ul></li>
+<li>Com o uso das ferramentas do Environment, ou</li>
+<li>Com o uso de linhas de comando escritas diretamente no Console ou em um script</li>
 </ul>
+<div id="com-o-uso-das-ferramentas-da-aba-environment" class="section level2">
+<h2><span class="header-section-number">4.1</span> Com o uso das ferramentas da aba Environment</h2>
+<p>Por essa forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.</p>
+<div id="arquivos-em-formato-r" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Arquivos em formato R</h3>
+<p>Para arquivos formato R (formato <code>.rdata</code>):</p>
+<ul>
+<li>Na aba “Environment”, Clique sobre o icone “Abrir Arquivos”.</li>
+<li>Procure o seu arquivo nos locais do seu computador.</li>
+<li>Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+</div>
+<div id="arquivos-em-outros-formatos" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Arquivos em outros formatos</h3>
+<p>Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca haven, da gramática Tidyverse (veja em <a href="biblio.html#biblio">bibliotecas</a>).</p>
+<ul>
+<li>Clique sobre o icone Import Dataset.</li>
+<li>Escolha e clique sobre o formato em que o seu arquivo foi previamente salvo.</li>
+<li>Clique em Browse.</li>
+<li>Procure o seu arquivo nos locais do seu computador.</li>
+<li>Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+</div>
+</div>
+<div id="com-o-uso-de-linhas-de-comando" class="section level2">
+<h2><span class="header-section-number">4.2</span> Com o uso de linhas de comando</h2>
+<div id="arquivos-em-formato-r-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Arquivos em formato R</h3>
+<p>Para carregar arquivos no formato nativo do R usando linhas de comando:</p>
+<ul>
+<li>Abra um novo script R e digite: <code>load("nome_do_arquivo.rdata")</code>.
+<ul>
+<li>Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar esses locais.</li>
+</ul></li>
+<li>Clique no arquivo que você quer importar</li>
+<li>Digite Control + Enter, ou clique em Run (disponível na aba superior do Source Code do seu R).</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+</div>
+<div id="arquivos-em-outros-formatos-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Arquivos em outros formatos</h3>
+<p>Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca <code>haven</code> da gramática Tidyverse (veja em <a href="biblio.html#biblio">bibliotecas</a>).</p>
+<p>Cada tipo de arquivo tem um comando específico na biblioteca <code>haven</code>:</p>
+<p>Arquivos SPSS: função <code>read_sav()</code>
+Arquivos Excel: função <code>read_csv()</code>
+Arquivos Stata: função <code>read_dta()</code>
+Arquivos SAS: função <code>read_sas()</code></p>
+<p>Para que a base se transforme em um objeto no Environment do R, é preciso que se atribua um nome a ele. Veja este exemplo com a extensão do SPSS (arquivos em formato .sav):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="importando-bases-de-dados.html#cb4-1"></a><span class="co"># carregar a biblioteca haven</span></span>
+<span id="cb4-2"><a href="importando-bases-de-dados.html#cb4-2"></a><span class="kw">library</span>(haven)</span>
+<span id="cb4-3"><a href="importando-bases-de-dados.html#cb4-3"></a></span>
+<span id="cb4-4"><a href="importando-bases-de-dados.html#cb4-4"></a><span class="co"># abrir usando a função e criar um objeto no ambiente R</span></span>
+<span id="cb4-5"><a href="importando-bases-de-dados.html#cb4-5"></a>base_do_wvs &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;diretório_do_projeto/nome_do_arquivo.sav&quot;</span>)</span></code></pre></div>
+<p>Como dito na dica anteriormente, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.</p>
+<ul>
+<li>Digite Control + Enter, ou</li>
+<li>Clique em Run (disponível na aba superior do Source Code do seu R).</li>
+</ul>
+<p>Pronto! O seu arquivo vai aparecer no Environment.</p>
+<p>Com outras extensões você usará, por exemplo, <code>read_cvs()</code> ou <code>read_dta()</code>. Para mais informações acesse a <a href="https://haven.tidyverse.org/">ajuda da bibliteca haven</a></p>
+</div>
+</div>
+<div id="gerando-um-dicionário-de-variáveis" class="section level2">
+<h2><span class="header-section-number">4.3</span> Gerando um dicionário de variáveis</h2>
+<p>Para navegar na base de dados recém importada e reconhecer as variáveis importadas e suas características, existem diversas ferramentas disponíveis.</p>
+<p>Uma delas é o pacote <code>codebook</code>, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba “Preview” e também na forma de um vetor que pode ser visualizado como uma tabela.</p>
+<p>Para carregar a biblioteca codebook e gerar um dicionário de variáveis estático navegável na aba “Preview”, gerar uma tabela e visualisá-la use os comandos abaixo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="importando-bases-de-dados.html#cb5-1"></a><span class="co"># carregar a biblioteca codebook</span></span>
+<span id="cb5-2"><a href="importando-bases-de-dados.html#cb5-2"></a><span class="kw">library</span>(codebook)</span>
+<span id="cb5-3"><a href="importando-bases-de-dados.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="importando-bases-de-dados.html#cb5-4"></a><span class="co"># gerar um dicionário de variáveis estático navegável na aba &quot;Preview&quot;</span></span>
+<span id="cb5-5"><a href="importando-bases-de-dados.html#cb5-5"></a><span class="kw">label_browser_static</span>(base_de_dados)</span>
+<span id="cb5-6"><a href="importando-bases-de-dados.html#cb5-6"></a></span>
+<span id="cb5-7"><a href="importando-bases-de-dados.html#cb5-7"></a><span class="co"># gerar uma tabela com todas as variávis</span></span>
+<span id="cb5-8"><a href="importando-bases-de-dados.html#cb5-8"></a>dicionario &lt;-<span class="st"> </span><span class="kw">codebook_table</span>(base_de_dados)</span>
+<span id="cb5-9"><a href="importando-bases-de-dados.html#cb5-9"></a></span>
+<span id="cb5-10"><a href="importando-bases-de-dados.html#cb5-10"></a><span class="co"># visualizar na forma de tabela junto aos scripts R</span></span>
+<span id="cb5-11"><a href="importando-bases-de-dados.html#cb5-11"></a><span class="kw">view</span>(dicionario)</span></code></pre></div>
+<p>Feita a importação da base de dados e com o dicionário em mãos, podemos passar a descrição, análise e visualização dos dados.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualizar-os-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="biblio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descrevendo-e-analisando-os-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

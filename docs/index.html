@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Uso do R para análise da dados da World Values Survey</title>
-  <meta name="description" content="Este é um tutorial para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook." />
+  <title>Uso de R para análise dos dados da World Values Survey</title>
+  <meta name="description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Uso do R para análise da dados da World Values Survey" />
+  <meta property="og:title" content="Uso de R para análise dos dados da World Values Survey" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook." />
-  
+  <meta property="og:image" content="img/capa.png" />
+  <meta property="og:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="github-repo" content="https://github.com/tiagovier/tiagovier.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Uso do R para análise da dados da World Values Survey" />
+  <meta name="twitter:title" content="Uso de R para análise dos dados da World Values Survey" />
   
-  <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R. O livro foi escrito usando a biblioteca bookdown. O formato para este exemplo é o bookdown::gitbook." />
-  
+  <meta name="twitter:description" content="Este é um tutorial para uso da base do WVS usando R, realizado pelo Coletivo WVSR Brasil. O livro foi escrito usando a biblioteca bookdown." />
+  <meta name="twitter:image" content="img/capa.png" />
 
-<meta name="author" content="Coletivo WVSR" />
+<meta name="author" content="Autor 1" />
+<meta name="author" content="Autor 2" />
 
 
-<meta name="date" content="2020-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -131,54 +131,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Uso do R com a Pesquisa Mundial de Valores</a></li>
+<li><a href="./">Uso de R para análise dos dados da Pesquisa Mundial de Valores</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem Vindo !</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-Vindo(a)!</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#o-r-e-o-rstudio"><i class="fa fa-check"></i><b>1.1</b> O R e o RStudio</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#o-que-é-o-wvs"><i class="fa fa-check"></i><b>1.2</b> O que é o WVS</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r-e-rstudio"><i class="fa fa-check"></i><b>1.1</b> R e RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#world-values-survey-wvs"><i class="fa fa-check"></i><b>1.2</b> World Values Survey (WVS)</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="instalação-do-r.html"><a href="instalação-do-r.html"><i class="fa fa-check"></i><b>2</b> Instalação do R</a><ul>
-<li class="chapter" data-level="2.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#linux"><i class="fa fa-check"></i><b>2.1</b> LINUX</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalar o R</a></li>
-<li class="chapter" data-level="2.1.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Instalar o RStudio</a></li>
+<li class="chapter" data-level="2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html"><i class="fa fa-check"></i><b>2</b> Instalando o R e o RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#linux"><i class="fa fa-check"></i><b>2.1</b> LINUX</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r"><i class="fa fa-check"></i><b>2.1.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.1.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#mac-os-x"><i class="fa fa-check"></i><b>2.2</b> Mac OS X</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-1"><i class="fa fa-check"></i><b>2.2.1</b> Instalar o R</a></li>
-<li class="chapter" data-level="2.2.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>2.2.2</b> Instalar o RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#mac-os-x"><i class="fa fa-check"></i><b>2.2</b> Mac OS X</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-1"><i class="fa fa-check"></i><b>2.2.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-1"><i class="fa fa-check"></i><b>2.2.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="instalação-do-r.html"><a href="instalação-do-r.html#windows"><i class="fa fa-check"></i><b>2.3</b> Windows</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
-<li class="chapter" data-level="2.3.2" data-path="instalação-do-r.html"><a href="instalação-do-r.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#windows"><i class="fa fa-check"></i><b>2.3</b> Windows</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-r-2"><i class="fa fa-check"></i><b>2.3.1</b> Instalar o R</a></li>
+<li class="chapter" data-level="2.3.2" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#instalar-o-rstudio-2"><i class="fa fa-check"></i><b>2.3.2</b> Instalar o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="instalação-do-r.html"><a href="instalação-do-r.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.4</b> Criando um projeto no RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#identificando-o-rstudio"><i class="fa fa-check"></i><b>2.4</b> Identificando o RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="instalando-o-r-e-o-rstudio.html"><a href="instalando-o-r-e-o-rstudio.html#criando-um-projeto-no-rstudio"><i class="fa fa-check"></i><b>2.5</b> Criando um projeto no RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="bibliotecas.html"><a href="bibliotecas.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
-<li class="chapter" data-level="3.1" data-path="bibliotecas.html"><a href="bibliotecas.html#instalação-de-bibliotecas-adicionais"><i class="fa fa-check"></i><b>3.1</b> Instalação de bibliotecas adicionais</a></li>
-<li class="chapter" data-level="3.2" data-path="bibliotecas.html"><a href="bibliotecas.html#carregar-as-bibliotecas"><i class="fa fa-check"></i><b>3.2</b> Carregar as bibliotecas</a></li>
+<li class="chapter" data-level="3" data-path="biblio.html"><a href="biblio.html"><i class="fa fa-check"></i><b>3</b> Bibliotecas</a><ul>
+<li class="chapter" data-level="3.1" data-path="biblio.html"><a href="biblio.html#instalando-bibliotecas-adicionais"><i class="fa fa-check"></i><b>3.1</b> Instalando bibliotecas adicionais</a></li>
+<li class="chapter" data-level="3.2" data-path="biblio.html"><a href="biblio.html#carregando-bibliotecas"><i class="fa fa-check"></i><b>3.2</b> Carregando bibliotecas</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html"><i class="fa fa-check"></i><b>4</b> Importar bases de dados</a><ul>
-<li class="chapter" data-level="4.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>4.1</b> Com o uso das ferramentas da aba Environment</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-formato-r"><i class="fa fa-check"></i><b>4.1.1</b> Arquivos em formato R</a></li>
-<li class="chapter" data-level="4.1.2" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-outros-formatos"><i class="fa fa-check"></i><b>4.1.2</b> Arquivos em outros formatos</a></li>
+<li class="chapter" data-level="4" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html"><i class="fa fa-check"></i><b>4</b> Importando bases de dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-das-ferramentas-da-aba-environment"><i class="fa fa-check"></i><b>4.1</b> Com o uso das ferramentas da aba Environment</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r"><i class="fa fa-check"></i><b>4.1.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos"><i class="fa fa-check"></i><b>4.1.2</b> Arquivos em outros formatos</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#com-o-uso-de-linhas-de-comando"><i class="fa fa-check"></i><b>4.2</b> Com o uso de linhas de comando</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>4.2.1</b> Arquivos em formato R</a></li>
-<li class="chapter" data-level="4.2.2" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>4.2.2</b> Arquivos em outros formatos</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#com-o-uso-de-linhas-de-comando"><i class="fa fa-check"></i><b>4.2</b> Com o uso de linhas de comando</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-formato-r-1"><i class="fa fa-check"></i><b>4.2.1</b> Arquivos em formato R</a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#arquivos-em-outros-formatos-1"><i class="fa fa-check"></i><b>4.2.2</b> Arquivos em outros formatos</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="importar-bases-de-dados.html"><a href="importar-bases-de-dados.html#gerar-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.3</b> Gerar dicionário de variáveis</a></li>
+<li class="chapter" data-level="4.3" data-path="importando-bases-de-dados.html"><a href="importando-bases-de-dados.html#gerando-um-dicionário-de-variáveis"><i class="fa fa-check"></i><b>4.3</b> Gerando um dicionário de variáveis</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html"><i class="fa fa-check"></i><b>5</b> Descrever e Analisar os dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>5.1</b> Descrevendo os dados</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#criar-variáveis-e-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Criar variáveis e vetores</a></li>
-<li class="chapter" data-level="5.1.2" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#funções-básicas-e-comandos-úteis"><i class="fa fa-check"></i><b>5.1.2</b> Funções básicas e comandos úteis</a></li>
+<li class="chapter" data-level="5" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html"><i class="fa fa-check"></i><b>5</b> Descrevendo e analisando os dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#descrevendo-os-dados"><i class="fa fa-check"></i><b>5.1</b> Descrevendo os dados</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#criar-variáveis-e-vetores"><i class="fa fa-check"></i><b>5.1.1</b> Criar variáveis e vetores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#funções-básicas-e-comandos-úteis"><i class="fa fa-check"></i><b>5.1.2</b> Funções básicas e comandos úteis</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#estatística-descritiva"><i class="fa fa-check"></i><b>5.2</b> Estatística descritiva:</a></li>
-<li class="chapter" data-level="5.3" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#análises-bi-e-multivariadas"><i class="fa fa-check"></i><b>5.3</b> Análises bi e multivariadas:</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#correlação"><i class="fa fa-check"></i><b>5.3.1</b> Correlação</a></li>
+<li class="chapter" data-level="5.2" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#estatística-descritiva"><i class="fa fa-check"></i><b>5.2</b> Estatística descritiva:</a></li>
+<li class="chapter" data-level="5.3" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#análises-bi-e-multivariadas"><i class="fa fa-check"></i><b>5.3</b> Análises bi e multivariadas:</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#correlação"><i class="fa fa-check"></i><b>5.3.1</b> Correlação</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="descrever-e-analisar-os-dados.html"><a href="descrever-e-analisar-os-dados.html#regressao-linear-multipla"><i class="fa fa-check"></i><b>5.4</b> Regressao linear multipla</a></li>
+<li class="chapter" data-level="5.4" data-path="descrevendo-e-analisando-os-dados.html"><a href="descrevendo-e-analisando-os-dados.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.4</b> Regressão linear múltipla</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="visualizar-os-dados.html"><a href="visualizar-os-dados.html"><i class="fa fa-check"></i><b>6</b> Visualizar os dados</a></li>
 <li class="chapter" data-level="7" data-path="glossário.html"><a href="glossário.html"><i class="fa fa-check"></i><b>7</b> Glossário</a></li>
@@ -195,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso do R para análise da dados da World Values Survey</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uso de R para análise dos dados da World Values Survey</a>
           </h1>
         </div>
 
@@ -204,16 +205,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Uso do R para análise da dados da World Values Survey</h1>
-<p class="author"><em>Coletivo WVSR</em></p>
-<p class="date"><em>2020-07-16</em></p>
+<h1 class="title">Uso de R para análise dos dados da World Values Survey</h1>
+<p class="author"><em>Autor 1<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
+<p class="author"><em>Autor 2<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></em></p>
+<p class="date"><em>23 de juillet de 2020</em></p>
 </div>
-<div id="bem-vindo" class="section level1 unnumbered">
-<h1>Bem Vindo !</h1>
-<p>Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises do WVS em R. Se trata de um documento evolutivo e introdutório ao uso do R nas análises com a base estruturada da Pesquisa Mundial de Valores.</p>
+<div id="bem-vindoa" class="section level1 unnumbered">
+<h1>Bem-Vindo(a)!</h1>
+<p><a href="https://tiagovier.github.io/docs/" target="_blank"><img src="img/capa.png" style="display: block; margin: auto;" /></a></p>
+<p>Este tutorial é resultado de um trabalho conjunto do Coletivo de Análises da World Values Survey (WVS), ou Pesquisa Mundial de Valores, em Português, sobre o uso da linguagem R e ambiente de programação RStudio.</p>
+<p>Trata-se de um documento evolutivo e introdutório ao uso dos softwares livres R e RStudio nas análises dos dados da base estruturada da WVS.</p>
 <p>Este tutorial foi preparado em <a href="https://rmarkdown.rstudio.com/">Rmarkdown</a> com a biblioteca <a href="https://bookdown.org/">bookdown</a>.</p>
-<p>Um agradecimento aos colaboradores: …</p>
+<p>Um agradecimento aos colaboradores do grupo do WVS Brasil.</p>
 
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Coletivo WVSR, <a href="mailto:mail@example.org" class="email">mail@example.org</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Coletivo WVSR, <a href="mailto:mail@example.org" class="email">mail@example.org</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -266,7 +277,9 @@ gitbook.start({
 "download": ["tutorial_wvsR.pdf", "tutorial_wvsR.epub", "tutorial_wvsR.docx"],
 "toc": {
 "collapse": "subsection"
-}
+},
+"search": true,
+"info": true
 });
 });
 </script>

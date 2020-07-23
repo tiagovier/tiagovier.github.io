@@ -1,49 +1,63 @@
-# Bibliotecas
+# Bibliotecas {#biblio}
 
-Quando instalamos o R já dispomos de uma grande quantidades de comandos e funções. A lista de funções do R-base pode ser lida [aqui](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
+Quando instalamos o R, instalamos junto uma grande quantidade de comandos e funções. A lista de funções do R-base pode ser vista [aqui](https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
 
-Para além destes, o ambiente R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições [CRAN](https://cran.r-project.org/web/packages/) lista 16045 bibliotecas disponíveis. As diferentes contribuições são minimamente agrupadas por [tópico](https://cran.r-project.org/web/views/). Por exemplo, é possível conhecer os pacotes disponíveis para as [ciências sociais](https://cran.r-project.org/web/views/SocialSciences.html).
+Para além desses recursos, a linguagem R dispõe de uma grande quantidade de bibliotecas (ou pacotes) disponíveis. No momento em que escrevemos este tutorial, a plataforma de contribuições [CRAN](https://cran.r-project.org/web/packages/) lista 16,045 bibliotecas disponíveis. As diferentes contribuições são agrupadas por tópicos. É possível, por exemplo, conhecer os pacotes disponíveis para as [Ciências Sociais](https://cran.r-project.org/web/views/SocialSciences.html).
 
-Neste tutorial vamos usar as funções do R-base e algumas bibliotecas adicionais que facilitam algumas operações e já dão conta da maior parte das necessidades de um pesquisador interessado em usar o WVS.
+Neste tutorial, utilizamos as funções do R-base e sugerimos bibliotecas adicionais que facilitam algumas operações e são suficientes para a maior parte das necessidades de um pesquisador interessado em usar o WVS.
 
-As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática [tidyverse](https://www.tidyverse.org/), entre elas os pacotes `dplyr`, `haven` e `ggplot2`. Mais detalhes podem ser obtidos no livro dos autores disponível [neste link](https://r4ds.had.co.nz/). Além do `tidyverse`, usamos a biblioteca `codebook` para visualizar os dados.
+As bibliotecas que são usadas neste tutorial fazem parte da filosofia e gramática [tidyverse](https://www.tidyverse.org/), Entre elas, estão os pacotes dplyr, haven e ggplot2. Mais detalhes sobre esse tema podem ser obtidos no livro acessível [neste link](https://r4ds.had.co.nz/). Além do `tidyverse`, usamos a biblioteca `codebook` para visualizar os dados.
 
-## Instalação de bibliotecas adicionais
+## Instalando bibliotecas adicionais
 
-Como mencionamos acima, quando instalamos o R-base já instalamos uma série de funções e comandos. Dentre eles, existe um comando específico para instalar novas bibliotecas do repositório CRAN.
+Como mencionamos anteriormente, quando instalamos o R-base já instalamos uma série de funções e comandos. 
 
-Para instalar as bibliotecas usa-se o comando `install.packages("nome_da_bibliteca")`. Outra maneira de instalar novas bibliotecas é usar a aba "Packages". Esta aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão "Install". 
+Entretanto, você pode usar um comando específico para instalar novas bibliotecas do repositório CRAN.
 
-Entrentanto, recomendamos que as bibliotecas que serão usadas nas análises sejam indicadas no inicio do código R onde são feitas as análises. Assim, o pesquisador que recebê-lo sabe quais os requisitos necessários para reproduzir as análises.
+Para instalar bibliotecas, use o comando: `install.packages("nome_da_bibliteca")`. 
 
-Para instalar bibliotecas adicionais, seguimos o exemplo abaixo:
+Outra maneira de instalar novas bibliotecas é usar a aba "Packages". 
 
+Essa aba permite visualizar as bibliotecas já instaladas e instalar novas usando o botão "Install". 
 
-```{r instalar, eval = FALSE}
+Para instalar a biblioteca da gramática tidyverse digite:
+
+```{r instalar1, eval = FALSE}
 
 # para instalar as bibliotecas da gramática tidyverse
 install.packages("tidyverse")
 
-# para instalar a biblioteca codebook para visualizar os dados (ver no capítulo seguinte)
+```
+
+Para instalar a biblioteca codebook de visualização de dados (ver no capítulo seguinte) digite:
+
+```{r instalar2, eval = FALSE}
+
+# para instalar a biblioteca codebook para visualizar os dados 
+# (ver no capítulo seguinte)
 install.packages("codebook")
 
 ```
 
-Quando rodamos o comando, usando `Crtl + Enter` no script ou `Enter` diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. **Assim, é importante que se faça a instalação de todas as dependências indicadas pelo R.** Verifique no console, e se o R perguntar se quer fazer a instalação das dependências, diga "Yes".
+Quando rodamos o comando, usando `Crtl + Enter` ou `Run` no script, ou `Enter` se você está digitando diretamente no console, o R vai verificar se existem dependências e instalar todas as que forem necessárias para o seu bom funcionamento. 
 
-## Carregar as bibliotecas
+**É importante que se instale todas as dependências indicadas pelo R.** Verifique no Console e, se o R perguntar se você quer fazer a instalação das dependências, clique "Yes".
 
-Uma vez instaladas as bibliotecas, é preciso carregar as bibliotecas para que possam ser usadas.
+## Carregando bibliotecas
+
+É preciso carregar as bibliotecas sempre que se inicia uma sessão.
 
 O comando para carregar as bibliotecas é `library("nome_da_biblioteca")`.
 
+Para carregar as bibliotecas que vamos usar, use os comandos abaixo:
 
 ```{r carregar, eval=FALSE}
 
 # carregar o tidyverse
 library(tidyverse)
 
-## carregar a biblioteca haven, que é usada no capítulo seguinte para 
+# carregar a biblioteca haven, 
+# usada para importar arquivo SPSS 
 library(codebook)
 
 # carregar o codebook
@@ -51,6 +65,8 @@ library(codebook)
 
 ```
 
-Sempre que abrir e fechar o R-Studio é preciso carregar as bibliotecas novamente, pois o R reinicia a sessão somente com os comandos do R-base.
+Sempre que abrir o RStudio, é preciso recarregar as bibliotecas, pois o RStudio reinicia a sessão somente com os comandos do R-base.
+
+É recomendado que as bibliotecas que serão usadas nas análises sejam indicadas no início do código R onde são feitas as análises. Dessa forma, qualquer pesquisador poderá identificar os requisitos necessários para reproduzir as suas análises.
 
 Carregadas as bibliotecas podemos importar os dados que vamos usar.

@@ -1,18 +1,21 @@
-# Importar bases de dados
+# Importando bases de dados
 
-O R importa arquivos salvos em seu próprio formato e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.
+Utilizando o RStudio, pode-se importar arquivos salvos no próprio formato R e de variados outros softwares, como Excell, SPSS e Stata, e em diversos outros formatos, incluindo Text.
 
-Há duas formas de importação de arquivos no R: com o uso das ferramentas do Environment ou com o uso de linhas de comando escritas diretamente no console ou em um script.
+Há duas formas de importação de arquivos no RStudio:
+
+* Com o uso das ferramentas do Environment, ou
+* Com o uso de linhas de comando escritas diretamente no Console ou em um script
 
 ## Com o uso das ferramentas da aba Environment
 
-Por esta forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
+Por essa forma, você usa as ferramentas do R do mesmo jeito que faz com qualquer outro software, como os do pacote Microsoft Office, por exemplo.
 
 ### Arquivos em formato R
 
 Para arquivos formato R (formato `.rdata`):
 
-* Clique sobre o icone Abrir Arquivos.
+* Na aba "Environment", Clique sobre o icone "Abrir Arquivos".
 * Procure o seu arquivo nos locais do seu computador.
 * Clique no arquivo e clique em Open ou clique duas vezes sobre o arquivo.
 
@@ -20,7 +23,7 @@ Pronto! O seu arquivo vai aparecer no Environment.
 
 ### Arquivos em outros formatos
 
-Para importar os dados em outros formatos, é preciso usar biblitecas específicas para esse fim. No caso deste tutorial, a biblioteca usada é a `haven`, da gramática Tidyverse.
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca haven, da gramática Tidyverse (veja em [bibliotecas](#biblio)).
 
 * Clique sobre o icone Import Dataset.
 * Escolha e clique sobre o formato em que o seu arquivo foi previamente salvo.
@@ -37,7 +40,7 @@ Pronto! O seu arquivo vai aparecer no Environment.
 Para carregar arquivos no formato nativo do R usando linhas de comando:
 
 * Abra um novo script R e digite: `load("nome_do_arquivo.rdata")`. 
-  + Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar os locais do seu computador.
+  + Dica: Deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Se seu arquivo está em alguma pasta ou subpasta o R também vai lhe mostrar esses locais.
 * Clique no arquivo que você quer importar
 * Digite Control + Enter, ou clique em Run (disponível na aba superior do Source Code do seu R).
 
@@ -45,16 +48,16 @@ Pronto! O seu arquivo vai aparecer no Environment.
 
 ### Arquivos em outros formatos
 
-Para carregar arquivos em outros formatos, usamos a biblioteca `haven` do tidyverse (Certifique-se que ela foi carregada usando o comando `library(haven)`).
+Para importar os dados em outros formatos, é preciso ter bibliotecas específicas para esse fim. Neste tutorial, sugerimos que você tenha instalada e carregada a biblioteca `haven` da gramática Tidyverse (veja em [bibliotecas](#biblio)).
 
-Cada tipo de arquivo tem um comando específico no haven.  será o mesmo para qualquer origem, com alteração apenas da extensão do arquivo:
+Cada tipo de arquivo tem um comando específico na biblioteca `haven`:
 
 Arquivos SPSS: função `read_sav()`
 Arquivos Excel: função `read_csv()`
 Arquivos Stata: função `read_dta()`
 Arquivos SAS: função `read_sas()`
 
-Veja o exemplo com a extensão do SPSS (arquivos formato .sav). Para que a base se transforme em um objeto no ambiente do R, é preciso que se atribua um nome da seguinte forma:
+Para que a base se transforme em um objeto no Environment do R, é preciso que se atribua um nome a ele. Veja este exemplo com a extensão do SPSS (arquivos em formato .sav):
 
 ```{r readhaven, eval = FALSE}
 # carregar a biblioteca haven
@@ -65,23 +68,26 @@ base_do_wvs <- read_sav("diretório_do_projeto/nome_do_arquivo.sav")
 
 ```
 
-Como das outras vezes, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os locais do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
+Como dito na dica anteriormente, deixe o cursor entre as aspas e tecle TAB. O R vai lhe mostrar os diretórios do seu computador. Em seguida, é só clicar sobre o arquivo que você procura.
 
 * Digite Control + Enter, ou 
 * Clique em Run (disponível na aba superior do Source Code do seu R).
 
 Pronto! O seu arquivo vai aparecer no Environment.
 
-Com outras extensões você usará, por exemplo, read_cvs ou read_dta. Para mais informações acesse a [ajuda da bibliteca haven](https://haven.tidyverse.org/)
+Com outras extensões você usará, por exemplo, `read_cvs()` ou `read_dta()`. Para mais informações acesse a [ajuda da bibliteca haven](https://haven.tidyverse.org/)
 
 
-## Gerar dicionário de variáveis
+## Gerando um dicionário de variáveis
 
-Para navegar na base de dados recém importada, reconhecer as variáveis importadas e suas características, existem diveras ferramentas disponíveis. 
+Para navegar na base de dados recém importada e reconhecer as variáveis importadas e suas características, existem diversas ferramentas disponíveis. 
 
-Uma delas é o pacote codebook, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba "Preview" e também na forma de um vetor que pode ser visualizado como uma tabela. 
+Uma delas é o pacote `codebook`, que gera um dicionário de variáveis. Nos exemplos abaixo, mostramos como gerar um dicionário de variáveis estático na aba "Preview" e também na forma de um vetor que pode ser visualizado como uma tabela. 
+ 
+Para carregar a biblioteca codebook e gerar um dicionário de variáveis estático navegável na aba "Preview", gerar uma tabela e visualisá-la use os comandos abaixo:
  
 ```{r codebook, eval=FALSE}
+
 # carregar a biblioteca codebook
 library(codebook)
 
@@ -96,6 +102,6 @@ view(dicionario)
 
 ```
 
-Feita a importação da base e com o dicionário nas mãos podemos passar a descrição, análise e visualização dos dados.
+Feita a importação da base de dados e com o dicionário em mãos, podemos passar a descrição, análise e visualização dos dados.
 
 
